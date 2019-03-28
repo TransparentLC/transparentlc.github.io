@@ -9,10 +9,27 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta http-equiv="Cache-Control" content="no-transform" />
     <title>阿卡林匿名版</title>
+    <style>
+        body {
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+        }
+        iframe {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <script>
-        location.href = 'http://101.132.76.23/h/index.php';
+        if (navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1) {
+	        location.href = 'http://101.132.76.23/h/index.php';
+        }
     </script>
+    <iframe src="http://101.132.76.23/h/index.php"></iframe>
 </body>
 </html>
