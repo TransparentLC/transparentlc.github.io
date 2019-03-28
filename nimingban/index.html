@@ -14,10 +14,21 @@
             margin: 0 0 0 0;
             padding: 0 0 0 0;
         }
+        div {
+            position: fixed;
+            width: 100%;
+            height: 10%;
+            left: 0;
+            top: 90%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         iframe {
             position: fixed;
             width: 100%;
-            height: 100%;
+            height: 90%;
             left: 0;
             top: 0;
             border: none;
@@ -26,10 +37,15 @@
 </head>
 <body>
     <script>
-        if (navigator.userAgent.toLowerCase().indexOf('micromessenger') === -1) {
+        if (navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) {
 	        location.href = 'http://101.132.76.23/h/index.php';
         }
     </script>
     <iframe src="http://101.132.76.23/h/index.php"></iframe>
+    <div>
+        如果未能正常加载阿卡林匿名版，
+        <br />
+        请点击右上角，选择“在浏览器打开”。
+    </div>
 </body>
 </html>
