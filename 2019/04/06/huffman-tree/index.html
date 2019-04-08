@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://lib.baomitu.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            使用 C 语言实现 Huffman 编码 | 
+        
+        存在感消失的地方|ω•`)
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="../../../../img/favicon.png">
+    <link rel="icon" href="../../../../img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content>
+    <meta name="keywords" content>
+    <meta name="theme-color" content="#da5a88">
+
+    <!-- Disable Fucking Bloody Baidu Transformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/material.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/style.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/prettify.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/prettify/github-v2.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #b15078;
+  }
+
+  video {
+    width: 100%;
+    border-radius: 2px;
+  }
+  
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #da5a88 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #da5a88 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #da5a88 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #b15078;
+    text-decoration: underline;
+  }
+  
+  /* Horizontal Scroll Bar For Code */
+  pre.prettyprint > ol {
+    white-space: pre !important;
+    overflow-x: auto !important;
+  }
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #f5f5f5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <style>
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 300;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.svg#Roboto) format('svg')
+        }
+
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: regular;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.svg#Roboto) format('svg')
+        }
+
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 500;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.svg#Roboto) format('svg')
+        }
+    </style>
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/material-icons.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="存在感消失的地方|ω•`)">
+    <meta name="msapplication-starturl" content="https://transparentlc.github.io">
+    <meta name="msapplication-navbutton-color" content="#da5a88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="存在感消失的地方|ω•`)">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="../../../../img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://transparentlc.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="使用 C 语言实现 Huffman 编码 | 存在感消失的地方|ω•`)">
+    <meta property="og:image" content="../../../../img/favicon.png">
+    <meta property="og:description" content>
+    
+
+    
+        <meta property="article:published_time" content="Sat Apr 06 2019 14:25:41 GMT+0800">
+        <meta property="article:modified_time" content="Mon Apr 08 2019 01:42:46 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://transparentlc.github.io">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://transparentlc.github.io",
+    "headline": "使用 C 语言实现 Huffman 编码",
+    "datePublished": "Sat Apr 06 2019 14:25:41 GMT+0800",
+    "dateModified": "Mon Apr 08 2019 01:42:46 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "✨小透明・宸✨",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.jpg"
+        },
+        "description": "身处寒夜 把握星光✨"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "存在感消失的地方|ω•`)",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#生成-Huffman-树"><span class="post-toc-number">1.</span> <span class="post-toc-text">生成 Huffman 树</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#根据树生成编码表"><span class="post-toc-number">2.</span> <span class="post-toc-text">根据树生成编码表</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#对文本进行编码和解码"><span class="post-toc-number">3.</span> <span class="post-toc-text">对文本进行编码和解码</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ae01.alicdn.com/kf/HTB1B6wzPIfpK1RjSZFOq6y6nFXaq.jpg)">
+    
+            <p class="article-headline-p">
+                使用 C 语言实现 Huffman 编码
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="../../../../img/avatar.jpg" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>✨小透明・宸✨</strong>
+        <span>2019-04-06 14:25:41</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button" style="text-align: center;">
+    <li class="mdl-menu__item" style="text-align: center;">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACMElEQVR42u2bwW7DMAxD8/8/3Z12KWyScrutC58vARrXfgEiVSLd6/EPxgUkkEAC+QGQlxjPc+LFxdzve9G+QNZCuo1WC6zmqM138+W+QFZD7hZUwbS67j5T39s+CJBAbiBXG+2S/fN66j6QQL4CqQLJXX8tcIC8FWSyWFrkqmBz6wEJpGuIfvL6tm4RyFtBnjT6q0BxBYULvpdUNSBvBale5B2I2zhZ0+0HZC+kK0DdcAXJ7mGTwgTIXkgnnLpAShK4e8il6ABkJWRaQJyAJyKXNAuArIScNPNpkj8pLmwjBmQNpDOVUjN0N08FUFxgAFkFORGRFMS02FXBBmQ35Mniu8BQwsFbqiAgKyCVkZ4Ip65xcwEizVIgayGTAyFpoaqMJVV4RIIVkBWQ6kVPkrQTYpPDJSOXFsjbQ7oiIzXrVaKfNGtAAnmFQ5n2iWGaGFrSpQWyCjJ5kZMGzB1USo0EILshk6IgMeynAsGRqgZkBeRURFLJfPIjkBTTQHZCJi/0pEB2h6GUYAUkkK7oVIneCVJp4Mj7QNZCTgzLRIRKhKyoWAESSGMyOahJELqgARLIFDoV86eC2LJgAbIS0r68QgRIGivbbKlAA7ISMjoAHApVzrBS82x0A1kFmSTqSQJPDc5R4ABZB5kYRmniTu5FB1SABNIcLpo0XU5UPUrmQAL5yP5UNCkcJskfyG7IqeiuRFhnyjvRC0ggkx/+qVh12tgBCeQnDyCBBBLIPxxf9nXWdZ1+hNgAAAAASUVORK5CYII=">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=使用 C 语言实现 Huffman 编码&url=https://transparentlc.github.io&pic=https://transparentlc.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=存在感消失的地方|ω•`)&title=使用 C 语言实现 Huffman 编码&summary=&pics=https://transparentlc.github.io/img/favicon.png&url=https://transparentlc.github.io" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>作业中的一道题，万恶之源←_←</p>
+<blockquote>
+<p>利用 Huffman 编码进行通信可以大大提高信道利用率，缩短信息传输时间，降低传输成本。但是，这要求在发送端通过一个编码系统对待传数据预先编码，在接收端将传来的数据进行译码。对于双工信道（即可以双向传输信息的信道），每端都需要一个完整的编码、译码系统。试为这样的信息收发站写一个 Huffman 的编码、译码系统。</p>
+<p>一个完整的系统应具有以下功能：</p>
+<ol>
+<li>初始化。从终端读入字符集大小 n，以及 n 个字符和 n 个权值，建立 Huffman 树，并将它存在于文件 Huffman 中。</li>
+<li>编码。利用以建好的 Huffman 树（如不在内存，则从文件 Huffman 中读入），对文件的正文进行编码，然后将结果存入文件 CodeFile 中。</li>
+<li>译码。利用已建好的 Huffman 树将文件 CodeFile 中的代码进行译码，结果存入在文件 TextFile 中。</li>
+</ol>
+<p>利用教科书 P148 例 6-2 中数据调试程序。</p>
+</blockquote>
+<h1 id="生成-Huffman-树"><a href="#生成-Huffman-树" class="headerlink" title="生成 Huffman 树"></a>生成 Huffman 树</h1><p>《数据结构（C 语言版）》书上给出了完整的 Huffman 编码算法，不过我把它拆成了两部分：生成 Huffman 树、根据 Huffman 树生成 Huffman 编码。</p>
+<pre><code class="c">//HT存放构造的H树
+//HC存放构造的编码
+//w指向存放了每个字符的权的数组
+//n是字符数量
+//把建树和编码的部分分开了
+void HuffmanCoding(HuffmanTree *HT, HuffmanCode *HC, unsigned int *w, unsigned int n) {
+    //只有一个或者没有字符还有什么编码的必要吗？
+    if (n &lt;= 1) return;
+
+    InitHuffmanTree(HT, w, n);
+    InitHuffmanCode(HC, *HT, n);
+}
+</code></pre>
+<p>先总结一下生成 Huffman 树的基本原理～</p>
+<ol>
+<li>为每个字符生成一个单独的叶子结点：结点的权就是字符的权，左右子树和双亲都是空的。（实际上这个单独的结点就是一个二叉树，结点本身就是它的根结点）</li>
+<li>新建一个结点作为根结点，从所有双亲为空的结点（实际上也是某个树的根结点）中找出权最小的两个作为左右子树，“合并”成一个二叉树。</li>
+<li>一直循环上一步，直到只剩下一个二叉树为止。一开始有 n 个字符（叶子结点）的话，最终的结点总数一定是 2n-1 个( ‘-ωก̀ )</li>
+</ol>
+<p>经过以上过程就可以得到一个<del>新鲜出炉</del>的 Huffman 树了～（っ´ω｀）ﾉ</p>
+<p>以下代码几乎完全照抄书上的示例，我只是尝试着加上了一些注释。</p>
+<pre><code class="c">void InitHuffmanTree(HuffmanTree *HT, unsigned int *w, unsigned int n) {
+    unsigned int m = 2 * n - 1; //H树一共有2n-1个节点
+    *HT = malloc((m + 1) * sizeof(HTNode)); //留一个0号结点表示指向空树，相当于二叉树中的NULL
+
+    //为每个字符构建只有根结点，没有左右子树的二叉树
+    (*HT)[0].weight = 0; (*HT)[0].parent = 0;
+    (*HT)[0].lchild = 0; (*HT)[0].rchild = 0;
+    HTNode *p = *HT + 1; //从1号结点开始
+    unsigned int i = 1;
+    while (i &lt;= n) {
+        (*p).weight = *w; (*p).parent = 0;
+        (*p).lchild = 0; (*p).rchild = 0;
+        i++; p++; w++;
+    }
+    //剩下的树是空树
+    while (i &lt;= m) {
+        (*p).weight = 0; (*p).parent = 0;
+        (*p).lchild = 0; (*p).rchild = 0;
+        i++; p++;
+    }
+
+    //开始生成H树
+    unsigned int s1, s2;
+    for (i = n + 1; i &lt;= m; i++) {
+        //从所有双亲为空的结点（实际上也是某个树的根结点）中找出权最小的两个，编号保存到s1和s2
+        //书上并没有详细给出这里的操作，下面的算法是我自己瞎写的～
+        Select(*HT, i - 1, &amp;s1, &amp;s2);
+        (*HT)[s1].parent = i; (*HT)[s2].parent = i;
+        (*HT)[i].lchild = s1; (*HT)[i].rchild = s2;
+        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;
+    }
+}
+
+void Select(HuffmanTree HT, unsigned int range, unsigned int *s1, unsigned int *s2) {
+    unsigned int v1 = 4294967295, v2 = 4294967295; //v1和v2保存s1和s2两个下标对应的权，初始值为unsigned int的最大值
+    *s1 = 0; *s2 = 0; //初始化s1和s2的值
+    for (unsigned int i = 1; i &lt;= range; i++) {
+        if (HT[i].parent) continue; //只在双亲为空的结点中查找
+        if (HT[i].weight &lt; v1) {
+            v2 = v1;
+            v1 = HT[i].weight;
+            *s2 = *s1;
+            *s1 = i;
+        } else if (HT[i].weight &lt; v2) {
+            v2 = HT[i].weight;
+            *s2 = i;
+        }
+    }
+    //保证s1&lt;s2
+    v1 = *s1; v2 = *s2;
+    *s1 = (v1 &lt; v2) ? v1 : v2; *s2 = (v1 &gt; v2) ? v1 : v2;
+}
+</code></pre>
+<p>0 号结点是空的，相当于指针里的 NULL，1 ~ n 号结点是一开始为每个字符生成的叶子结点，n ~ 2n-1号结点是“合并”的过程中生成的结点，图中的 n 是 8。</p>
+<p><img src="https://ae01.alicdn.com/kf/HTB1moSmPNnaK1RjSZFB763W7VXa3.png" alt></p>
+<p>嗯……这个 Huffman 树好像很像一个数组？所以可以用一个 <code>fwrite()</code> 把 Huffman 树整个保存下来。当然，由于这个程序还需要对实际的字符进行编码解码，而 Huffman 树本身不存储字符信息，所以还需要把字符集的信息也保存进来（っ‘-’）╮</p>
+<pre><code class="c">fopen_s(&amp;fpHuff, &quot;Huffman.bin&quot;, &quot;wb&quot;);
+
+//保存字符集信息
+fwrite(&amp;CharSetSize, sizeof(unsigned int), 1, fpHuff);
+fwrite(CharSet, sizeof(char), CharSetSize, fpHuff);
+fwrite(CharWeight, sizeof(unsigned int), CharSetSize, fpHuff);
+
+//保存Huffman树。字符有n个，则一共有2n-1个结点，再加上一个空的0号结点就是2n个。
+fwrite(HT, sizeof(HTNode), 2 * CharSetSize, fpHuff);
+
+fclose(fpHuff);
+</code></pre>
+<h1 id="根据树生成编码表"><a href="#根据树生成编码表" class="headerlink" title="根据树生成编码表"></a>根据树生成编码表</h1><p>以下是生成一个字符的 Huffman 编码的过程～</p>
+<ol>
+<li>将一个指针指向表示字符的叶子结点。</li>
+<li>将指针一直往上移，移到 Huffman 树的根结点为止。</li>
+<li>从左/右子树往上移一层，就在编码中输出一个 0/1，这个生成顺序是<strong>逆向</strong>的。</li>
+</ol>
+<p>随便做了一个动图，展示一下生成编码的过程_(:зゝ∠)_</p>
+<p><img src="https://ae01.alicdn.com/kf/HTB156CWPNjaK1RjSZKz5jXVwXXaR.gif" alt></p>
+<p>以下代码还是几乎完全照抄书上的示例，我只是尝试着加上了一些注释。</p>
+<pre><code class="c">void InitHuffmanCode(HuffmanCode *HC, HuffmanTree HT, unsigned int n) {
+    *HC = malloc((n + 1) * sizeof(char*)); //HC相当于一个由字符数组组成的数组
+    char *cd = malloc(n * sizeof(char)); //求编码的工作区
+    cd[n - 1] = &#39;\0&#39;; //字符数组以\0结尾
+    unsigned int start; //表示一个编码从cd的哪一项开始
+    unsigned int c, f; //c指当前指向的树，f是c的双亲
+
+    //对每个字符逆向求编码
+    for (unsigned int i = 1; i &lt;= n; i++) {
+        start = n - 1;
+        //求编码从叶子结点开始，到c指向根结点为止，此时f为0
+        for (c = i, f = HT[i].parent; f != 0; c = f, f = HT[f].parent) {
+            start--; //向前移一位
+            if (HT[f].lchild == c) {
+                cd[start] = &#39;0&#39;; //左子树的路径用0表示
+            } else {
+                cd[start] = &#39;1&#39;; //右子树的路径用1表示
+            }
+        }
+        //从cd复制到HC
+        (*HC)[i] = malloc((n - start) * sizeof(char));
+        strcpy_s((*HC)[i], n - start + 1, &amp;cd[start]);
+    }
+    free(cd);
+}
+</code></pre>
+<h1 id="对文本进行编码和解码"><a href="#对文本进行编码和解码" class="headerlink" title="对文本进行编码和解码"></a>对文本进行编码和解码</h1><p>在上面的代码中，保存的编码其实是<strong>字符 0 和 1</strong>。简单的做法是编码的时候直接输出一大堆 0 和 1 两种<strong>字符</strong>，不过因为我实在是<del>没什么事干</del>，就选择了比较困难的做法：输出对应的<strong>二进制位</strong>。</p>
+<p>编码表本身需不需要用二进制位存储？我觉得没必要啦～꜀(｡௰｡ ꜆)꜄</p>
+<p>C++ 有个叫 <code>bitset</code> 的结构可以存储二进制位，不过 C 语言是没有的，所以只能自己查一下位运算的资料（相关内容出现在“谭宝书”的“学习辅导”分册，并不是课内的内容），自己造了两个轮子ε-(•́ω•̀๑)</p>
+<pre><code class="c">//对位进行相关操作
+//这里的unsigned char对于位是0或1，对于偏移是0到7
+
+//设byte为10101100（对应offset为76543210），即172，读取offset为5的位
+//offset=5
+//00100000 1&lt;&lt;offset
+//10101100 byte
+//00100000 byte&amp;(1&lt;&lt;offset)
+//00000001 (byte&amp;(1&lt;&lt;offset))&gt;&gt;offset
+unsigned char ReadBit(unsigned char byte, unsigned char offset) {
+    return (byte &amp; (1 &lt;&lt; offset)) &gt;&gt; offset;
+}
+
+//设byte为10101100（对应offset为76543210），即172，将offset为4的位改为1
+//offset=4 write=1
+//00010000 write&lt;&lt;offset
+//10101100 byte
+//10111100 byte|(write&lt;&lt;offset)
+void WriteBit(unsigned char *byte, unsigned char offset, unsigned char write) {
+    *byte |= write &lt;&lt; offset;
+}
+</code></pre>
+<p>C 语言对变量的读写，最小也只能以一个字节为单位。为了对二进制位进行读写，我的想法是使用一个指针指向需要读写的那个位所在的字节，以及一个偏移量用来指定读写的是这个字节的第几位(´ﾟωﾟ｀) 另外，输出的二进制位不一定能凑满一个完整的字节，这时就将剩下的位设为 0，凑出一个完整的字节，同时再用一个整数保存二进制位的数量。</p>
+<p>所以编码的代码大概是这个样子～</p>
+<p>之前说过，我把书上的编码算法拆成了生成 Huffman 树和生成编码表两个部分。因为编码表本身是不需要保存的，在编码和解码的时候，根据 Huffman 树现场生成就可以了|ω•`)</p>
+<pre><code class="c">//读取Huffman树过程略
+//变量定义略，自己判断变量类型咯～
+
+//根据Huffman树建立编码表
+InitHuffmanCode(&amp;HC, HT, CharSetSize);
+
+//读取TextFile
+fopen_s(&amp;fpCode, &quot;CodeFile.bin&quot;, &quot;wb&quot;);
+fopen_s(&amp;fpText, &quot;TextFile.txt&quot;, &quot;rb&quot;);
+//获取TextFile的大小
+fseek(fpText, 0L, SEEK_END);
+FileSize = ftell(fpText);
+fseek(fpText, 0L, SEEK_SET);
+
+CodeSize = 0;
+Offset = 7;
+Byte = 0;
+//对TextFile中的每个字符进行编码
+for (unsigned long long i = 0; i &lt; FileSize; i++) {
+    Status = 1;
+    fread(&amp;Read, sizeof(char), 1, fpText);
+    //从编码表中查找对应的编码，pCode指向编码表中的某个字符0或1
+    for (unsigned int j = 0; j &lt; CharSetSize; j++) {
+        if (CharSet[j] == Read) {
+            pCode = HC[j + 1];
+            while (*pCode) {
+                CodeSize++;
+                WriteBit(&amp;Byte, Offset, *pCode - &#39;0&#39;);
+                if (Offset) {
+                    //字节没有写满，offset-1
+                    Offset--;
+                } else {
+                    //字节写满了就写入文件，然后清空字节
+                    Offset = 7;
+                    fwrite(&amp;Byte, sizeof(unsigned char), 1, fpCode);
+                    Byte = 0;
+                }
+                pCode++;
+            }
+            Status = 0;
+            break;
+        }
+    }
+    if (Status) printf(&quot;提示：已忽略没有在字符集中出现的字符%c\n&quot;, Read);
+}
+//最后一个字节没有写满也要写入，没有写满的位都是0
+if (Offset != 7) {
+    fwrite(&amp;Byte, sizeof(unsigned char), 1, fpCode);
+}
+//在文件最后写入编码位数
+fwrite(&amp;CodeSize, sizeof(unsigned long long), 1, fpCode);
+
+fclose(fpCode);
+fclose(fpText);
+</code></pre>
+<p>解码的操作，书上也只写了“留给读者去完成”<del>咕咕咕</del>，实际上过程也很简单～</p>
+<ol>
+<li>将一个指针指向 Huffman 树的根结点。</li>
+<li>读取一个个 0/1（不论是字符还是二进制位，总之读取就对了！），将指针指向结点的左/右子树。</li>
+<li>指到叶子结点就输出对应的字符，然后将指针移回根结点。</li>
+</ol>
+<p>其实是编码的逆过程，所以动图就不做了～想象一下倒放上面那个动图的样子就好（你连倒放动图都懒得做了嘛！( ｀д´ )</p>
+<pre><code class="c">//读取Huffman树过程略x2
+//变量定义略x2，自己判断变量类型咯～
+
+//根据H树建立编码表
+InitHuffmanCode(&amp;HC, HT, CharSetSize);
+
+//读取CodeFile
+Index = 2 * CharSetSize - 1;
+fopen_s(&amp;fpCode, &quot;CodeFile.bin&quot;, &quot;rb&quot;);
+fopen_s(&amp;fpText, &quot;TextFile.txt&quot;, &quot;wb&quot;);
+
+//读取编码位数
+fseek(fpCode, -1L * (long)sizeof(unsigned long long), SEEK_END);
+fread(&amp;CodeSize, sizeof(unsigned long long), 1, fpCode);
+fseek(fpCode, 0L, SEEK_SET);
+
+Offset = 7;
+fread(&amp;Byte, sizeof(unsigned char), 1, fpCode); //先读取一个字节
+//对CodeFile中的每个位进行读取
+for (unsigned long long i = 0; i &lt; CodeSize; i++) {
+    Read = ReadBit(Byte, Offset);
+    if (Read) {
+        //读到1就移向右子树
+        Index = HT[Index].rchild;
+    } else {
+        //读到0就移向右子树
+        Index = HT[Index].lchild;
+    }
+    //移到叶子结点就写入字符，同时移回根结点
+    if (!HT[Index].lchild &amp;&amp; !HT[Index].rchild) {
+        fwrite(&amp;CharSet[Index - 1], sizeof(char), 1, fpText);
+        Index = 2 * CharSetSize - 1;
+    }
+    if (Offset) {
+        //字节没有读完，offset-1
+        Offset--;
+    } else {
+        //字节读完了就读下一个字节
+        Offset = 7;
+        fread(&amp;Byte, sizeof(unsigned char), 1, fpCode);
+    }
+}
+
+fclose(fpCode);
+fclose(fpText);
+</code></pre>
+<p><img src="https://ae01.alicdn.com/kf/HTB16HjkPNTpK1RjSZFM762G_VXaj.png" alt></p>
+<p>最后的效果就是上面这样。</p>
+<ul>
+<li><code>6B BF 0E 80</code> 用二进制表示为 <code>0110 10 1110 1111 110 00 0111 010 000000</code>，对应了 <code>ABCDEFGH</code>的 Huffman 编码，后面的六个 <code>0</code> 是为了补全字节用的～</li>
+<li><code>1A</code> 用十进制表示为 <code>26</code>，表示 Huffman 编码占用的 26 个二进制位。</li>
+</ul>
+<p>完整的代码在<a href="https://pastebin.com/EGAGzKxg" target="_blank" rel="noopener">这里</a>了～c(ˊᗜˋ*c)</p>
+<p>另外，这个题目只要求根据输入的一个字符集生成 Huffman 编码。不过，如果“字符集”包括了 <code>0x00</code> 到 <code>0xFF</code> 的所有字节，将“权”设为每个字节在文件中出现的次数，那不就可以用来压缩文件了吗！\(≧▽≦)/</p>
+<p>以后有空再写这个，做出来了也会把完整的源代码丢粗来ヾ(´∀｀。ヾ)</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://transparentlc.github.io/2019/04/06/huffman-tree/">https://transparentlc.github.io/2019/04/06/huffman-tree/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(../../../../img/sidebar_header.jpg); background-size: cover; background-position: center;">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="../../../../img/avatar.jpg" alt="✨小透明・宸✨'s avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown" style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5));">
+        存在感满满的好孩子(´•ω•`)
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="https://zh.moegirl.org/%E9%98%BF%E5%8D%A1%E6%9E%97" target="_blank" title="\アッカリ～ン/">
+                        
+                        \アッカリ～ン/
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/about" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="https://github.com/TransparentLC" title="GitHub">
+                
+                    <i class="material-icons sidebar-material-icons">code</i>
+                
+                GitHub
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="https://git.io/AkarinNMB" title="阿卡林匿名版">
+                
+                    <i class="material-icons sidebar-material-icons">forum</i>
+                
+                阿卡林匿名版
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">1</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;✨小透明・宸✨
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/js/lazyload.min.js", true)</script>
+
+
+
+    <script>lsloader.load("js_js","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/js/js.min.js", true)</script>
+
+
+
+    <script>lsloader.load("np_js","https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#e17fac'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #e17fac, 0 0 15px #e17fac'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#e17fac',
+        'border-left-color': '#e17fac'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="../../../../css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Make a difficult decision :) -->
+<script src="/js/fuckWechat.js"></script>
+
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/js/prettify.min.js", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
