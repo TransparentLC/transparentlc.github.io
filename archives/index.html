@@ -106,10 +106,33 @@
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
 
+  /* Animated Underline On Links */
   a {
     color: #b15078;
+    position: relative;
+    text-decoration: none;
   }
 
+  a:after {
+    content: "";
+    width: 0;
+    height: 1px;
+    background: #b15078;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transition: all .2s;
+  }
+
+  a:hover:after {
+    left: 0%;
+    width: 100%;
+  }
+  
+  .article-headline-p > a:after, .index-top-block-slogan > a:after, .something-else-logo > a:after, .footer-develop-div > a:after {
+    background: transparent;
+  }
+  
   video {
     width: 100%;
     border-radius: 2px;

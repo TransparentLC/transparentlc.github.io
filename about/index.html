@@ -106,10 +106,33 @@
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
 
+  /* Animated Underline On Links */
   a {
     color: #b15078;
+    position: relative;
+    text-decoration: none;
   }
 
+  a:after {
+    content: "";
+    width: 0;
+    height: 1px;
+    background: #b15078;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transition: all .2s;
+  }
+
+  a:hover:after {
+    left: 0%;
+    width: 100%;
+  }
+  
+  .article-headline-p > a:after, .index-top-block-slogan > a:after, .something-else-logo > a:after, .footer-develop-div > a:after {
+    background: transparent;
+  }
+  
   video {
     width: 100%;
     border-radius: 2px;
@@ -452,10 +475,11 @@
 <h1 id="关于自己"><a href="#关于自己" class="headerlink" title="关于自己"></a>关于自己</h1><p>华南地区某间不用军训的学校的辣鸡学生一只←_←</p>
 <p>无论写什么东西都要带上颜文字的可爱的男孩子～(ฅ´ω`ฅ) （不女装！）</p>
 <p>才不会搞机呢。</p>
-<p>虽然很想，但是完全没有经历过“和喜欢的人在一起”这种事……(=’_’=)</p>
-<p><strong>没有什么存在感。</strong></p>
+<p>根本没有女朋友……(=’_’=)</p>
+<p><strong>也没有什么存在感。</strong></p>
 <h1 id="来找我丸呀（-ﾉωﾉ）"><a href="#来找我丸呀（-ﾉωﾉ）" class="headerlink" title="来找我丸呀（*ﾉωﾉ）"></a>来找我丸呀（*ﾉωﾉ）</h1><p><code>D464BDD7976FE48737EB1C76704B6C2B</code></p>
 <p>原文是纯数字，自己去爆破吧（逃</p>
+<p><del>随便找个在线查询的网站不就可以破解了嘛⊂彡☆))∀`)</del></p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

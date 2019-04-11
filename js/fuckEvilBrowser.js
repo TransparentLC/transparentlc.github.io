@@ -59,17 +59,17 @@ if (evilBrowserDetected) {
         '        <div style="width: 100%; display: flex; flex-direction: row; align-items: center;" id="chrome">',
         '            <img src="https://cdn.jsdelivr.net/npm/@browser-logos/chrome@1.0.8/chrome.svg" alt="chrome-logo" width="48" height="48" />',
         '            <div style="text-align: left; margin-left: 12px;">',
-        '                Google Chrome&nbsp;<a href="https://www.google.cn/chrome/browser/desktop/index.html" style="color: #3e7ac2; text-decoration: none;">立即下载</a>',
+        '                Google Chrome',
         '                <br />',
-        '                由 Google 开发的浏览器。',
+        '                由 Google 开发的浏览器。&nbsp;<a href="https://www.google.cn/chrome/browser/desktop/index.html" style="color: #3e7ac2; text-decoration: none;">立即下载</a>',
         '            </div>',
         '        </div>',
         '        <div style="width: 100%; display: flex; flex-direction: row; align-items: center; margin-top: 12px;" id="firefox">',
         '            <img src="https://cdn.jsdelivr.net/npm/@browser-logos/firefox@2.0.2/firefox.svg" alt="firefox-logo" width="48" height="48" />',
         '            <div style="text-align: left; margin-left: 12px;">',
-        '                Mozilla Firefox&nbsp;<a href="https://www.mozilla.org/zh-CN/firefox/new/" style="color: #3e7ac2; text-decoration: none;">立即下载</a>',
+        '                Mozilla Firefox',
         '                <br />',
-        '                自由开源的网页浏览器。',
+        '                自由开源的网页浏览器。&nbsp;<a href="https://www.mozilla.org/zh-CN/firefox/new/" style="color: #3e7ac2; text-decoration: none;">立即下载</a>',
         '            </div>',
         '        </div>',
         '        <div style="width: 100%; display: flex; flex-direction: row; align-items: center; margin-top: 12px;" id="edge">',
@@ -88,8 +88,8 @@ if (evilBrowserDetected) {
         '                iOS 的默认浏览器。',
         '            </div>',
         '        </div>',
-        '        <div id="febContinue" style="width: 100%; text-align: center; background-color: #5f8cc2; color: rgba(255, 255, 255, 0.8); height: 32px; line-height: 32px; border-radius: 4px; user-select: none !important; -moz-user-select: none !important; -webkit-user-select: none !important; -ms-user-select: none !important; margin-top: 12px;">',
-        '            仍然访问&nbsp;<span id="febContinueCountdown">(10)</span>',
+        '        <div id="febContinue" style="width: 100%; text-align: center; background-color: #5f8cc2; color: rgba(255, 255, 255, 0.8); height: 36px; line-height: 36px; border-radius: 4px; user-select: none !important; -moz-user-select: none !important; -webkit-user-select: none !important; -ms-user-select: none !important; margin-top: 12px;">',
+        '            仍然访问&nbsp;<span id="febContinueCountdown"></span>',
         '        </div>',
         '    </div>',
         '</div>'
@@ -101,7 +101,8 @@ if (evilBrowserDetected) {
     var febContinueCountdown = document.getElementById('febContinueCountdown');
 
 
-    var countDown = 10;
+    var countDown = 5;
+    febContinueCountdown.innerText = '(' + countDown + ')';
     var interval = setInterval(function () {
         countDown--;
         febContinueCountdown.innerText = '(' + countDown + ')';
