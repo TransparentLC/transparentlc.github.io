@@ -48,7 +48,7 @@
     
     <title>
         
-            使用 C 语言实现 Huffman 编码 | 
+            Huffman 编码・改：压缩文件 | 
         
         存在感消失的地方|ω•`)
     </title>
@@ -297,14 +297,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://transparentlc.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="使用 C 语言实现 Huffman 编码 | 存在感消失的地方|ω•`)">
+    <meta property="og:title" content="Huffman 编码・改：压缩文件 | 存在感消失的地方|ω•`)">
     <meta property="og:image" content="../../../../img/favicon.png">
     <meta property="og:description" content>
     
 
     
-        <meta property="article:published_time" content="Sat Apr 06 2019 14:25:41 GMT+0800">
-        <meta property="article:modified_time" content="Mon Apr 08 2019 01:42:46 GMT+0800">
+        <meta property="article:published_time" content="Sat Apr 13 2019 16:06:43 GMT+0800">
+        <meta property="article:modified_time" content="Sat Apr 13 2019 17:03:27 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -325,9 +325,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "https://transparentlc.github.io",
-    "headline": "使用 C 语言实现 Huffman 编码",
-    "datePublished": "Sat Apr 06 2019 14:25:41 GMT+0800",
-    "dateModified": "Mon Apr 08 2019 01:42:46 GMT+0800",
+    "headline": "Huffman 编码・改：压缩文件",
+    "datePublished": "Sat Apr 13 2019 16:06:43 GMT+0800",
+    "dateModified": "Sat Apr 13 2019 17:03:27 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "✨小透明・宸✨",
@@ -410,7 +410,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#生成-Huffman-树"><span class="post-toc-number">1.</span> <span class="post-toc-text">生成 Huffman 树</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#根据树生成编码表"><span class="post-toc-number">2.</span> <span class="post-toc-text">根据树生成编码表</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#对文本进行编码和解码"><span class="post-toc-number">3.</span> <span class="post-toc-text">对文本进行编码和解码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#自动读取字符集"><span class="post-toc-number">1.</span> <span class="post-toc-text">自动读取字符集</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#压缩和解压缩"><span class="post-toc-number">2.</span> <span class="post-toc-text">压缩和解压缩</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用-argc-和-argv-读取命令行参数"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用 argc 和 argv[] 读取命令行参数</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#压缩测试"><span class="post-toc-number">4.</span> <span class="post-toc-text">压缩测试</span></a></li></ol>
     </ul>
     
 
@@ -433,7 +433,7 @@
         <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ae01.alicdn.com/kf/HTB1B6wzPIfpK1RjSZFOq6y6nFXaq.jpg)">
     
             <p class="article-headline-p">
-                使用 C 语言实现 Huffman 编码
+                Huffman 编码・改：压缩文件
             </p>
         </div>
 
@@ -452,7 +452,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>✨小透明・宸✨</strong>
-        <span>2019-04-06 14:25:41</span>
+        <span>2019-04-13 16:06:43</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -474,7 +474,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button" style="text-align: center;">
     <li class="mdl-menu__item" style="text-align: center;">在其它设备中阅读本文章</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACMElEQVR42u2bwW7DMAxD8/8/3Z12KWyScrutC58vARrXfgEiVSLd6/EPxgUkkEAC+QGQlxjPc+LFxdzve9G+QNZCuo1WC6zmqM138+W+QFZD7hZUwbS67j5T39s+CJBAbiBXG+2S/fN66j6QQL4CqQLJXX8tcIC8FWSyWFrkqmBz6wEJpGuIfvL6tm4RyFtBnjT6q0BxBYULvpdUNSBvBale5B2I2zhZ0+0HZC+kK0DdcAXJ7mGTwgTIXkgnnLpAShK4e8il6ABkJWRaQJyAJyKXNAuArIScNPNpkj8pLmwjBmQNpDOVUjN0N08FUFxgAFkFORGRFMS02FXBBmQ35Mniu8BQwsFbqiAgKyCVkZ4Ip65xcwEizVIgayGTAyFpoaqMJVV4RIIVkBWQ6kVPkrQTYpPDJSOXFsjbQ7oiIzXrVaKfNGtAAnmFQ5n2iWGaGFrSpQWyCjJ5kZMGzB1USo0EILshk6IgMeynAsGRqgZkBeRURFLJfPIjkBTTQHZCJi/0pEB2h6GUYAUkkK7oVIneCVJp4Mj7QNZCTgzLRIRKhKyoWAESSGMyOahJELqgARLIFDoV86eC2LJgAbIS0r68QgRIGivbbKlAA7ISMjoAHApVzrBS82x0A1kFmSTqSQJPDc5R4ABZB5kYRmniTu5FB1SABNIcLpo0XU5UPUrmQAL5yP5UNCkcJskfyG7IqeiuRFhnyjvRC0ggkx/+qVh12tgBCeQnDyCBBBLIPxxf9nXWdZ1+hNgAAAAASUVORK5CYII=">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACRklEQVR42u2c226DQAxE+f+fbl8jys6FUDVdH16iVIAP0dqZHTs9vv7BcQAJJJBAfgDkIY4fF7387Xze+Zr0vYoL5FzIy0X7EvzqplfBbdDTuSoukEBeJYICdkGTxLFxgQTSBHUL3T2QS0gggUxOXomNtJhf3RtIIBPIVOCuirZ6QHXOIyoIyO0gk5v9xutju0Ugt4KMjKNFIVbvXTF/3FUDchtIt8BXgjYRJEpYrL40gATSmaermyhTKhXGbwkMILeFVALWCY9GiDRxgJwNqRa+MlJdwFSgVMUcyBGQrXBVgkMV/cZoAHI2ZLKoXePIGfxJAkYqCMgxkE6k3m04pZu45aYNyJGQqqGkmu/qGjcckn4IQM6EbIfc0uRIGlc2IYEcC+lgmiamExTVICmQIyHbxZ8OhaZJVu0WgRwD6TZcTqAqI0ENN9UqCMgRkGnxVY2iO+Z/0qAHci7knWLdNNrT5LEOBpAjIJXIbTZn6uEigdsM1AG5NaQbVHfC1jWlkmH6arcI5AjIpNHUCF83UBd/KECOhGw28XcEbdJ8rxwMILeHTJrpDsglRio8gAQybcK7TdcTQ07SHAByFGQ67JaYrEpkOHPrdlMeyO0grZF5dP8gwRkHSmzEDgaQW0NGP5QojM9EVKQFHsi5kGnCJIXabcaqH28AORpSJUYiUF2D1CUqkECmkEnwZODTmQGX9wcSSJE474heZ9IukwjI0ZBtw1wV/DvGbOxgADkCMhl4T838tGDXzSYgx0B+8gEkkEAC+YfHN2UMlNOK/Gf5AAAAAElFTkSuQmCC">
     
 </ul>
 
@@ -496,7 +496,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=使用 C 语言实现 Huffman 编码&url=https://transparentlc.github.io&pic=https://transparentlc.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Huffman 编码・改：压缩文件&url=https://transparentlc.github.io&pic=https://transparentlc.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -517,7 +517,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=存在感消失的地方|ω•`)&title=使用 C 语言实现 Huffman 编码&summary=&pics=https://transparentlc.github.io/img/favicon.png&url=https://transparentlc.github.io" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=存在感消失的地方|ω•`)&title=Huffman 编码・改：压缩文件&summary=&pics=https://transparentlc.github.io/img/favicon.png&url=https://transparentlc.github.io" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -536,194 +536,187 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>作业中的一道题，万恶之源←_←</p>
+        <p>嗯？小透明上次好像说过要用 C 语言实现的 Huffman 编码进行压缩文件的操作吧？(´っω･｡｀)</p>
+<p>不会咕咕咕的，因为已经做出来惹～/( ˙ ꒳ ˙ )&gt;＼</p>
+<p>用 C 语言实现 Huffman 编码的做法在<a href="/2019/04/06/huffman-tree/">上一篇</a>里已经说明得差不多了，本次踩的一些坑，基本上是在文件读写方面……</p>
+<p><del>懒得找新的题图了，就继续用上次的吧</del></p>
+<h1 id="自动读取字符集"><a href="#自动读取字符集" class="headerlink" title="自动读取字符集"></a>自动读取字符集</h1><p>严格来说，这里的“字符集”应该叫“字节集”才对～原来书上举例都是用“ABCD”这些字母，不过现在是对文件进行操作，编码的对象就应该是 <code>0x00</code> 到 <code>0xFF</code> 的二进制数据了( ´▽` )ﾉ</p>
+<p>进行 Huffman 编码，需要读取字符和它们各自的权值作为编码依据。之前的作业只要求手动输入字符集和权值，不过面对一个有较大数据量的文件，手动输入显然是不现实的。所以需要通过读取一遍文件，自动对字符和权值进行统计，其中权值就是字节在文件中出现的次数。</p>
+<p>先建立一个有 256 个元素的大数组，数组的下标代表字节，下标对应元素的值就可以用来记录字节出现的次数了～不过，一开始我还是这么写的：</p>
+<pre><code class="c">//从文件中读取字节集信息
+//fp为读取的文件，字节种类数存在size，每个字节和它的出现次数存在set和weight
+void LoadByteSet(FILE *fp, unsigned int *size, unsigned char **set, unsigned int **weight) {
+    //先为0x00到0xFF的字节分配计数用存储空间，下标就是对应字节在文件中出现的次数
+    unsigned int *FullWeight = calloc(256, sizeof(unsigned int));
+
+    while(!feof(fp)) {
+        FullWeight[fgetc(fp)]++;
+    }
+
+    //中间过程略
+
+    free(FullWeight);
+}
+</code></pre>
+<p>好像没什么问题，不过进行到最后的 <code>free()</code> 这里就报错了？！</p>
+<p><img src="https://ae01.alicdn.com/kf/HTB1j_4CdK3tHKVjSZSg7604QFXaR.png" alt></p>
+<p>尝试着查了一下这个“<strong>before</strong> Normal block”的报错信息，结果整个 Stack Overflow 上都只有对于“<strong>after</strong> Normal block”的讨论，后面这个是使用 <code>malloc()</code> 分配内存进行操作但是空间不足（进行操作的位置在分配的内存后面）的时候经常会碰到的错误。</p>
+<p><img src="https://ae01.alicdn.com/kf/HTB14YcSQxYaK1RjSZFn76180pXav.png" alt></p>
+<p>一开始小透明以为是 <code>fgetc()</code> 返回值类型的问题，毕竟这个函数返回的是 <code>int</code> 而不是一字节的 <code>(unsigned) char</code>。所以先加了个强制类型转换：</p>
+<pre><code class="c">while(!feof(fp)) {
+    FullWeight[(unsigned char)fgetc(fp)]++;
+}
+</code></pre>
+<p>之后再 <code>free()</code> 就没有报错了，但是字节出现次数的统计中居然多出了一个 <code>0xFF</code>？看来是还没有从本质上解决问题(°ー°〃)</p>
+<p>实际上，在读取到文件末尾的时候，<code>fgetc()</code> 不能继续读出字符，会返回一个 <code>0xFFFFFFFF</code>，然后才会修改 <code>fp</code> 使 <code>feof(fp)</code> 为真。先前的做法中，这个时候执行的就是 <code>FullWeight[0xFFFFFFFF]++</code>，所以是哪个字节自增了呢……总之不是分配的内存范围内就是了(•́ω•̀ ٥) 加上了强制类型转换以后，<code>0xFFFFFFFF</code> 被截断为 <code>0xFF</code>，会被当成是读取了 <code>0xFF</code> 这个字节，也会对统计结果造成影响。</p>
+<p>使用一个 For 循环，将文件大小作为循环结束的依据，就轮不到最后这个 <code>0xFFFFFFFF</code> 来捣乱了：</p>
+<pre><code class="c">//获取文件大小
+fseek(fp, 0L, SEEK_END);
+unsigned long long FileSize = ftell(fp);
+fseek(fp, 0L, SEEK_SET);
+
+for (unsigned long long i = 0; i &lt; FileSize; i++) {
+    FullWeight[fgetc(fp)]++;
+}
+
+//也可以用一个int类型的变量先接住fgetc()的返回值，如果返回值是0xFFFFFFFF就结束循环
+</code></pre>
+<p>把所有字节的出现次数统计完了，是不是就可以直接拿着这个有 256 个元素的大数组去生成 Huffman 树了呢？虽然这样也没关系，不过所有字节中可能会有一些出现次数为 0 的字节，它们也会对生成的编码造成影响……</p>
+<p>有两个字符集，字符出现的比例分别是 <code>A:B:C:D = 7:0:2:3</code> 和 <code>A:C:D = 7:2:3</code>，去掉根本不会出现的字符 B 实际上是一样的。现在对它们分别求 Huffman 树和编码表：</p>
+<p>（为了能直观看出差别，小透明手动用字符把树画出来了_(•̀ω•́ 」∠)_ 如果你的设备不是用等宽字体显示这里的代码的话，示意图大概就会乱掉吧……）</p>
+<pre><code>A:B:C:D = 7:0:2:3的H树：
+0 w:  0 p:  0 lc:  0 rc:  0
+1 w:  7 p:  7 lc:  0 rc:  0
+2 w:  0 p:  5 lc:  0 rc:  0
+3 w:  2 p:  5 lc:  0 rc:  0
+4 w:  3 p:  6 lc:  0 rc:  0
+5 w:  2 p:  6 lc:  2 rc:  3
+6 w:  5 p:  7 lc:  4 rc:  5
+7 w: 12 p:  0 lc:  1 rc:  6
+
+     12
+    /  \
+(A)7    5
+       / \
+   (D)3   2
+         / \
+     (B)0   2(C)
+
+字符对应的编码：
+A 0
+B 110
+C 111
+D 10
+
+A:C:D = 7:2:3的H树：
+0 w:  0 p:  0 lc:  0 rc:  0
+1 w:  7 p:  5 lc:  0 rc:  0
+2 w:  2 p:  4 lc:  0 rc:  0
+3 w:  3 p:  4 lc:  0 rc:  0
+4 w:  5 p:  5 lc:  2 rc:  3
+5 w: 12 p:  0 lc:  1 rc:  4
+
+     12
+    /  \
+(A)7    5
+       / \
+   (C)2   3(D)
+
+字符对应的编码：
+A 0
+C 10
+D 11
+</code></pre><p>可以看到，虽然 B 的权为 0，但它仍然“延长”了求编码的路径，结果就是字符 C 的编码被不必要地增加了一个二进制位，这样当然是不好的啊喂！(╯‵□′)╯︵┻━┻</p>
+<p>所以我们得从那个数组中去掉没有出现过的字节，再拿去生成 Huffman 编码～这个数组可以当成一个线性表，所以我们要进行的就是删除的操作：删除一项，把之后的每一项都往前挪一点……不行，这样的效率太低了( ‘-‘ )ノ)`-‘ ) 不如“用空间换时间”，再新建一个数组，把出现过的字节和出现次数单独存进去，这个函数也就写完了～</p>
+<pre><code class="c">//从文件中读取字节集信息
+//fp为读取的文件，字节种类数存在size，每个字节和它的出现次数存在set和weight
+void LoadByteSet(FILE *fp, unsigned int *size, unsigned char **set, unsigned int **weight) {
+    //先为0x00到0xFF的字节分配计数用存储空间，下标就是对应字节在文件中出现的次数
+    unsigned int *FullWeight = calloc(256, sizeof(unsigned int));
+
+    //获取文件大小
+    fseek(fp, 0L, SEEK_END);
+    unsigned long long FileSize = ftell(fp);
+    fseek(fp, 0L, SEEK_SET);
+
+    for (unsigned long long i = 0; i &lt; FileSize; i++) {
+        FullWeight[fgetc(fp)]++;
+    }
+
+    //求出一共出现了多少种字节
+    *size = 0;
+    for (unsigned int i = 0x00; i &lt;= 0xFF; i++) {
+        if (FullWeight[i]) {
+            (*size)++;
+        }
+    }
+
+    //输出字节和计数数据
+    *set = malloc(*size * sizeof(unsigned char));
+    *weight = malloc(*size * sizeof(unsigned int));
+    unsigned char *setP = *set;
+    unsigned int *weightP = *weight;
+    for (unsigned int i = 0x00; i &lt;= 0xFF; i++) {
+        if (FullWeight[i]) {
+            *setP = i;
+            *weightP = FullWeight[i];
+            setP++;
+            weightP++;
+        }
+    }
+
+    free(FullWeight);
+}
+</code></pre>
+<h1 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h1><p>之前的作业只要求把 Huffman 树保存成一个文件，把编码后的数据保存到另外一个文件。</p>
 <blockquote>
-<p>利用 Huffman 编码进行通信可以大大提高信道利用率，缩短信息传输时间，降低传输成本。但是，这要求在发送端通过一个编码系统对待传数据预先编码，在接收端将传来的数据进行译码。对于双工信道（即可以双向传输信息的信道），每端都需要一个完整的编码、译码系统。试为这样的信息收发站写一个 Huffman 的编码、译码系统。</p>
-<p>一个完整的系统应具有以下功能：</p>
-<ol>
-<li>初始化。从终端读入字符集大小 n，以及 n 个字符和 n 个权值，建立 Huffman 树，并将它存在于文件 Huffman 中。</li>
-<li>编码。利用以建好的 Huffman 树（如不在内存，则从文件 Huffman 中读入），对文件的正文进行编码，然后将结果存入文件 CodeFile 中。</li>
-<li>译码。利用已建好的 Huffman 树将文件 CodeFile 中的代码进行译码，结果存入在文件 TextFile 中。</li>
-</ol>
-<p>利用教科书 P148 例 6-2 中数据调试程序。</p>
+<p>呐，有哪种压缩文件是除了数据本体还要“拖家带口”的吗？</p>
 </blockquote>
-<h1 id="生成-Huffman-树"><a href="#生成-Huffman-树" class="headerlink" title="生成 Huffman 树"></a>生成 Huffman 树</h1><p>《数据结构（C 语言版）》书上给出了完整的 Huffman 编码算法，不过我把它拆成了两部分：生成 Huffman 树、根据 Huffman 树生成 Huffman 编码。</p>
-<pre><code class="c">//HT存放构造的H树
-//HC存放构造的编码
-//w指向存放了每个字符的权的数组
-//n是字符数量
-//把建树和编码的部分分开了
-void HuffmanCoding(HuffmanTree *HT, HuffmanCode *HC, unsigned int *w, unsigned int n) {
-    //只有一个或者没有字符还有什么编码的必要吗？
-    if (n &lt;= 1) return;
+<p>要解决这个也不难，把 Huffman 树的数据放在文件的前半部分，编码后的数据放在后半部分，这样就可以只输出一个文件了～实际上是把上面两个文件直接合并到一起了(　-`ω-)✧</p>
+<p>压缩和解压缩的实现和<a href="/2019/04/06/huffman-tree/index.html#%E5%AF%B9%E6%96%87%E6%9C%AC%E8%BF%9B%E8%A1%8C%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81">上一篇</a>的描述几乎没什么区别，不过在这里还是先总结一下各自的步骤：</p>
+<ul>
+<li><p>压缩步骤：建 Huffman 树，建编码表，存字符集，存 Huffman 树，存数据</p>
+</li>
+<li><p>解压步骤：读字符集，读 Huffman 树，建编码表，读数据</p>
+</li>
+</ul>
+<p>以下就是和上次<del>几乎没有什么差别</del>的代码～代码中 <code>DeCompFileName</code> 是未压缩的文件名，<code>CompFileName</code> 是已压缩的文件名。另外小透明还加上了在压缩/解压缩完成后，输出文件压缩率的功能ヾ(•ω•`。)</p>
+<pre><code class="c">//压缩部分
+//压缩步骤：建树，建表，存字符集，存树，存数据
 
-    InitHuffmanTree(HT, w, n);
-    InitHuffmanCode(HC, *HT, n);
+fopen_s(&amp;fpDeComp, DeCompFileName, &quot;rb&quot;);
+if (!fpDeComp) {
+    puts(&quot;Input file does not exist.&quot;);
+    return 0;
 }
-</code></pre>
-<p>先总结一下生成 Huffman 树的基本原理～</p>
-<ol>
-<li>为每个字符生成一个单独的叶子结点：结点的权就是字符的权，左右子树和双亲都是空的。（实际上这个单独的结点就是一个二叉树，结点本身就是它的根结点）</li>
-<li>新建一个结点作为根结点，从所有双亲为空的结点（实际上也是某个树的根结点）中找出权最小的两个作为左右子树，“合并”成一个二叉树。</li>
-<li>一直循环上一步，直到只剩下一个二叉树为止。一开始有 n 个字符（叶子结点）的话，最终的结点总数一定是 2n-1 个( ‘-ωก̀ )</li>
-</ol>
-<p>经过以上过程就可以得到一个<del>新鲜出炉</del>的 Huffman 树了～（っ´ω｀）ﾉ</p>
-<p>以下代码几乎完全照抄书上的示例，我只是尝试着加上了一些注释。</p>
-<pre><code class="c">void InitHuffmanTree(HuffmanTree *HT, unsigned int *w, unsigned int n) {
-    unsigned int m = 2 * n - 1; //H树一共有2n-1个节点
-    *HT = malloc((m + 1) * sizeof(HTNode)); //留一个0号结点表示指向空树，相当于二叉树中的NULL
+fopen_s(&amp;fpComp, CompFileName, &quot;wb&quot;);
 
-    //为每个字符构建只有根结点，没有左右子树的二叉树
-    (*HT)[0].weight = 0; (*HT)[0].parent = 0;
-    (*HT)[0].lchild = 0; (*HT)[0].rchild = 0;
-    HTNode *p = *HT + 1; //从1号结点开始
-    unsigned int i = 1;
-    while (i &lt;= n) {
-        (*p).weight = *w; (*p).parent = 0;
-        (*p).lchild = 0; (*p).rchild = 0;
-        i++; p++; w++;
-    }
-    //剩下的树是空树
-    while (i &lt;= m) {
-        (*p).weight = 0; (*p).parent = 0;
-        (*p).lchild = 0; (*p).rchild = 0;
-        i++; p++;
-    }
+LoadByteSet(fpDeComp, &amp;ByteSetSize, &amp;ByteSet, &amp;ByteWeight);
 
-    //开始生成H树
-    unsigned int s1, s2;
-    for (i = n + 1; i &lt;= m; i++) {
-        //从所有双亲为空的结点（实际上也是某个树的根结点）中找出权最小的两个，编号保存到s1和s2
-        //书上并没有详细给出这里的操作，下面的算法是我自己瞎写的～
-        Select(*HT, i - 1, &amp;s1, &amp;s2);
-        (*HT)[s1].parent = i; (*HT)[s2].parent = i;
-        (*HT)[i].lchild = s1; (*HT)[i].rchild = s2;
-        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;
-    }
-}
+/* 建树建表 */
+HuffmanCoding(&amp;HT, &amp;HC, ByteWeight, ByteSetSize);
 
-void Select(HuffmanTree HT, unsigned int range, unsigned int *s1, unsigned int *s2) {
-    unsigned int v1 = 4294967295, v2 = 4294967295; //v1和v2保存s1和s2两个下标对应的权，初始值为unsigned int的最大值
-    *s1 = 0; *s2 = 0; //初始化s1和s2的值
-    for (unsigned int i = 1; i &lt;= range; i++) {
-        if (HT[i].parent) continue; //只在双亲为空的结点中查找
-        if (HT[i].weight &lt; v1) {
-            v2 = v1;
-            v1 = HT[i].weight;
-            *s2 = *s1;
-            *s1 = i;
-        } else if (HT[i].weight &lt; v2) {
-            v2 = HT[i].weight;
-            *s2 = i;
-        }
-    }
-    //保证s1&lt;s2
-    v1 = *s1; v2 = *s2;
-    *s1 = (v1 &lt; v2) ? v1 : v2; *s2 = (v1 &gt; v2) ? v1 : v2;
-}
-</code></pre>
-<p>0 号结点是空的，相当于指针里的 NULL，1 ~ n 号结点是一开始为每个字符生成的叶子结点，n ~ 2n-1号结点是“合并”的过程中生成的结点，图中的 n 是 8。</p>
-<p><img src="https://ae01.alicdn.com/kf/HTB1moSmPNnaK1RjSZFB763W7VXa3.png" alt></p>
-<p>嗯……这个 Huffman 树好像很像一个数组？所以可以用一个 <code>fwrite()</code> 把 Huffman 树整个保存下来。当然，由于这个程序还需要对实际的字符进行编码解码，而 Huffman 树本身不存储字符信息，所以还需要把字符集的信息也保存进来（っ‘-’）╮</p>
-<pre><code class="c">fopen_s(&amp;fpHuff, &quot;Huffman.bin&quot;, &quot;wb&quot;);
+/* 存字符集 */
+fwrite(&amp;ByteSetSize, sizeof(ByteSetSize), 1, fpComp);
+fwrite(ByteSet, sizeof(unsigned char), ByteSetSize, fpComp);
+fwrite(ByteWeight, sizeof(unsigned int), ByteSetSize, fpComp);
 
-//保存字符集信息
-fwrite(&amp;CharSetSize, sizeof(unsigned int), 1, fpHuff);
-fwrite(CharSet, sizeof(char), CharSetSize, fpHuff);
-fwrite(CharWeight, sizeof(unsigned int), CharSetSize, fpHuff);
+/* 存树 */
+fwrite(HT, sizeof(HTNode), 2 * ByteSetSize, fpComp);
 
-//保存Huffman树。字符有n个，则一共有2n-1个结点，再加上一个空的0号结点就是2n个。
-fwrite(HT, sizeof(HTNode), 2 * CharSetSize, fpHuff);
-
-fclose(fpHuff);
-</code></pre>
-<h1 id="根据树生成编码表"><a href="#根据树生成编码表" class="headerlink" title="根据树生成编码表"></a>根据树生成编码表</h1><p>以下是生成一个字符的 Huffman 编码的过程～</p>
-<ol>
-<li>将一个指针指向表示字符的叶子结点。</li>
-<li>将指针一直往上移，移到 Huffman 树的根结点为止。</li>
-<li>从左/右子树往上移一层，就在编码中输出一个 0/1，这个生成顺序是<strong>逆向</strong>的。</li>
-</ol>
-<p>随便做了一个动图，展示一下生成编码的过程_(:зゝ∠)_</p>
-<p><img src="https://ae01.alicdn.com/kf/HTB156CWPNjaK1RjSZKz5jXVwXXaR.gif" alt></p>
-<p>以下代码还是几乎完全照抄书上的示例，我只是尝试着加上了一些注释。</p>
-<pre><code class="c">void InitHuffmanCode(HuffmanCode *HC, HuffmanTree HT, unsigned int n) {
-    *HC = malloc((n + 1) * sizeof(char*)); //HC相当于一个由字符数组组成的数组
-    char *cd = malloc(n * sizeof(char)); //求编码的工作区
-    cd[n - 1] = &#39;\0&#39;; //字符数组以\0结尾
-    unsigned int start; //表示一个编码从cd的哪一项开始
-    unsigned int c, f; //c指当前指向的树，f是c的双亲
-
-    //对每个字符逆向求编码
-    for (unsigned int i = 1; i &lt;= n; i++) {
-        start = n - 1;
-        //求编码从叶子结点开始，到c指向根结点为止，此时f为0
-        for (c = i, f = HT[i].parent; f != 0; c = f, f = HT[f].parent) {
-            start--; //向前移一位
-            if (HT[f].lchild == c) {
-                cd[start] = &#39;0&#39;; //左子树的路径用0表示
-            } else {
-                cd[start] = &#39;1&#39;; //右子树的路径用1表示
-            }
-        }
-        //从cd复制到HC
-        (*HC)[i] = malloc((n - start) * sizeof(char));
-        strcpy_s((*HC)[i], n - start + 1, &amp;cd[start]);
-    }
-    free(cd);
-}
-</code></pre>
-<h1 id="对文本进行编码和解码"><a href="#对文本进行编码和解码" class="headerlink" title="对文本进行编码和解码"></a>对文本进行编码和解码</h1><p>在上面的代码中，保存的编码其实是<strong>字符 0 和 1</strong>。简单的做法是编码的时候直接输出一大堆 0 和 1 两种<strong>字符</strong>，不过因为我实在是<del>没什么事干</del>，就选择了比较困难的做法：输出对应的<strong>二进制位</strong>。</p>
-<p>编码表本身需不需要用二进制位存储？我觉得没必要啦～꜀(｡௰｡ ꜆)꜄</p>
-<p>C++ 有个叫 <code>bitset</code> 的结构可以存储二进制位，不过 C 语言是没有的，所以只能自己查一下位运算的资料（相关内容出现在“谭宝书”的“学习辅导”分册，并不是课内的内容），自己造了两个轮子ε-(•́ω•̀๑)</p>
-<pre><code class="c">//对位进行相关操作
-//这里的unsigned char对于位是0或1，对于偏移是0到7
-
-//设byte为10101100（对应offset为76543210），即172，读取offset为5的位
-//offset=5
-//00100000 1&lt;&lt;offset
-//10101100 byte
-//00100000 byte&amp;(1&lt;&lt;offset)
-//00000001 (byte&amp;(1&lt;&lt;offset))&gt;&gt;offset
-unsigned char ReadBit(unsigned char byte, unsigned char offset) {
-    return (byte &amp; (1 &lt;&lt; offset)) &gt;&gt; offset;
-}
-
-//设byte为10101100（对应offset为76543210），即172，将offset为4的位改为1
-//offset=4 write=1
-//00010000 write&lt;&lt;offset
-//10101100 byte
-//10111100 byte|(write&lt;&lt;offset)
-void WriteBit(unsigned char *byte, unsigned char offset, unsigned char write) {
-    *byte |= write &lt;&lt; offset;
-}
-</code></pre>
-<p>C 语言对变量的读写，最小也只能以一个字节为单位。为了对二进制位进行读写，我的想法是使用一个指针指向需要读写的那个位所在的字节，以及一个偏移量用来指定读写的是这个字节的第几位(´ﾟωﾟ｀) 另外，输出的二进制位不一定能凑满一个完整的字节，这时就将剩下的位设为 0，凑出一个完整的字节，同时再用一个整数保存二进制位的数量。</p>
-<p>所以编码的代码大概是这个样子～</p>
-<p>之前说过，我把书上的编码算法拆成了生成 Huffman 树和生成编码表两个部分。因为编码表本身是不需要保存的，在编码和解码的时候，根据 Huffman 树现场生成就可以了|ω•`)</p>
-<pre><code class="c">//读取Huffman树过程略
-//变量定义略，自己判断变量类型咯～
-
-//根据Huffman树建立编码表
-InitHuffmanCode(&amp;HC, HT, CharSetSize);
-
-//读取TextFile
-fopen_s(&amp;fpCode, &quot;CodeFile.bin&quot;, &quot;wb&quot;);
-fopen_s(&amp;fpText, &quot;TextFile.txt&quot;, &quot;rb&quot;);
-//获取TextFile的大小
-fseek(fpText, 0L, SEEK_END);
-FileSize = ftell(fpText);
-fseek(fpText, 0L, SEEK_SET);
-
+/* 存数据 */
+fseek(fpDeComp, 0L, SEEK_END);
+FileSize = ftell(fpDeComp);
+fseek(fpDeComp, 0L, SEEK_SET);
 CodeSize = 0;
 Offset = 7;
 Byte = 0;
 //对TextFile中的每个字符进行编码
 for (unsigned long long i = 0; i &lt; FileSize; i++) {
-    Status = 1;
-    fread(&amp;Read, sizeof(char), 1, fpText);
-    //从编码表中查找对应的编码，pCode指向编码表中的某个字符0或1
-    for (unsigned int j = 0; j &lt; CharSetSize; j++) {
-        if (CharSet[j] == Read) {
+    fread(&amp;Read, sizeof(char), 1, fpDeComp);
+    //从编码表中查找对应的编码
+    for (unsigned int j = 0; j &lt; ByteSetSize; j++) {
+        if (ByteSet[j] == Read) {
             pCode = HC[j + 1];
             while (*pCode) {
                 CodeSize++;
@@ -734,52 +727,66 @@ for (unsigned long long i = 0; i &lt; FileSize; i++) {
                 } else {
                     //字节写满了就写入文件，然后清空字节
                     Offset = 7;
-                    fwrite(&amp;Byte, sizeof(unsigned char), 1, fpCode);
+                    fwrite(&amp;Byte, sizeof(unsigned char), 1, fpComp);
                     Byte = 0;
                 }
                 pCode++;
             }
-            Status = 0;
             break;
         }
     }
-    if (Status) printf(&quot;提示：已忽略没有在字符集中出现的字符%c\n&quot;, Read);
 }
 //最后一个字节没有写满也要写入，没有写满的位都是0
 if (Offset != 7) {
-    fwrite(&amp;Byte, sizeof(unsigned char), 1, fpCode);
+    fwrite(&amp;Byte, sizeof(unsigned char), 1, fpComp);
 }
 //在文件最后写入编码位数
-fwrite(&amp;CodeSize, sizeof(unsigned long long), 1, fpCode);
+fwrite(&amp;CodeSize, sizeof(unsigned long long), 1, fpComp);
 
-fclose(fpCode);
-fclose(fpText);
+/* 输出文件大小，统计压缩比 */
+fseek(fpDeComp, 0L, SEEK_END);
+InputSize = ftell(fpDeComp);
+fseek(fpComp, 0L, SEEK_END);
+OutputSize = ftell(fpComp);
+printf(&quot;Input (Source): %lld Bytes\nOutput (Compressed): %lld Bytes\nCompression ratio: %.2lf%%&quot;, InputSize, OutputSize, (double)OutputSize / (double)InputSize * (double)100);
+
+fclose(fpDeComp);
+fclose(fpComp);
 </code></pre>
-<p>解码的操作，书上也只写了“留给读者去完成”<del>咕咕咕</del>，实际上过程也很简单～</p>
-<ol>
-<li>将一个指针指向 Huffman 树的根结点。</li>
-<li>读取一个个 0/1（不论是字符还是二进制位，总之读取就对了！），将指针指向结点的左/右子树。</li>
-<li>指到叶子结点就输出对应的字符，然后将指针移回根结点。</li>
-</ol>
-<p>其实是编码的逆过程，所以动图就不做了～想象一下倒放上面那个动图的样子就好（你连倒放动图都懒得做了嘛！( ｀д´ )</p>
-<pre><code class="c">//读取Huffman树过程略x2
-//变量定义略x2，自己判断变量类型咯～
+<pre><code class="c">//解压部分
+//解压步骤：读字符集，读树，建表，读数据
 
-//根据H树建立编码表
-InitHuffmanCode(&amp;HC, HT, CharSetSize);
+fopen_s(&amp;fpComp, CompFileName, &quot;rb&quot;);
+if (!fpComp) {
+    puts(&quot;Input file does not exist.&quot;);
+    return 0;
+}
+fopen_s(&amp;fpDeComp, DeCompFileName, &quot;wb&quot;);
 
-//读取CodeFile
-Index = 2 * CharSetSize - 1;
-fopen_s(&amp;fpCode, &quot;CodeFile.bin&quot;, &quot;rb&quot;);
-fopen_s(&amp;fpText, &quot;TextFile.txt&quot;, &quot;wb&quot;);
+/* 读字符集 */
+fread(&amp;ByteSetSize, sizeof(unsigned int), 1, fpComp);
+ByteSet = malloc(ByteSetSize * sizeof(unsigned char));
+ByteWeight = malloc(ByteSetSize * sizeof(unsigned int));
+fread(ByteSet, sizeof(unsigned char), ByteSetSize, fpComp);
+fread(ByteWeight, sizeof(unsigned int), ByteSetSize, fpComp);
 
+/* 读树 */
+HT = malloc(2 * ByteSetSize * sizeof(HTNode));
+fread(HT, sizeof(HTNode), 2 * ByteSetSize, fpComp);
+
+/* 建表 */
+InitHuffmanCode(&amp;HC, HT, ByteSetSize);
+
+/* 读数据 */
+Index = 2 * ByteSetSize - 1;
 //读取编码位数
-fseek(fpCode, -1L * (long)sizeof(unsigned long long), SEEK_END);
-fread(&amp;CodeSize, sizeof(unsigned long long), 1, fpCode);
-fseek(fpCode, 0L, SEEK_SET);
+fseek(fpComp, -1L * (long)sizeof(unsigned long long), SEEK_END);
+fread(&amp;CodeSize, sizeof(unsigned long long), 1, fpComp);
+//跳过文件头部保存的字符集和H树的信息
+fseek(fpComp, (long)(sizeof(ByteSetSize) + ByteSetSize * (sizeof(unsigned char) + sizeof(unsigned int)) + 2 * ByteSetSize * sizeof(HTNode)), SEEK_SET);
 
 Offset = 7;
-fread(&amp;Byte, sizeof(unsigned char), 1, fpCode); //先读取一个字节
+fread(&amp;Byte, sizeof(unsigned char), 1, fpComp); //先读取一个字节
 //对CodeFile中的每个位进行读取
 for (unsigned long long i = 0; i &lt; CodeSize; i++) {
     Read = ReadBit(Byte, Offset);
@@ -792,8 +799,8 @@ for (unsigned long long i = 0; i &lt; CodeSize; i++) {
     }
     //移到叶子结点就写入字符，同时移回根结点
     if (!HT[Index].lchild &amp;&amp; !HT[Index].rchild) {
-        fwrite(&amp;CharSet[Index - 1], sizeof(char), 1, fpText);
-        Index = 2 * CharSetSize - 1;
+        fwrite(&amp;ByteSet[Index - 1], sizeof(unsigned char), 1, fpDeComp);
+        Index = 2 * ByteSetSize - 1;
     }
     if (Offset) {
         //字节没有读完，offset-1
@@ -801,22 +808,128 @@ for (unsigned long long i = 0; i &lt; CodeSize; i++) {
     } else {
         //字节读完了就读下一个字节
         Offset = 7;
-        fread(&amp;Byte, sizeof(unsigned char), 1, fpCode);
+        fread(&amp;Byte, sizeof(unsigned char), 1, fpComp);
     }
 }
 
-fclose(fpCode);
-fclose(fpText);
+/* 输出文件大小，统计压缩比 */
+fseek(fpComp, 0L, SEEK_END);
+InputSize = ftell(fpComp);
+fseek(fpDeComp, 0L, SEEK_END);
+OutputSize = ftell(fpDeComp);
+printf(&quot;Input (Source): %lld Bytes\nOutput (Decompressed): %lld Bytes\nCompression ratio: %.2lf%%&quot;, InputSize, OutputSize, (double)InputSize / (double)OutputSize * (double)100);
+
+fclose(fpComp);
+fclose(fpDeComp);
 </code></pre>
-<p><img src="https://ae01.alicdn.com/kf/HTB16HjkPNTpK1RjSZFM762G_VXaj.png" alt></p>
-<p>最后的效果就是上面这样。</p>
+<h1 id="使用-argc-和-argv-读取命令行参数"><a href="#使用-argc-和-argv-读取命令行参数" class="headerlink" title="使用 argc 和 argv[] 读取命令行参数"></a>使用 <code>argc</code> 和 <code>argv[]</code> 读取命令行参数</h1><p>这一部分的内容和 Huffman 编码没有什么关系，不过既然小透明折腾了一下，那就把相关的内容也写在这里吧～</p>
+<p>至少在小透明这里，《数据结构》的作业里除了实现指定操作，还会要求添加一个菜单，比如这样：</p>
+<pre><code>-- 线性表的操作演示 --
+1 - 插入元素
+2 - 删除元素
+3 - 输出所有元素的值
+4 - 清空线性表
+……
+0 - 结束
+请输入选项：
+</code></pre><p>然鹅实际上不少命令行程序的根本就不是通过菜单来选择功能，而是使用一系列的命令行参数(っ’-‘)っ</p>
+<p>比如知名的多媒体文件转码工具 <a href="https://ffmpeg.org/" target="_blank" rel="noopener">FFmpeg</a> <del>不要提格式工厂这种<a href="https://github.com/FiveYellowMice/how-to-convert-videos-with-ffmpeg-zh/blob/master/01-write-in-front.md#ffmpeg-%E6%98%AF%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%AE%83" target="_blank" rel="noopener">不遵守开源协议</a>的人间之屑</del>：</p>
+<pre><code>ffmpeg -i input.mp4 output.avi
+</code></pre><p><code>-i input.mp4</code> 指定了输入文件，<code>output.avi</code>指定了输出文件。当然还可以输入更多参数，不过小透明折腾的这个压缩文件的小程序不需要做得这么复杂……需要设置的参数只有这些：</p>
+<ol>
+<li>模式设定：压缩/解压缩，用 <code>compress</code> 和 <code>decompress</code> 表示，也可以用 <code>c</code> 和 <code>d</code> 作为缩写～</li>
+<li>输入文件路径</li>
+<li>输出文件路径</li>
+</ol>
+<p>上学期<del>拿着“谭宝书”</del>学习 C 语言的时候有学到主函数可以写上 <code>argc</code> 和 <code>argv[]</code> 两个参数，分别表示执行程序时命令行参数的数量和内容，这次终于可以用上了～٩(ˊᗜˋ*)و</p>
+<p>按照上面的设定，（合法地）执行这个小程序的命令行是以下之一：</p>
+<pre><code>HuffmanCompress compress input.bin output.bin
+HuffmanCompress c input.bin output.bin
+
+HuffmanCompress decompress input.bin output.bin
+HuffmanCompress d input.bin output.bin
+</code></pre><p>以空格作为分割，每个参数的内容都存储在 <code>argv[]</code> 这个数组中。另外，参数不符合格式时，不少程序会直接输出参数的格式说明，这里也可以加上这样的功能(・▽・〃) 所以主函数可以写成这样：</p>
+<pre><code class="c">int main(int argc, char *argv[]) {
+    //变量定义略
+
+    //argv[0]：程序本体的名字
+    //argv[1]：操作类型：c/compress为压缩，d/decompress为解压
+    //argv[2]：输入文件的路径
+    //argv[3]：输出文件的路径
+    //argv[1~3]不完整则直接输出使用说明
+
+    if (argv[1] &amp;&amp; argv[2] &amp;&amp; argv[3] &amp;&amp; (!strcmp(argv[1], &quot;c&quot;) || !strcmp(argv[1], &quot;compress&quot;))) {
+        DeCompFileName = argv[2];
+        CompFileName = argv[3];
+        //压缩部分略
+    } else if (argv[1] &amp;&amp; argv[2] &amp;&amp; argv[3] &amp;&amp; (!strcmp(argv[1], &quot;d&quot;) || !strcmp(argv[1], &quot;decompress&quot;))) {
+        CompFileName = argv[2];
+        DeCompFileName = argv[3];
+        //解压部分略
+    } else {
+        //参数不完整则输出使用说明
+        puts(&quot;Compress:&quot;);
+        puts(&quot;HuffmanCompress compress &lt;InputPath&gt; &lt;OutputPath&gt;&quot;);
+        puts(&quot;HuffmanCompress c &lt;InputPath&gt; &lt;OutputPath&gt;&quot;);
+        puts(&quot;&quot;);
+        puts(&quot;Decompress:&quot;);
+        puts(&quot;HuffmanCompress decompress &lt;InputPath&gt; &lt;OutputPath&gt;&quot;);
+        puts(&quot;HuffmanCompress d &lt;InputPath&gt; &lt;OutputPath&gt;&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<h1 id="压缩测试"><a href="#压缩测试" class="headerlink" title="压缩测试"></a>压缩测试</h1><p>既然做出了压缩程序，当然是要给它投喂各种<del>奇怪的东西</del>进行压缩效果的测试啦～</p>
+<table>
+<thead>
+<tr>
+<th>测试文件</th>
+<th style="text-align:right">源文件大小</th>
+<th style="text-align:right">7-Zip 19.00 x64 “极速压缩”大小</th>
+<th style="text-align:right">自制的 Huffman 压缩程序压缩大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://files.catbox.moe/c0ogsu.txt" target="_blank" rel="noopener">埃罗芒阿老师 一至七卷（GB2312 编码）</a></td>
+<td style="text-align:right">1372637</td>
+<td style="text-align:right">644420 (46.95%)</td>
+<td style="text-align:right">1032914 (75.25%)</td>
+</tr>
+<tr>
+<td><a href="https://files.catbox.moe/0hlkbj.txt" target="_blank" rel="noopener">随机生成的一堆 Lorem Ipsum</a></td>
+<td style="text-align:right">277251</td>
+<td style="text-align:right">73445 (26.49%)</td>
+<td style="text-align:right">150432 (54.26%)</td>
+</tr>
+<tr>
+<td><a href="https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-4.1.1-win64-static.zip" target="_blank" rel="noopener">FFmpeg 4.1.1 主程序（win64 Static 版）</a></td>
+<td style="text-align:right">62839296</td>
+<td style="text-align:right">18323223 (29.16%)</td>
+<td style="text-align:right">52933128 (84.24%)</td>
+</tr>
+<tr>
+<td><a href="https://ae01.alicdn.com/kf/HTB1tprXQIfpK1RjSZFOq6y6nFXaK.jpg" target="_blank" rel="noopener">赤座灯里的图片<del>空白图</del>（Pixiv ID: 30730603）</a></td>
+<td style="text-align:right">223785</td>
+<td style="text-align:right">220656 (98.60%)</td>
+<td style="text-align:right">231721 (103.55%)</td>
+</tr>
+<tr>
+<td><a href="https://files.catbox.moe/ljxkzg.mp4" target="_blank" rel="noopener">自压《LoveLive! 2nd Season》NCED「どんなときもずっと」</a></td>
+<td style="text-align:right">33100729</td>
+<td style="text-align:right">32999590 (99.69%)</td>
+<td style="text-align:right">33105300 (100.01%)</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><code>6B BF 0E 80</code> 用二进制表示为 <code>0110 10 1110 1111 110 00 0111 010 000000</code>，对应了 <code>ABCDEFGH</code>的 Huffman 编码，后面的六个 <code>0</code> 是为了补全字节用的～</li>
-<li><code>1A</code> 用十进制表示为 <code>26</code>，表示 Huffman 编码占用的 26 个二进制位。</li>
+<li>因为出现的字节种类较少，英文纯文本的压缩效果好于中文。</li>
+<li>几乎所有压缩软件都不擅长对<strong>已经进行过有损压缩的</strong>多媒体文件进行进一步的压缩。</li>
+<li>自制的这个程序压缩效果被 <a href="https://sparanoid.com/lab/7z/" target="_blank" rel="noopener">7-Zip</a> 吊打(;-_-) 不过目前主流的压缩算法结合了字典压缩等多种压缩方法，效果当然会比 Huffman 编码单独进行频率统计好上不少。比如 <code>AAAABBCCCD</code> 和 <code>CBADACABCA</code> 这两个字符串，显然前者比后者可以更充分地被压缩。如果使用 Huffman 编码，由于都是 <code>A:B:C:D = 4:2:3:1</code> 的比例，压缩的效果是一样的……</li>
 </ul>
-<p>完整的代码在<a href="https://pastebin.com/EGAGzKxg" target="_blank" rel="noopener">这里</a>了～c(ˊᗜˋ*c)</p>
-<p>另外，这个题目只要求根据输入的一个字符集生成 Huffman 编码。不过，如果“字符集”包括了 <code>0x00</code> 到 <code>0xFF</code> 的所有字节，将“权”设为每个字节在文件中出现的次数，那不就可以用来压缩文件了吗！\(≧▽≦)/</p>
-<p>以后有空再写这个，做出来了也会把完整的源代码丢粗来ヾ(´∀｀。ヾ)</p>
+<hr>
+<p>完整的源代码在<a href="https://github.com/TransparentLC/HuffmanCompress" target="_blank" rel="noopener">这里</a>了～(*´∀`)</p>
+<p><a href="https://github.com/TransparentLC/HuffmanCompress/releases" target="_blank" rel="noopener">Release</a> 处有编译好的程序本体。</p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -825,7 +938,7 @@ fclose(fpText);
                             本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
                         </strong>
                         <br>
-                        <strong>本文链接：</strong><a href="https://transparentlc.github.io/2019/04/06/huffman-tree/">https://transparentlc.github.io/2019/04/06/huffman-tree/</a>
+                        <strong>本文链接：</strong><a href="https://transparentlc.github.io/2019/04/13/huffman-file-compressor/">https://transparentlc.github.io/2019/04/13/huffman-file-compressor/</a>
                     </p>
                 </blockquote>
         
@@ -847,19 +960,19 @@ fclose(fpText);
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="../../13/huffman-file-compressor/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="../../06/huffman-tree/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
