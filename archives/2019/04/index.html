@@ -86,8 +86,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/style.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-        
 
     
 
@@ -268,6 +266,48 @@
 
 
 
+<!-- Import highlight.js Visual Studio Dark Theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/styles/vs2015.min.css">
+<style>
+  pre {
+      background-color: #1e1e1e !important;
+      font-size: 15px !important;
+  }
+
+  .hljs {
+      margin: 0 0 0 0 !important;
+      padding-left: 0 !important;
+      line-height: 1.5em !important;
+      list-style: none !important;
+      counter-reset: item;
+  }
+
+  /* Style of line numbers */
+  .hljs > li::before {
+      content: counter(item);
+      counter-increment: item;
+      display: inline-block;
+      text-align: right;
+      min-width: 2em;
+      margin-right: 1em;
+      color: #2b91af;
+  }
+
+  /* Add line numbers by RegEx replacing, hide empty line in the end of code block */
+  .hljs > li:last-of-type, code.plain > li:last-of-type {
+      display: none;
+  }
+
+  .hljs-comment {
+      font-style: normal;
+  }
+
+  /* Disable line numbers in plain text */
+  code.plain {
+      list-style: none !important;
+      color: #dcdcdc;
+  }
+</style>
 
     <!-- Import jQuery -->
     
@@ -783,8 +823,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-
 
 
 <!-- Window Load -->
@@ -795,8 +833,6 @@ It will not impact the appearance and can give developers a lot of support :)
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
 
-    
-        
     
     
 </script>
@@ -849,6 +885,15 @@ It will not impact the appearance and can give developers a lot of support :)
 console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
+<!-- Import highlight.js -->
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+<script>
+    $("pre code").each(function(){
+      $(this).html("<li>" + $(this).html().replace(/\n/g,"\n</li><li>") +"\n</li>");
+    });
+
+    hljs.initHighlightingOnLoad();
+</script>
                 </main>
             </div>
         </body>

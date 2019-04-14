@@ -86,11 +86,6 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/style.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/prettify.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/css/prettify/github-v2.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
 
     
 
@@ -271,6 +266,48 @@
 
 
 
+<!-- Import highlight.js Visual Studio Dark Theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/styles/vs2015.min.css">
+<style>
+  pre {
+      background-color: #1e1e1e !important;
+      font-size: 15px !important;
+  }
+
+  .hljs {
+      margin: 0 0 0 0 !important;
+      padding-left: 0 !important;
+      line-height: 1.5em !important;
+      list-style: none !important;
+      counter-reset: item;
+  }
+
+  /* Style of line numbers */
+  .hljs > li::before {
+      content: counter(item);
+      counter-increment: item;
+      display: inline-block;
+      text-align: right;
+      min-width: 2em;
+      margin-right: 1em;
+      color: #2b91af;
+  }
+
+  /* Add line numbers by RegEx replacing, hide empty line in the end of code block */
+  .hljs > li:last-of-type, code.plain > li:last-of-type {
+      display: none;
+  }
+
+  .hljs-comment {
+      font-style: normal;
+  }
+
+  /* Disable line numbers in plain text */
+  code.plain {
+      list-style: none !important;
+      color: #dcdcdc;
+  }
+</style>
 
     <!-- Import jQuery -->
     
@@ -304,7 +341,7 @@
 
     
         <meta property="article:published_time" content="Sat Apr 13 2019 16:06:43 GMT+0800">
-        <meta property="article:modified_time" content="Sat Apr 13 2019 17:03:27 GMT+0800">
+        <meta property="article:modified_time" content="Sun Apr 14 2019 13:52:34 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -327,7 +364,7 @@
     "mainEntityOfPage": "https://transparentlc.github.io",
     "headline": "Huffman 编码・改：压缩文件",
     "datePublished": "Sat Apr 13 2019 16:06:43 GMT+0800",
-    "dateModified": "Sat Apr 13 2019 17:03:27 GMT+0800",
+    "dateModified": "Sun Apr 14 2019 13:52:34 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "✨小透明・宸✨",
@@ -584,7 +621,7 @@ for (unsigned long long i = 0; i &lt; FileSize; i++) {
 <p>把所有字节的出现次数统计完了，是不是就可以直接拿着这个有 256 个元素的大数组去生成 Huffman 树了呢？虽然这样也没关系，不过所有字节中可能会有一些出现次数为 0 的字节，它们也会对生成的编码造成影响……</p>
 <p>有两个字符集，字符出现的比例分别是 <code>A:B:C:D = 7:0:2:3</code> 和 <code>A:C:D = 7:2:3</code>，去掉根本不会出现的字符 B 实际上是一样的。现在对它们分别求 Huffman 树和编码表：</p>
 <p>（为了能直观看出差别，小透明手动用字符把树画出来了_(•̀ω•́ 」∠)_ 如果你的设备不是用等宽字体显示这里的代码的话，示意图大概就会乱掉吧……）</p>
-<pre><code>A:B:C:D = 7:0:2:3的H树：
+<pre><code class="plain">A:B:C:D = 7:0:2:3的H树：
 0 w:  0 p:  0 lc:  0 rc:  0
 1 w:  7 p:  7 lc:  0 rc:  0
 2 w:  0 p:  5 lc:  0 rc:  0
@@ -626,7 +663,8 @@ A:C:D = 7:2:3的H树：
 A 0
 C 10
 D 11
-</code></pre><p>可以看到，虽然 B 的权为 0，但它仍然“延长”了求编码的路径，结果就是字符 C 的编码被不必要地增加了一个二进制位，这样当然是不好的啊喂！(╯‵□′)╯︵┻━┻</p>
+</code></pre>
+<p>可以看到，虽然 B 的权为 0，但它仍然“延长”了求编码的路径，结果就是字符 C 的编码被不必要地增加了一个二进制位，这样当然是不好的啊喂！(╯‵□′)╯︵┻━┻</p>
 <p>所以我们得从那个数组中去掉没有出现过的字节，再拿去生成 Huffman 编码～这个数组可以当成一个线性表，所以我们要进行的就是删除的操作：删除一项，把之后的每一项都往前挪一点……不行，这样的效率太低了( ‘-‘ )ノ)`-‘ ) 不如“用空间换时间”，再新建一个数组，把出现过的字节和出现次数单独存进去，这个函数也就写完了～</p>
 <pre><code class="c">//从文件中读取字节集信息
 //fp为读取的文件，字节种类数存在size，每个字节和它的出现次数存在set和weight
@@ -824,7 +862,7 @@ fclose(fpDeComp);
 </code></pre>
 <h1 id="使用-argc-和-argv-读取命令行参数"><a href="#使用-argc-和-argv-读取命令行参数" class="headerlink" title="使用 argc 和 argv[] 读取命令行参数"></a>使用 <code>argc</code> 和 <code>argv[]</code> 读取命令行参数</h1><p>这一部分的内容和 Huffman 编码没有什么关系，不过既然小透明折腾了一下，那就把相关的内容也写在这里吧～</p>
 <p>至少在小透明这里，《数据结构》的作业里除了实现指定操作，还会要求添加一个菜单，比如这样：</p>
-<pre><code>-- 线性表的操作演示 --
+<pre><code class="plain">-- 线性表的操作演示 --
 1 - 插入元素
 2 - 删除元素
 3 - 输出所有元素的值
@@ -832,10 +870,12 @@ fclose(fpDeComp);
 ……
 0 - 结束
 请输入选项：
-</code></pre><p>然鹅实际上不少命令行程序的根本就不是通过菜单来选择功能，而是使用一系列的命令行参数(っ’-‘)っ</p>
+</code></pre>
+<p>然鹅实际上不少命令行程序的根本就不是通过菜单来选择功能，而是使用一系列的命令行参数(っ’-‘)っ</p>
 <p>比如知名的多媒体文件转码工具 <a href="https://ffmpeg.org/" target="_blank" rel="noopener">FFmpeg</a> <del>不要提格式工厂这种<a href="https://github.com/FiveYellowMice/how-to-convert-videos-with-ffmpeg-zh/blob/master/01-write-in-front.md#ffmpeg-%E6%98%AF%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%AE%83" target="_blank" rel="noopener">不遵守开源协议</a>的人间之屑</del>：</p>
-<pre><code>ffmpeg -i input.mp4 output.avi
-</code></pre><p><code>-i input.mp4</code> 指定了输入文件，<code>output.avi</code>指定了输出文件。当然还可以输入更多参数，不过小透明折腾的这个压缩文件的小程序不需要做得这么复杂……需要设置的参数只有这些：</p>
+<pre><code class="plain">ffmpeg -i input.mp4 output.avi
+</code></pre>
+<p><code>-i input.mp4</code> 指定了输入文件，<code>output.avi</code>指定了输出文件。当然还可以输入更多参数，不过小透明折腾的这个压缩文件的小程序不需要做得这么复杂……需要设置的参数只有这些：</p>
 <ol>
 <li>模式设定：压缩/解压缩，用 <code>compress</code> 和 <code>decompress</code> 表示，也可以用 <code>c</code> 和 <code>d</code> 作为缩写～</li>
 <li>输入文件路径</li>
@@ -843,12 +883,13 @@ fclose(fpDeComp);
 </ol>
 <p>上学期<del>拿着“谭宝书”</del>学习 C 语言的时候有学到主函数可以写上 <code>argc</code> 和 <code>argv[]</code> 两个参数，分别表示执行程序时命令行参数的数量和内容，这次终于可以用上了～٩(ˊᗜˋ*)و</p>
 <p>按照上面的设定，（合法地）执行这个小程序的命令行是以下之一：</p>
-<pre><code>HuffmanCompress compress input.bin output.bin
+<pre><code class="plain">HuffmanCompress compress input.bin output.bin
 HuffmanCompress c input.bin output.bin
 
 HuffmanCompress decompress input.bin output.bin
 HuffmanCompress d input.bin output.bin
-</code></pre><p>以空格作为分割，每个参数的内容都存储在 <code>argv[]</code> 这个数组中。另外，参数不符合格式时，不少程序会直接输出参数的格式说明，这里也可以加上这样的功能(・▽・〃) 所以主函数可以写成这样：</p>
+</code></pre>
+<p>以空格作为分割，每个参数的内容都存储在 <code>argv[]</code> 这个数组中。另外，参数不符合格式时，不少程序会直接输出参数的格式说明，这里也可以加上这样的功能(・▽・〃) 所以主函数可以写成这样：</p>
 <pre><code class="c">int main(int argc, char *argv[]) {
     //变量定义略
 
@@ -1273,12 +1314,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/js/prettify.min.js", true)</script>
-        
-    
-
 
 
 <!-- Window Load -->
@@ -1289,13 +1324,6 @@ It will not impact the appearance and can give developers a lot of support :)
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
 
-    
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
     
 </script>
@@ -1348,6 +1376,15 @@ It will not impact the appearance and can give developers a lot of support :)
 console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
+<!-- Import highlight.js -->
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+<script>
+    $("pre code").each(function(){
+      $(this).html("<li>" + $(this).html().replace(/\n/g,"\n</li><li>") +"\n</li>");
+    });
+
+    hljs.initHighlightingOnLoad();
+</script>
                 </main>
             </div>
         </body>
