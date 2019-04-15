@@ -60,7 +60,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
     <meta name="keywords" content>
-    <meta name="theme-color" content="#da5a88">
+    <meta name="theme-color" content="#e16b8c">
 
     <!-- Disable Fucking Bloody Baidu Transformation -->
     <meta http-equiv="Cache-Control" content="no-transform">
@@ -106,7 +106,7 @@
 
   /* Animated Underline On Links */
   a {
-    color: #b15078;
+    color: #db4d6d;
     position: relative;
     text-decoration: none;
   }
@@ -115,7 +115,7 @@
     content: "";
     width: 0;
     height: 1px;
-    background: #b15078;
+    background: #db4d6d;
     position: absolute;
     top: 100%;
     left: 50%;
@@ -143,13 +143,13 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #da5a88 !important;
+    background-color: #e16b8c !important;
   }
 
   /* Sidebar User Drop Down Menu Text Color */
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #da5a88 !important;
+    color: #e16b8c !important;
   }
 
   #post_entry-right-info,
@@ -162,7 +162,7 @@
   .sidebar-colored .sidebar-nav > .open > a:hover,
   .sidebar-colored .sidebar-nav > .open > a:focus,
   #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #da5a88 !important;
+    color: #e16b8c !important;
   }
 
   .toTop {
@@ -184,7 +184,7 @@
   }
 
   .post-toc a:hover {
-    color: #b15078;
+    color: #db4d6d;
     text-decoration: underline;
   }
   
@@ -283,7 +283,7 @@
   }
 
   /* Style of line numbers */
-  .hljs > li::before {
+  .hljs > li:before {
       content: counter(item);
       counter-increment: item;
       display: inline-block;
@@ -294,7 +294,7 @@
   }
 
   /* Add line numbers by RegEx replacing, hide empty line in the end of code block */
-  .hljs > li:last-of-type, code.plain > li:last-of-type {
+  .hljs > li:last-of-type, code.plain > li:last-of-type, code.text > li:last-of-type {
       display: none;
   }
 
@@ -303,7 +303,7 @@
   }
 
   /* Disable line numbers in plain text */
-  code.plain {
+  code.plain, code.text {
       list-style: none !important;
       color: #dcdcdc;
   }
@@ -318,7 +318,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="存在感消失的地方|ω•`)">
     <meta name="msapplication-starturl" content="https://transparentlc.github.io">
-    <meta name="msapplication-navbutton-color" content="#da5a88">
+    <meta name="msapplication-navbutton-color" content="#e16b8c">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="存在感消失的地方|ω•`)">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -815,14 +815,14 @@ It will not impact the appearance and can give developers a lot of support :)
     });
     NProgress.start();
     $('#nprogress .bar').css({
-        'background': '#e17fac'
+        'background': '#db4d6d'
     });
     $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #e17fac, 0 0 15px #e17fac'
+        'box-shadow': '0 0 10px #db4d6d, 0 0 15px #db4d6d'
     });
     $('#nprogress .spinner-icon').css({
-        'border-top-color': '#e17fac',
-        'border-left-color': '#e17fac'
+        'border-top-color': '#db4d6d',
+        'border-left-color': '#db4d6d'
     });
     setTimeout(function() {
         NProgress.done();
@@ -844,11 +844,21 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Make a difficult decision :) -->
 <!--<script src="/js/fuckWechat.js"></script>-->
-<!--<script src="/js/fuckEvilBrowser.js"></script>--->
+<!--<script src="/js/fuckEvilBrowser.js"></script>-->
 
 <!-- Import prettify js  -->
 
 
+
+<!-- Import highlight.js -->
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+<script>
+    Array.from(document.querySelectorAll("pre code")).forEach(function(codeBlock){
+        codeBlock.innerHTML = "<li>" + codeBlock.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li>";
+    });
+
+    hljs.initHighlightingOnLoad();
+</script>
 
 <!-- Window Load -->
 <!-- add class for prettify -->
@@ -908,16 +918,6 @@ It will not impact the appearance and can give developers a lot of support :)
         }
     })()
 console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
-</script>
-
-<!-- Import highlight.js -->
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
-<script>
-    $("pre code").each(function(){
-      $(this).html("<li>" + $(this).html().replace(/\n/g,"\n</li><li>") +"\n</li>");
-    });
-
-    hljs.initHighlightingOnLoad();
 </script>
                 </main>
             </div>
