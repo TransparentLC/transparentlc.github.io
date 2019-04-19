@@ -267,7 +267,7 @@
 
 
 <!-- Import highlight.js Visual Studio Dark Theme -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/styles/vs2015.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/vs2015.min.css">
 <style>
   pre {
       background-color: #1e1e1e !important;
@@ -1014,7 +1014,7 @@ fclose(fpText);
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">2</span>
+                <span class="sidebar-badge">3</span>
             </a>
         </li>
         
@@ -1200,7 +1200,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Import highlight.js -->
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>
 <script>
     Array.from(document.querySelectorAll("pre code")).forEach(function(codeBlock){
         codeBlock.innerHTML = "<li>" + codeBlock.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li>";
@@ -1231,7 +1231,7 @@ It will not impact the appearance and can give developers a lot of support :)
     // Offer LazyLoad
     queue.offer(function(){
         $('.lazy').lazyload({
-            effect : 'show'
+            effect: 'fadeIn'
         });
     });
 
