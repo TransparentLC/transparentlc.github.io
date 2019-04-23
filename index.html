@@ -193,6 +193,15 @@
     white-space: pre !important;
     overflow-x: auto !important;
   }
+  
+  /* "Copy Codeblock" Button */
+  .copy-button {
+    float: right;
+    border: none;
+    color: #fff;
+    background-color: transparent;
+    margin-top: 8px;
+  }
 </style>
 
 
@@ -1058,10 +1067,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!--<script src="/js/fuckWechat.js"></script>-->
 <!--<script src="/js/fuckEvilBrowser.js"></script>-->
 
-<!-- Import prettify js  -->
-
-
-
 <!-- Import highlight.js -->
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>
 <script>
@@ -1071,6 +1076,39 @@ It will not impact the appearance and can give developers a lot of support :)
 
     hljs.initHighlightingOnLoad();
 </script>
+
+<!-- Click To View Full Size Image -->
+<script>
+    Array.from(document.querySelectorAll('#post-content > p > img')).forEach(function(image){
+        image.style.cursor = 'pointer';
+        image.title = '点击查看大图';
+        image.onclick = function(){window.open(image.src)}; 
+    });
+</script>
+
+<!-- Add "Copy Codeblock" Button -->
+<script>
+    Array.from(document.querySelectorAll("pre code")).forEach(function(codeBlock){
+        var copyButton = document.createElement('button');
+        copyButton.innerText = '复制代码';
+        copyButton.onclick = function(){
+            var range = document.createRange();
+            range.selectNodeContents(codeBlock);
+            var selection = document.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('Copy');
+            selection.removeAllRanges();
+            alert('复制成功～☆ﾐ(o*･ω･)ﾉ');
+        }
+        copyButton.classList.add('copy-button');
+        codeBlock.parentNode.appendChild(copyButton);
+    });
+</script>
+
+<!-- Import prettify js  -->
+
+
 
 <!-- Window Load -->
 <!-- add class for prettify -->
