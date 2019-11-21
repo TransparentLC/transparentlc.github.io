@@ -21,7 +21,7 @@
     html += "            <\/a>";
     html += "        <\/li>";
     html += "        <li>";
-    html += "            <a href=\"http:\/\/www.firefox.com.cn\" target=\"_blank\">";
+    html += "            <a href=\"https:\/\/www.mozilla.org\/zh-CN\/firefox\/new\/\" target=\"_blank\">";
     html += "                <div class=\"ib-browser-name\">Firefox<\/div>";
     html += "                <div class=\"ib-browser-description\">快速，安全，免费，开源的浏览器<\/div>";
     html += "            <\/a>";
@@ -40,7 +40,7 @@
     html += "        <\/li>";
     html += "    <\/ul>";
     html += "    <div class=\"ib-footer\">";
-    html += "        <a class=\"ib-try\" href=\"http:\/\/www.google.cn\/chrome\/browser\/desktop\/index.html\">试试Chrome<\/a>";
+    html += "        <a class=\"ib-try\" href=\"https:\/\/www.mozilla.org\/zh-CN\/firefox\/new\/\">试试 Firefox<\/a>";
     html += "    <\/div>";
     html += "<\/div>";
     html += "<div class=\"ib-mask\"><\/div>";

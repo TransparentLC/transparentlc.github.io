@@ -40,7 +40,7 @@
     html += "        <\/li>";
     html += "    <\/ul>";
     html += "    <div class=\"ib-footer\">";
-    html += "        <a class=\"ib-try\" href=\"http:\/\/www.google.com\/chrome\/browser\/desktop\/index.html\">Try Chrome now!<\/a>";
+    html += "        <a class=\"ib-try\" href=\"http:\/\/www.firefox.com\">Try Firefox now!<\/a>";
     html += "    <\/div>";
     html += "<\/div>";
     html += "<div class=\"ib-mask\"><\/div>";
