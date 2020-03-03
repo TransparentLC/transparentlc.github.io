@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>存在感消失的地方|ω•`)</title>
+  <icon>https://akarin.dev/icon.png</icon>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://akarin.dev/"/>
+  <updated>2020-02-26T14:09:56.000Z</updated>
+  <id>https://akarin.dev/</id>
+  
+  <author>
+    <name>✨小透明・宸✨</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Javascript 和 PHP 中进行加密和解密</title>
+    <link href="https://akarin.dev/2020/02/26/crypto-in-js-and-php/"/>
+    <id>https://akarin.dev/2020/02/26/crypto-in-js-and-php/</id>
+    <published>2020-02-26T14:09:56.000Z</published>
+    <updated>2020-02-26T14:09:56.000Z</updated>
+    
+    <summary type="html">
+    
+      学了一学期的（入门）密码学，不自己试着用一下怎么行嘛(´･_･`)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>搞事情：用“图床”传视频，自带免费 CDN 加速（滑稽）</title>
+    <link href="https://akarin.dev/2020/02/07/alicdn-video-hosting/"/>
+    <id>https://akarin.dev/2020/02/07/alicdn-video-hosting/</id>
+    <published>2020-02-07T11:24:46.000Z</published>
+    <updated>2020-02-07T11:24:46.000Z</updated>
+    
+    <summary type="html">
+    
+      可能是最快的“视频床”了(〃′▽`)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 PHP 的 Ratchet 框架搭建 WebSocket 服务端</title>
+    <link href="https://akarin.dev/2020/01/10/php-websocket-server/"/>
+    <id>https://akarin.dev/2020/01/10/php-websocket-server/</id>
+    <published>2020-01-10T14:27:32.000Z</published>
+    <updated>2020-01-10T14:27:32.000Z</updated>
+    
+    <summary type="html">
+    
+      不需要使用轮询了！
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 waifu2x-caffe 和 ImageMagick 放大 GIF 动图</title>
+    <link href="https://akarin.dev/2019/11/23/powershell-waifu2xgif/"/>
+    <id>https://akarin.dev/2019/11/23/powershell-waifu2xgif/</id>
+    <published>2019-11-23T03:28:42.000Z</published>
+    <updated>2019-11-23T03:28:42.000Z</updated>
+    
+    <summary type="html">
+    
+      表情包高清重制工具ꉂ(ˊᗜˋ*)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2019 年暨南大学“新生杯”CTF Write-Up</title>
+    <link href="https://akarin.dev/2019/11/16/2019-jnu-ctf-writeup/"/>
+    <id>https://akarin.dev/2019/11/16/2019-jnu-ctf-writeup/</id>
+    <published>2019-11-16T13:50:28.000Z</published>
+    <updated>2019-11-16T13:50:28.000Z</updated>
+    
+    <summary type="html">
+    
+      非官方/部分 Write-Up，多图，预计消耗流量 3.5MB |•&#39;-&#39;•) ✧
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>“存在感消失的地方|ω•`)”已经开始使用 WebP 图片啦！</title>
+    <link href="https://akarin.dev/2019/10/22/upgrade-to-webp/"/>
+    <id>https://akarin.dev/2019/10/22/upgrade-to-webp/</id>
+    <published>2019-10-22T03:04:30.000Z</published>
+    <updated>2019-10-22T03:04:30.000Z</updated>
+    
+    <summary type="html">
+    
+      9102年了，现代浏览器里只剩下 Safari 不支持 WebP，出来挨打⊂彡☆))д`)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 PowerShell 自动读写 Excel 表格</title>
+    <link href="https://akarin.dev/2019/10/06/powershell-automated-excel/"/>
+    <id>https://akarin.dev/2019/10/06/powershell-automated-excel/</id>
+    <published>2019-10-06T12:07:21.000Z</published>
+    <updated>2019-10-06T12:07:21.000Z</updated>
+    
+    <summary type="html">
+    
+      《论如何帮校团委在五分钟内整理完五百份招新报名表》(´・ω・`)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在 PHP 中使用 Trie 树（键树）进行字符串替换</title>
+    <link href="https://akarin.dev/2019/09/22/php-trie-replace-string/"/>
+    <id>https://akarin.dev/2019/09/22/php-trie-replace-string/</id>
+    <published>2019-09-22T10:44:02.000Z</published>
+    <updated>2019-09-22T10:44:02.000Z</updated>
+    
+    <summary type="html">
+    
+      《数据结构》确实有一些实用的东西……！|。•ω•)っ◆
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用长短轮询和 SSE 实现服务端主动向客户端发送数据（以及踩到的坑……）</title>
+    <link href="https://akarin.dev/2019/09/03/use-polling-and-sse/"/>
+    <id>https://akarin.dev/2019/09/03/use-polling-and-sse/</id>
+    <published>2019-09-03T14:55:46.000Z</published>
+    <updated>2019-09-03T14:55:46.000Z</updated>
+    
+    <summary type="html">
+    
+      用了整整一天时间的造轮子和踩坑记录(っ ̯ -｡)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>通过 VapourSynth 在 Premiere 中使用 ASS 字幕</title>
+    <link href="https://akarin.dev/2019/08/03/use-ass-in-premiere/"/>
+    <id>https://akarin.dev/2019/08/03/use-ass-in-premiere/</id>
+    <published>2019-08-03T10:10:30.000Z</published>
+    <updated>2019-08-03T10:10:30.000Z</updated>
+    
+    <summary type="html">
+    
+      很久以前就想解决的问题，因为 PR 的内置字幕工具实在太难用了……(｡･ˇ_ˇ･｡:)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 PowerShell 爬取妹子图网站</title>
+    <link href="https://akarin.dev/2019/07/30/powershell-mzitu-crawler/"/>
+    <id>https://akarin.dev/2019/07/30/powershell-mzitu-crawler/</id>
+    <published>2019-07-30T08:19:56.000Z</published>
+    <updated>2019-07-30T08:19:56.000Z</updated>
+    
+    <summary type="html">
+    
+      虽然小透明对那种“妹子图”没什么兴趣啦……σ*ゝω･)
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>提高摸鱼技术：用 IDA 破解录屏软件 OverSpeed</title>
+    <link href="https://akarin.dev/2019/07/09/overspeed-crack/"/>
+    <id>https://akarin.dev/2019/07/09/overspeed-crack/</id>
+    <published>2019-07-09T13:18:39.000Z</published>
+    <updated>2019-07-09T13:18:39.000Z</updated>
+    
+    <summary type="html">
+    
+      “本软件仅供学习交流，请于下载后二十四小时内删除。”
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我们不用很努力转发小广告也可以领取资源(。・`ω´・)</title>
+    <link href="https://akarin.dev/2019/06/10/resource-without-sharing/"/>
+    <id>https://akarin.dev/2019/06/10/resource-without-sharing/</id>
+    <published>2019-06-10T14:55:10.000Z</published>
+    <updated>2019-06-10T14:55:10.000Z</updated>
+    
+    <summary type="html">
+    
+      小透明的资源库，也许会长期更新？（已更新 Adobe 2020 全家桶！）
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>造轮子：使用 PowerShell 实现多线程下载</title>
+    <link href="https://akarin.dev/2019/06/05/powershell-multithread-download/"/>
+    <id>https://akarin.dev/2019/06/05/powershell-multithread-download/</id>
+    <published>2019-06-05T06:09:41.000Z</published>
+    <updated>2019-06-05T06:09:41.000Z</updated>
+    
+    <summary type="html">
+    
+      第一次写多线程的东西，而且又造了一个轮子（逃
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Windows Terminal 的安装/配置修改|ω•`)</title>
+    <link href="https://akarin.dev/2019/05/26/windows-terminal/"/>
+    <id>https://akarin.dev/2019/05/26/windows-terminal/</id>
+    <published>2019-05-26T07:17:53.000Z</published>
+    <updated>2019-05-26T07:17:53.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Windows Terminal 是微软最新发布的一款命令行工具，在传统命令行窗口的基础上加了一大批新功能，包括多标签页，设置主题，亚克力背景，显示 emoji 等等。&lt;/p&gt;&lt;p&gt;微软甚至还在 YouTube 上发了一个&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>阿卡林匿名版</title>
+    <link href="https://akarin.dev/2019/05/18/akarin-imageboard/"/>
+    <id>https://akarin.dev/2019/05/18/akarin-imageboard/</id>
+    <published>2019-05-18T13:04:38.000Z</published>
+    <updated>2019-05-18T13:04:38.000Z</updated>
+    
+    <summary type="html">
+    
+      一个没有什么存在感的置顶
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>做了个 MozJPEG 的 GUI ٩(˃̶͈̀௰˂̶͈́)و</title>
+    <link href="https://akarin.dev/2019/05/04/mozjpeg-gui/"/>
+    <id>https://akarin.dev/2019/05/04/mozjpeg-gui/</id>
+    <published>2019-05-04T02:30:44.000Z</published>
+    <updated>2019-05-04T02:30:44.000Z</updated>
+    
+    <summary type="html">
+    
+      效果拔群的压图姬登场！（误）其实只是做了个外壳～
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用油猴脚本重定向解决使用百度时遇到的百度 APP 广告页面</title>
+    <link href="https://akarin.dev/2019/04/26/baidu-search-result-redirection/"/>
+    <id>https://akarin.dev/2019/04/26/baidu-search-result-redirection/</id>
+    <published>2019-04-26T05:52:08.000Z</published>
+    <updated>2019-04-26T05:52:08.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;虽然百度搜索的声望近年来一落千丈，但是不可否认的是，在搜索某些方面的东西时它相对于 Google 还是有很大优势的。&lt;/p&gt;&lt;p&gt;比如……小透明作为学生党，经常有搜索习题解析&lt;del&gt;抄答案&lt;/del&gt;的需求。在这件事上百度就可以吊打
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在 hexo-theme-material 主题上使用 highlight.js 进行代码高亮/显示行号</title>
+    <link href="https://akarin.dev/2019/04/19/use-hljs-in-material-theme/"/>
+    <id>https://akarin.dev/2019/04/19/use-hljs-in-material-theme/</id>
+    <published>2019-04-19T04:25:07.000Z</published>
+    <updated>2019-04-19T04:25:07.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Hexo 自带了在渲染网页时进行代码高亮的功能，现在本站正在使用的主题 &lt;a href=&quot;https://github.com/viosey/hexo-theme-material&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Material
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Huffman 编码・改：压缩文件</title>
+    <link href="https://akarin.dev/2019/04/13/huffman-file-compressor/"/>
+    <id>https://akarin.dev/2019/04/13/huffman-file-compressor/</id>
+    <published>2019-04-13T08:06:43.000Z</published>
+    <updated>2019-04-13T08:06:43.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;嗯？小透明上次好像说过要用 C 语言实现的 Huffman 编码进行压缩文件的操作吧？(´っω･｡｀)&lt;/p&gt;&lt;p&gt;不会咕咕咕的，因为已经做出来惹～/( ˙ ꒳ ˙ )&amp;gt;＼&lt;/p&gt;&lt;p&gt;用 C 语言实现 Huffman 编码的做法在&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
