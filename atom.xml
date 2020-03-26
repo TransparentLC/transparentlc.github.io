@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://akarin.dev/"/>
-  <updated>2020-02-26T14:09:56.000Z</updated>
+  <updated>2020-03-26T06:33:08.000Z</updated>
   <id>https://akarin.dev/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用 Intersection Observer 来自己造个图片懒加载的轮子₍₍ (ง ˙ω˙)ว ⁾⁾</title>
+    <link href="https://akarin.dev/2020/03/26/intersection-observer/"/>
+    <id>https://akarin.dev/2020/03/26/intersection-observer/</id>
+    <published>2020-03-26T06:33:08.000Z</published>
+    <updated>2020-03-26T06:33:08.000Z</updated>
+    
+    <summary type="html">
+    
+      一些食用方法和实例～　除了懒加载，还可以用来实现别的功能呢( ॑꒳ ॑ )
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>在 Javascript 和 PHP 中进行加密和解密</title>
@@ -348,29 +365,6 @@
         
         
           &lt;p&gt;Hexo 自带了在渲染网页时进行代码高亮的功能，现在本站正在使用的主题 &lt;a href=&quot;https://github.com/viosey/hexo-theme-material&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Material
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Huffman 编码・改：压缩文件</title>
-    <link href="https://akarin.dev/2019/04/13/huffman-file-compressor/"/>
-    <id>https://akarin.dev/2019/04/13/huffman-file-compressor/</id>
-    <published>2019-04-13T08:06:43.000Z</published>
-    <updated>2019-04-13T08:06:43.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;嗯？小透明上次好像说过要用 C 语言实现的 Huffman 编码进行压缩文件的操作吧？(´っω･｡｀)&lt;/p&gt;&lt;p&gt;不会咕咕咕的，因为已经做出来惹～/( ˙ ꒳ ˙ )&amp;gt;＼&lt;/p&gt;&lt;p&gt;用 C 语言实现 Huffman 编码的做法在&lt;a
         
       
     
