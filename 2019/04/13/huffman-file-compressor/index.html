@@ -238,14 +238,14 @@ OutputSize = ftell(fpDeComp);
 printf(&quot;Input (Source): %lld Bytes\nOutput (Decompressed): %lld Bytes\nCompression ratio: %.2lf%%&quot;, InputSize, OutputSize, (double)InputSize / (double)OutputSize * (double)100);
 
 fclose(fpComp);
-fclose(fpDeComp);</code></pre><h1 id="使用-argc-和-argv-读取命令行参数"><a href="#使用-argc-和-argv-读取命令行参数" class="headerlink" title="使用 argc 和 argv[] 读取命令行参数"></a>使用 <code>argc</code> 和 <code>argv[]</code> 读取命令行参数</h1><p>这一部分的内容和 Huffman 编码没有什么关系，不过既然小透明折腾了一下，那就把相关的内容也写在这里吧～</p><p>至少在小透明这里，《数据结构》的作业里除了实现指定操作，还会要求添加一个菜单，比如这样：</p><pre><code class="plain">-- 线性表的操作演示 --
+fclose(fpDeComp);</code></pre><h1 id="使用-argc-和-argv-读取命令行参数"><a href="#使用-argc-和-argv-读取命令行参数" class="headerlink" title="使用 argc 和 argv[] 读取命令行参数"></a>使用 <code>argc</code> 和 <code>argv[]</code> 读取命令行参数</h1><p>这一部分的内容和 Huffman 编码没有什么关系，不过既然小透明折腾了一下，那就把相关的内容也写在这里吧～</p><p>至少在小透明这里，《数据结构》的作业里除了实现指定操作，还会要求添加一个菜单，比如这样：</p><pre><code class="plaintext">-- 线性表的操作演示 --
 1 - 插入元素
 2 - 删除元素
 3 - 输出所有元素的值
 4 - 清空线性表
 ……
 0 - 结束
-请输入选项：</code></pre><p>然鹅实际上不少命令行程序的根本就不是通过菜单来选择功能，而是使用一系列的命令行参数(っ’-‘)っ</p><p>比如知名的多媒体文件转码工具 <a href="https://ffmpeg.org/" target="_blank" rel="noopener">FFmpeg</a> <del>不要提格式工厂这种<a href="https://github.com/FiveYellowMice/how-to-convert-videos-with-ffmpeg-zh/blob/master/01-write-in-front.md#ffmpeg-%E6%98%AF%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%AE%83" target="_blank" rel="noopener">不遵守开源协议</a>的人间之屑</del>：</p><pre><code class="plain">ffmpeg -i input.mp4 output.avi</code></pre><p><code>-i input.mp4</code> 指定了输入文件，<code>output.avi</code>指定了输出文件。当然还可以输入更多参数，不过小透明折腾的这个压缩文件的小程序不需要做得这么复杂……需要设置的参数只有这些：</p><ol><li>模式设定：压缩/解压缩，用 <code>compress</code> 和 <code>decompress</code> 表示，也可以用 <code>c</code> 和 <code>d</code> 作为缩写～</li><li>输入文件路径</li><li>输出文件路径</li></ol><p>上学期<del>拿着“谭宝书”</del>学习 C 语言的时候有学到主函数可以写上 <code>argc</code> 和 <code>argv[]</code> 两个参数，分别表示执行程序时命令行参数的数量和内容，这次终于可以用上了～٩(ˊᗜˋ*)و</p><p>按照上面的设定，（合法地）执行这个小程序的命令行是以下之一：</p><pre><code class="plain">HuffmanCompress compress input.bin output.bin
+请输入选项：</code></pre><p>然鹅实际上不少命令行程序的根本就不是通过菜单来选择功能，而是使用一系列的命令行参数(っ’-‘)っ</p><p>比如知名的多媒体文件转码工具 <a href="https://ffmpeg.org/" target="_blank" rel="noopener">FFmpeg</a> <del>不要提格式工厂这种<a href="https://github.com/FiveYellowMice/how-to-convert-videos-with-ffmpeg-zh/blob/master/01-write-in-front.md#ffmpeg-%E6%98%AF%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%AE%83" target="_blank" rel="noopener">不遵守开源协议</a>的人间之屑</del>：</p><pre><code class="plaintext">ffmpeg -i input.mp4 output.avi</code></pre><p><code>-i input.mp4</code> 指定了输入文件，<code>output.avi</code>指定了输出文件。当然还可以输入更多参数，不过小透明折腾的这个压缩文件的小程序不需要做得这么复杂……需要设置的参数只有这些：</p><ol><li>模式设定：压缩/解压缩，用 <code>compress</code> 和 <code>decompress</code> 表示，也可以用 <code>c</code> 和 <code>d</code> 作为缩写～</li><li>输入文件路径</li><li>输出文件路径</li></ol><p>上学期<del>拿着“谭宝书”</del>学习 C 语言的时候有学到主函数可以写上 <code>argc</code> 和 <code>argv[]</code> 两个参数，分别表示执行程序时命令行参数的数量和内容，这次终于可以用上了～٩(ˊᗜˋ*)و</p><p>按照上面的设定，（合法地）执行这个小程序的命令行是以下之一：</p><pre><code class="plaintext">HuffmanCompress compress input.bin output.bin
 HuffmanCompress c input.bin output.bin
 
 HuffmanCompress decompress input.bin output.bin

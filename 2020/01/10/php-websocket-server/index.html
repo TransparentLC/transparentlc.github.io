@@ -39,7 +39,7 @@
         }
     &lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre><h1 id="编写服务端代码"><a href="#编写服务端代码" class="headerlink" title="编写服务端代码"></a>编写服务端代码</h1><p>开始编写服务端之前，需要使用 Composer 安装 Ratchet 框架：</p><pre><code class="plain">composer require cboden/ratchet</code></pre><p>官方网站上提供了一个简单的<a href="http://socketo.me/docs/hello-world#logic" target="_blank" rel="noopener">例子</a>可以作为参考。首先对框架进行导入：</p><pre><code class="php">use Ratchet\MessageComponentInterface;
+&lt;/html&gt;</code></pre><h1 id="编写服务端代码"><a href="#编写服务端代码" class="headerlink" title="编写服务端代码"></a>编写服务端代码</h1><p>开始编写服务端之前，需要使用 Composer 安装 Ratchet 框架：</p><pre><code class="plaintext">composer require cboden/ratchet</code></pre><p>官方网站上提供了一个简单的<a href="http://socketo.me/docs/hello-world#logic" target="_blank" rel="noopener">例子</a>可以作为参考。首先对框架进行导入：</p><pre><code class="php">use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
 require_once __DIR__ . &#39;/vendor/autoload.php&#39;;</code></pre><p>整个服务端“应用”可以当成是一个基于 <code>Ratchet\MessageComponentInterface</code> 的类，和前端代码类似，只要对建立连接 <code>onOpen</code>、收到消息 <code>onMessage</code>、连接出错 <code>onError</code>、断开连接 <code>onClose</code> 这四个事件编写函数即可。</p><p>与服务端建立连接的每个客户端都被视为一个对象，这些客户端将保存在 <code>$clients</code> 中。通过每个客户端对象的 <code>send($msg)</code> 方法可以实现服务端向某一个客户端发送消息，还可以遍历 <code>$clients</code> 实现消息广播。</p><pre><code class="php">class MyChat implements MessageComponentInterface {
@@ -91,7 +91,7 @@ $app-&gt;route(&#39;/echo&#39;, new Ratchet\Server\EchoServer, array(&#39;*&#39;
 // 上面的留言板应用
 // ws://localhost:25252/chat
 $app-&gt;route(&#39;/chat&#39;, new MyChat, array(&#39;*&#39;));
-$app-&gt;run();</code></pre><p>将以上代码保存为 <code>chat.php</code>，然后使用命令行 <code>php chat.php</code> 启动服务端程序。打开网页，浏览器就可以和服务端建立 WebSocket 连接，允许在留言板上发送消息，与此同时命令行也会输出建立/中断连接的提示。按下 <kbd>Ctrl+C</kbd> 就可以终止服务端程序的运行。</p><p><video controls poster="https://ae01.alicdn.com/kf/Hfa328d9ae2bd4c1a8787de0c0eb1c94ek.jpg" preload="metadata" src="https://files.catbox.moe/098wqc.mp4"></video></p><p>客户端和服务端通过 WebSocket 协议互相发送消息，可以看出所有客户端几乎同时收到了来自服务端的消息，客户端无须像传统的轮询一样频繁发送 AJAX 请求，效率较高。</p><h1 id="使用-WSS-协议建立加密连接"><a href="#使用-WSS-协议建立加密连接" class="headerlink" title="使用 WSS 协议建立加密连接"></a>使用 WSS 协议建立加密连接</h1><p>就像 HTTP 协议和 HTTPS 协议一样，WebSocket 的 WS 协议也有对应的安全加密传输协议 WSS，而且在使用了 HTTPS 的页面上是无法使用未加密的 WebSocket 连接的。一个简单的解决方法是使用 Nginx 的<strong>反向代理</strong>，客户端在公网上发送建立 WebSocket 加密连接的请求，Nginx 在内网将请求转发给相应的 WebSocket 应用。</p><pre><code class="plain">server {
+$app-&gt;run();</code></pre><p>将以上代码保存为 <code>chat.php</code>，然后使用命令行 <code>php chat.php</code> 启动服务端程序。打开网页，浏览器就可以和服务端建立 WebSocket 连接，允许在留言板上发送消息，与此同时命令行也会输出建立/中断连接的提示。按下 <kbd>Ctrl+C</kbd> 就可以终止服务端程序的运行。</p><p><video controls poster="https://ae01.alicdn.com/kf/Hfa328d9ae2bd4c1a8787de0c0eb1c94ek.jpg" preload="metadata" src="https://files.catbox.moe/098wqc.mp4"></video></p><p>客户端和服务端通过 WebSocket 协议互相发送消息，可以看出所有客户端几乎同时收到了来自服务端的消息，客户端无须像传统的轮询一样频繁发送 AJAX 请求，效率较高。</p><h1 id="使用-WSS-协议建立加密连接"><a href="#使用-WSS-协议建立加密连接" class="headerlink" title="使用 WSS 协议建立加密连接"></a>使用 WSS 协议建立加密连接</h1><p>就像 HTTP 协议和 HTTPS 协议一样，WebSocket 的 WS 协议也有对应的安全加密传输协议 WSS，而且在使用了 HTTPS 的页面上是无法使用未加密的 WebSocket 连接的。一个简单的解决方法是使用 Nginx 的<strong>反向代理</strong>，客户端在公网上发送建立 WebSocket 加密连接的请求，Nginx 在内网将请求转发给相应的 WebSocket 应用。</p><pre><code class="plaintext">server {
     listen 443 ssl http2;
     server_name ...;
     ssl_certificate ...;
@@ -118,7 +118,7 @@ $loop-&gt;addPeriodicTimer(60, function () {
     if ($memory_before !== $memory_now) echo &quot;GC Collected: {$memory_before} bytes -&gt; {$memory_now} bytes\n&quot;;
 });
 // 使用自定义的事件循环创建应用
-$app = new Ratchet\App(&#39;localhost&#39;, 25252, &#39;127.0.0.1&#39;, $loop);</code></pre><h1 id="用-AJAX-发送请求，用-WebSocket-推送消息"><a href="#用-AJAX-发送请求，用-WebSocket-推送消息" class="headerlink" title="用 AJAX 发送请求，用 WebSocket 推送消息"></a>用 AJAX 发送请求，用 WebSocket 推送消息</h1><p>WebSocket 本身支持发送/接收纯文本或二进制数据，因此直接发送图片之类的东西也是没关系的～</p><p>但是有的时候又要发送文本又要发送二进制数据（比如做留言板的时候，有同时发送文本和图片的需求），这个时候就需要多折腾一下了……</p><p>常规的使用 POST 上传文件使用的 <code>multipart/form-data</code> 格式，实际发送的数据类似于这样：</p><pre><code class="plain">-----------------------------18467633426500
+$app = new Ratchet\App(&#39;localhost&#39;, 25252, &#39;127.0.0.1&#39;, $loop);</code></pre><h1 id="用-AJAX-发送请求，用-WebSocket-推送消息"><a href="#用-AJAX-发送请求，用-WebSocket-推送消息" class="headerlink" title="用 AJAX 发送请求，用 WebSocket 推送消息"></a>用 AJAX 发送请求，用 WebSocket 推送消息</h1><p>WebSocket 本身支持发送/接收纯文本或二进制数据，因此直接发送图片之类的东西也是没关系的～</p><p>但是有的时候又要发送文本又要发送二进制数据（比如做留言板的时候，有同时发送文本和图片的需求），这个时候就需要多折腾一下了……</p><p>常规的使用 POST 上传文件使用的 <code>multipart/form-data</code> 格式，实际发送的数据类似于这样：</p><pre><code class="plaintext">-----------------------------18467633426500
 Content-Disposition: form-data; name=&quot;smfile&quot;; filename=&quot;untitled.png&quot;
 Content-Type: image/png
 
