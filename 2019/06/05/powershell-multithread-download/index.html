@@ -232,7 +232,7 @@ for ($i = 0; $i -lt $ThreadCount; $i++) {
 
 # 禁用对网络代理的搜索
 $Request = [Net.WebRequest]::Create($Uri)
-$Request.Proxy = $null</code></pre><hr><p>完整的代码可以在<a href="https://files.catbox.moe/3sse1i.ps1" target="_blank" rel="noopener">这里</a>下载～( ◞´•௰•`)◞</p><p>多线程下载函数的使用方法：</p><pre><code class="powershell"># 使用多线程下载文件
+$Request.Proxy = $null</code></pre><hr><p>完整的代码可以在<a href="https://gist.github.com/TransparentLC/7a37a7867b0f65c0068035d00f49e09b" target="_blank" rel="noopener">这里</a>下载～( ◞´•௰•`)◞</p><p>多线程下载函数的使用方法：</p><pre><code class="powershell"># 使用多线程下载文件
 # [String]$Uri: 下载文件的地址
 # [String]$OutFile: 保存文件的路径
 # [Int32]$ThreadCount: 使用的线程数量（可选，默认为4）
