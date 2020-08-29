@@ -6,7 +6,7 @@
   <link href="https://akarin.dev/atom.xml" rel="self"/>
   
   <link href="https://akarin.dev/"/>
-  <updated>2020-07-25T02:47:20.000Z</updated>
+  <updated>2020-08-29T05:33:28.000Z</updated>
   <id>https://akarin.dev/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>换上了自己写的新主题！(つ•̀ω•́)つ</title>
+    <link href="https://akarin.dev/2020/08/29/migrate-to-new-theme/"/>
+    <id>https://akarin.dev/2020/08/29/migrate-to-new-theme/</id>
+    <published>2020-08-29T05:33:28.000Z</published>
+    <updated>2020-08-29T05:33:28.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&gt;&lt;script</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>以 Vue 插件的形式封装 Vuetify 的对话框</title>
@@ -301,21 +322,6 @@
     
     
     <summary type="html">一个没有什么存在感的置顶</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>做了个 MozJPEG 的 GUI ٩(˃̶͈̀௰˂̶͈́)و</title>
-    <link href="https://akarin.dev/2019/05/04/mozjpeg-gui/"/>
-    <id>https://akarin.dev/2019/05/04/mozjpeg-gui/</id>
-    <published>2019-05-04T02:30:44.000Z</published>
-    <updated>2019-05-04T02:30:44.000Z</updated>
-    
-    
-    <summary type="html">效果拔群的压图姬登场！（误）其实只是做了个外壳～</summary>
     
     
     
