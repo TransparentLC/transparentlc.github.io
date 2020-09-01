@@ -56,30 +56,37 @@ class LazyLoad {
                 this.imageSupportTest
                     .map(e => this.imageSupport & e.mask ? e.type : '')
                     .filter(e => e)
-                    .join(', ') || 'None',
+                    .join() || 'None',
                 '#f6b'
             );
             image.forEach((/** @type {HTMLElement} */ el) => {
-                if (this.config.loadingSrc) this.setSrc(el, this.config.loadingSrc);
-                this.config.beforeObserve(el);
-                this.observer.observe(el);
+                (
+                    this.config.loadingSrc ? this.setSrc(el, this.config.loadingSrc) : Promise.resolve()
+                ).then(() => {
+                    this.config.beforeObserve(el);
+                    this.observer.observe(el);
+                });
             });
         });
     }
     /**
      * @param {HTMLElement} el
      * @param {String} src
+     * @returns {Promise}
      */
     setSrc(el, src) {
-        const preloadImg = new Image;
-        preloadImg.onload = preloadImg.onerror = () => {
-            if (el.tagName.toLowerCase() === 'img') {
-                el.src = src;
-            } else {
-                el.style.backgroundImage = `url(${src})`;
+        return new Promise(resolve => {
+            const preloadImg = new Image;
+            preloadImg.onload = preloadImg.onerror = () => {
+                if (el.tagName.toLowerCase() === 'img') {
+                    el.src = src;
+                } else {
+                    el.style.backgroundImage = `url(${src})`;
+                }
+                resolve();
             }
-        }
-        preloadImg.src = src;
+            preloadImg.src = src;
+        });
     }
     /**
      * @param {HTMLElement} el
@@ -90,9 +97,10 @@ class LazyLoad {
             const dataSrc = el.getAttribute(`data-src-${e.type}`);
             if (dataSrc && (this.imageSupport & e.mask)) src = dataSrc;
         });
-        this.setSrc(el, src || el.getAttribute('data-src'));
-        this.observer.unobserve(el);
-        this.config.afterObserve(el);
+        this.setSrc(el, src || el.getAttribute('data-src')).then(() => {
+            this.observer.unobserve(el);
+            this.config.afterObserve(el);
+        });
     }
     destroy() {
         this.observer.disconnect();
@@ -129,6 +137,13 @@ new LazyLoad(Array.from(document.querySelectorAll('[data-src]')), {
         scrollOffset: 8,
         background: 'rgba(0,0,0,.85)',
     }) : null,
+    afterObserve: el => {
+        const blurred = el.querySelector('.akarin-blurred-cover');
+        if (blurred) {
+            blurred.classList.add('akarin-blurred-cover-fade-out');
+            setTimeout(() => blurred.style.visibility = 'hidden', 1000);
+        }
+    }
 });
 
 })();
@@ -195,6 +210,11 @@ if (currentDark) currentDark.classList.add('mdui-list-item-active');
 // 对文章进行处理
 // ****************
 (() => {
+
+// 点击主页的封面图也能打开文章
+Array.from(document.querySelectorAll('[data-entry]')).forEach(e => {
+    e.parentElement.previousElementSibling.onclick = () => location.href = e.href;
+});
 
 const article = document.querySelector('article');
 if (!article) return;

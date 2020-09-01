@@ -154,6 +154,18 @@ button#akarin-top {
     width: 100%;
 }
 
+/* 封面图模糊效果 */
+.akarin-blurred-cover {
+    /* The “Blur Up” Technique for Loading Background Images  */
+    /* https://css-tricks.com/the-blur-up-technique-for-loading-background-images/#recreating-the-blur-filter-with-svg */
+    filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='_'%3E%3CfeGaussianBlur stdDeviation='9'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3C/svg%3E#_");
+    transform: translateZ(0);
+}
+.akarin-blurred-cover-fade-out {
+    transition: opacity 1s;
+    opacity: 0;
+}
+
 /* 文章内容 */
 .akarin-copy-code-btn {
     position: absolute;
@@ -191,6 +203,24 @@ article.mdui-typo img.mdui-hoverable.medium-zoom-image {
         transform .3s cubic-bezier(.2, 0, .2, 1),
         box-shadow .25s cubic-bezier(.4, 0, .2, 1)
         !important;
+}
+article.mdui-typo a.headerlink::before {
+    position: initial;
+    background-color: transparent;
+    content: '#';
+}
+article.mdui-typo a.headerlink {
+    visibility: hidden;
+    margin-left: -.65em;
+    position: absolute;
+}
+article.mdui-typo h1:hover .headerlink,
+article.mdui-typo h2:hover .headerlink,
+article.mdui-typo h3:hover .headerlink,
+article.mdui-typo h4:hover .headerlink,
+article.mdui-typo h5:hover .headerlink,
+article.mdui-typo h6:hover .headerlink {
+    visibility: visible;
 }
 
 /* 其他工具类 */
