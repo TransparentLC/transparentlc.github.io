@@ -6,7 +6,7 @@
   <link href="https://akarin.dev/atom.xml" rel="self"/>
   
   <link href="https://akarin.dev/"/>
-  <updated>2020-10-10T03:24:34.000Z</updated>
+  <updated>2021-01-28T13:49:38.000Z</updated>
   <id>https://akarin.dev/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>成语接龙的求解算法</title>
+    <link href="https://akarin.dev/2021/01/28/idioms-solitaire/"/>
+    <id>https://akarin.dev/2021/01/28/idioms-solitaire/</id>
+    <published>2021-01-28T13:49:38.000Z</published>
+    <updated>2021-01-28T13:49:38.000Z</updated>
+    
+    
+    <summary type="html">这也是个可以使用数据结构和算法的知识来解决的问题…_φ(･ω･` )</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>使用 C 语言和 Emscripten 编写自己的 WebAssembly 模块</title>
@@ -307,21 +322,6 @@
     
     
     <summary type="html">小透明的资源库，也许会长期更新？（已更新 Adobe 2020 全家桶！）</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>造轮子：使用 PowerShell 实现多线程下载</title>
-    <link href="https://akarin.dev/2019/06/05/powershell-multithread-download/"/>
-    <id>https://akarin.dev/2019/06/05/powershell-multithread-download/</id>
-    <published>2019-06-05T06:09:41.000Z</published>
-    <updated>2019-06-05T06:09:41.000Z</updated>
-    
-    
-    <summary type="html">第一次写多线程的东西，而且又造了一个轮子（逃</summary>
     
     
     
