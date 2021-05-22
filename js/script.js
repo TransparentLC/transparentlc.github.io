@@ -1,4 +1,4 @@
-((document) => {
+(document => {
 
 /**
  * @param {String} label
@@ -14,6 +14,13 @@ const consoleBadge = (label, message, color) => console.log(
 consoleBadge('Project', 'hexo-theme-akarin', '#07c');
 consoleBadge('Author', 'TransparentLC', '#f84');
 consoleBadge('Source', 'https://github.com/TransparentLC/hexo-theme-akarin', '#4b1');
+
+// 修改了hexo-tag-aplayer的代码
+// 把所有需要丢给new APlayer的Object放到window.aplyers，在这里才一次性创建
+// 原版是在插入位置就创建APlayer，这样就必须把APlayer的加载放在<head>部分
+if (window.APlayer && Array.isArray(window.aplayers)) {
+    aplayers = aplayers.map(e => new APlayer(e));
+}
 
 // ****************
 // 懒加载组件
