@@ -6,7 +6,7 @@
   <link href="https://akarin.dev/atom.xml" rel="self"/>
   
   <link href="https://akarin.dev/"/>
-  <updated>2021-02-26T08:22:56.000Z</updated>
+  <updated>2021-09-16T11:07:57.000Z</updated>
   <id>https://akarin.dev/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RSA 算法的替代品：X25519/Ed25519 使用记录</title>
+    <link href="https://akarin.dev/2021/09/16/a-taste-of-curve25519/"/>
+    <id>https://akarin.dev/2021/09/16/a-taste-of-curve25519/</id>
+    <published>2021-09-16T11:07:57.000Z</published>
+    <updated>2021-09-16T11:07:57.000Z</updated>
+    
+    
+    <summary type="html">以及一些在学校里学的密码学课程不会讲到的东西</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hashids 算法和实现原理介绍</title>
@@ -307,21 +322,6 @@
     
     
     <summary type="html">虽然小透明对那种“妹子图”没什么兴趣啦……σ*ゝω･)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>提高摸鱼技术：用 IDA 破解录屏软件 OverSpeed</title>
-    <link href="https://akarin.dev/2019/07/09/overspeed-crack/"/>
-    <id>https://akarin.dev/2019/07/09/overspeed-crack/</id>
-    <published>2019-07-09T13:18:39.000Z</published>
-    <updated>2019-07-09T13:18:39.000Z</updated>
-    
-    
-    <summary type="html">“本软件仅供学习交流，请于下载后二十四小时内删除。”</summary>
     
     
     
