@@ -6,7 +6,7 @@
   <link href="https://akarin.dev/atom.xml" rel="self"/>
   
   <link href="https://akarin.dev/"/>
-  <updated>2021-09-16T11:07:57.000Z</updated>
+  <updated>2021-11-04T14:48:47.000Z</updated>
   <id>https://akarin.dev/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图片渐进式加载的实现方法</title>
+    <link href="https://akarin.dev/2021/11/04/progressive-image-loading/"/>
+    <id>https://akarin.dev/2021/11/04/progressive-image-loading/</id>
+    <published>2021-11-04T14:48:47.000Z</published>
+    <updated>2021-11-04T14:48:47.000Z</updated>
+    
+    
+    <summary type="html">其实这是之前自己写现在使用的这个主题的时候就想记下来的东西，不过一直咕到今天才写 …_φ(･ω･` )</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>RSA 算法的替代品：X25519/Ed25519 使用记录</title>
@@ -307,21 +322,6 @@
     
     
     <summary type="html">很久以前就想解决的问题，因为 PR 的内置字幕工具实在太难用了……(｡･ˇ_ˇ･｡:)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 PowerShell 爬取妹子图网站</title>
-    <link href="https://akarin.dev/2019/07/30/powershell-mzitu-crawler/"/>
-    <id>https://akarin.dev/2019/07/30/powershell-mzitu-crawler/</id>
-    <published>2019-07-30T08:19:56.000Z</published>
-    <updated>2019-07-30T08:19:56.000Z</updated>
-    
-    
-    <summary type="html">虽然小透明对那种“妹子图”没什么兴趣啦……σ*ゝω･)</summary>
     
     
     
