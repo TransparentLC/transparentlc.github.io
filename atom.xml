@@ -6,7 +6,7 @@
   <link href="https://akarin.dev/atom.xml" rel="self"/>
   
   <link href="https://akarin.dev/"/>
-  <updated>2021-11-04T14:48:47.000Z</updated>
+  <updated>2022-02-15T15:23:29.000Z</updated>
   <id>https://akarin.dev/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用浏览器扩展在运行 Selenium 的 Firefox 浏览器中伪装 navigator.webdriver</title>
+    <link href="https://akarin.dev/2022/02/15/disable-geckodriver-detection-with-addon/"/>
+    <id>https://akarin.dev/2022/02/15/disable-geckodriver-detection-with-addon/</id>
+    <published>2022-02-15T15:23:29.000Z</published>
+    <updated>2022-02-15T15:23:29.000Z</updated>
+    
+    
+    <summary type="html">又名：《爬虫必备！只需要一行代码，我再也不用害怕 Selenium Firefox 被发现啦！》（大雾）</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>图片渐进式加载的实现方法</title>
@@ -307,21 +322,6 @@
     
     
     <summary type="html">用了整整一天时间的造轮子和踩坑记录(っ ̯ -｡)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>通过 VapourSynth 在 Premiere 中使用 ASS 字幕</title>
-    <link href="https://akarin.dev/2019/08/03/use-ass-in-premiere/"/>
-    <id>https://akarin.dev/2019/08/03/use-ass-in-premiere/</id>
-    <published>2019-08-03T10:10:30.000Z</published>
-    <updated>2019-08-03T10:10:30.000Z</updated>
-    
-    
-    <summary type="html">很久以前就想解决的问题，因为 PR 的内置字幕工具实在太难用了……(｡･ˇ_ˇ･｡:)</summary>
     
     
     
