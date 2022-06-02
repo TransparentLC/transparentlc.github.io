@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>存在感消失的地方|ω•`)</title>
-  <icon>https://akarin.dev/icon.png</icon>
+  <icon>https://akarin.dev/img/favicon.png</icon>
   
   <link href="https://akarin.dev/atom.xml" rel="self"/>
   
@@ -101,10 +101,7 @@
     
       
       
-        
-        
-    <summary type="html">&lt;p&gt;和 JavaScript 一样，WebAssembly 也是一种可以在浏览器中运行的编程语言，不过它的性质更相当于汇编语言。wasm 文件由二进制的&lt;a</summary>
-        
+    <summary type="html">&lt;p&gt;和 JavaScript 一样，WebAssembly 也是一种可以在浏览器中运行的编程语言，不过它的性质更相当于汇编语言。wasm 文件由二进制的&lt;a href=&quot;https://pengowray.github.io/wasm-ops/&quot;&gt;字节码&lt;/a&gt;组成（也可以转换</summary>
       
     
     
@@ -137,10 +134,7 @@
     
       
       
-        
-        
-    <summary type="html">&lt;p&gt;之前网站的主题是 &lt;a href=&quot;https://github.com/bolnh/hexo-theme-material&quot;&gt;hexo-theme-material&lt;/a&gt;。这个主题的质量还是很高的，今天仍然有不少用户在它的 &lt;a</summary>
-        
+    <summary type="html">&lt;p&gt;之前网站的主题是 &lt;a href=&quot;https://github.com/bolnh/hexo-theme-material&quot;&gt;hexo-theme-material&lt;/a&gt;。这个主题的质量还是很高的，今天仍然有不少用户在它的 &lt;a href=&quot;https://github</summary>
       
     
     
@@ -172,156 +166,6 @@
     
     
     <summary type="html">折腾在线剪贴板的副产物</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>用 Intersection Observer 来自己造个图片懒加载的轮子₍₍ (ง ˙ω˙)ว ⁾⁾</title>
-    <link href="https://akarin.dev/2020/03/26/intersection-observer/"/>
-    <id>https://akarin.dev/2020/03/26/intersection-observer/</id>
-    <published>2020-03-26T06:33:08.000Z</published>
-    <updated>2020-03-26T06:33:08.000Z</updated>
-    
-    
-    <summary type="html">一些食用方法和实例～　除了懒加载，还可以用来实现别的功能呢( ॑꒳ ॑ )</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在 Javascript 和 PHP 中进行加密和解密</title>
-    <link href="https://akarin.dev/2020/02/26/crypto-in-js-and-php/"/>
-    <id>https://akarin.dev/2020/02/26/crypto-in-js-and-php/</id>
-    <published>2020-02-26T14:09:56.000Z</published>
-    <updated>2020-02-26T14:09:56.000Z</updated>
-    
-    
-    <summary type="html">学了一学期的（入门）密码学，不自己试着用一下怎么行嘛(´･_･`)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>搞事情：用“图床”传视频，自带免费 CDN 加速（已复活！）</title>
-    <link href="https://akarin.dev/2020/02/07/alicdn-video-hosting/"/>
-    <id>https://akarin.dev/2020/02/07/alicdn-video-hosting/</id>
-    <published>2020-02-07T11:24:46.000Z</published>
-    <updated>2020-02-07T11:24:46.000Z</updated>
-    
-    
-    <summary type="html">可能是最快的“视频床”了(〃′▽`)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 PHP 的 Ratchet 框架搭建 WebSocket 服务端</title>
-    <link href="https://akarin.dev/2020/01/10/php-websocket-server/"/>
-    <id>https://akarin.dev/2020/01/10/php-websocket-server/</id>
-    <published>2020-01-10T14:27:32.000Z</published>
-    <updated>2020-01-10T14:27:32.000Z</updated>
-    
-    
-    <summary type="html">不需要使用轮询了！</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 waifu2x-caffe 和 ImageMagick 放大 GIF 动图</title>
-    <link href="https://akarin.dev/2019/11/23/powershell-waifu2xgif/"/>
-    <id>https://akarin.dev/2019/11/23/powershell-waifu2xgif/</id>
-    <published>2019-11-23T03:28:42.000Z</published>
-    <updated>2019-11-23T03:28:42.000Z</updated>
-    
-    
-    <summary type="html">表情包高清重制工具ꉂ(ˊᗜˋ*)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>2019 年暨南大学“新生杯”CTF Write-Up</title>
-    <link href="https://akarin.dev/2019/11/16/2019-jnu-ctf-writeup/"/>
-    <id>https://akarin.dev/2019/11/16/2019-jnu-ctf-writeup/</id>
-    <published>2019-11-16T13:50:28.000Z</published>
-    <updated>2019-11-16T13:50:28.000Z</updated>
-    
-    
-    <summary type="html">非官方/部分 Write-Up，多图，预计消耗流量 3.5MB |•&#39;-&#39;•) ✧</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>“存在感消失的地方|ω•`)”已经开始使用 WebP 图片啦！</title>
-    <link href="https://akarin.dev/2019/10/22/upgrade-to-webp/"/>
-    <id>https://akarin.dev/2019/10/22/upgrade-to-webp/</id>
-    <published>2019-10-22T03:04:30.000Z</published>
-    <updated>2019-10-22T03:04:30.000Z</updated>
-    
-    
-    <summary type="html">9102年了，现代浏览器里只剩下 Safari 不支持 WebP，出来挨打⊂彡☆))д`)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 PowerShell 自动读写 Excel 表格</title>
-    <link href="https://akarin.dev/2019/10/06/powershell-automated-excel/"/>
-    <id>https://akarin.dev/2019/10/06/powershell-automated-excel/</id>
-    <published>2019-10-06T12:07:21.000Z</published>
-    <updated>2019-10-06T12:07:21.000Z</updated>
-    
-    
-    <summary type="html">《论如何帮校团委在五分钟内整理完五百份招新报名表》(´・ω・`)</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在 PHP 中使用 Trie 树（键树）进行字符串替换</title>
-    <link href="https://akarin.dev/2019/09/22/php-trie-replace-string/"/>
-    <id>https://akarin.dev/2019/09/22/php-trie-replace-string/</id>
-    <published>2019-09-22T10:44:02.000Z</published>
-    <updated>2019-09-22T10:44:02.000Z</updated>
-    
-    
-    <summary type="html">《数据结构》确实有一些实用的东西……！|。•ω•)っ◆</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用长短轮询和 SSE 实现服务端主动向客户端发送数据（以及踩到的坑……）</title>
-    <link href="https://akarin.dev/2019/09/03/use-polling-and-sse/"/>
-    <id>https://akarin.dev/2019/09/03/use-polling-and-sse/</id>
-    <published>2019-09-03T14:55:46.000Z</published>
-    <updated>2019-09-03T14:55:46.000Z</updated>
-    
-    
-    <summary type="html">用了整整一天时间的造轮子和踩坑记录(っ ̯ -｡)</summary>
     
     
     
