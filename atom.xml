@@ -6,7 +6,7 @@
   <link href="https://akarin.dev/atom.xml" rel="self"/>
   
   <link href="https://akarin.dev/"/>
-  <updated>2022-02-15T15:23:29.000Z</updated>
+  <updated>2022-03-29T13:50:12.000Z</updated>
   <id>https://akarin.dev/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Windows 下检测深色模式并监听变化</title>
+    <link href="https://akarin.dev/2023/03/29/detect-dark-theme-on-windows/"/>
+    <id>https://akarin.dev/2023/03/29/detect-dark-theme-on-windows/</id>
+    <published>2023-03-29T13:50:12.000Z</published>
+    <updated>2022-03-29T13:50:12.000Z</updated>
+    
+    
+    <summary type="html">之前在折腾某个开源项目时想到要记下来的东西，结果一直鸽到网站都长草了才写出来……</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>使用浏览器扩展在运行 Selenium 的 Firefox 浏览器中伪装 navigator.webdriver</title>
@@ -151,21 +166,6 @@
     
     
     <summary type="html">一个使用 Vue 插件的简单例子</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Phar 包的使用方法</title>
-    <link href="https://akarin.dev/2020/04/25/phar-packaging/"/>
-    <id>https://akarin.dev/2020/04/25/phar-packaging/</id>
-    <published>2020-04-25T07:04:36.000Z</published>
-    <updated>2020-04-25T07:04:36.000Z</updated>
-    
-    
-    <summary type="html">折腾在线剪贴板的副产物</summary>
     
     
     
