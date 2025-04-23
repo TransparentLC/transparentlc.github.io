@@ -251,7 +251,8 @@ const copyCode = code => {
     selection.removeAllRanges();
     mdui.snackbar('代码已复制', { timeout: 2000 });
 };
-Array.from(article.querySelectorAll('pre[class^="language-"],pre[class*=" language-"]')).forEach(e => {
+Array.from(article.querySelectorAll('pre[class^="language-"],pre[class*=" language-"],pre[class^="shiki"],pre[class*=" shiki"]')).forEach(e => {
+    if (e.classList.contains('shiki')) e.style.position = 'relative';
     const btn = copyBtn.cloneNode(true);
     btn.onclick = () => copyCode(e.querySelector('code'));
     e.insertAdjacentElement('afterbegin', btn);
