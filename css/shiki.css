@@ -1,8 +1,6 @@
 /*
 Line numbers · Issue #3 · shikijs/shiki
 https://github.com/shikijs/shiki/issues/3#issuecomment-830564854
-Light/Dark Dual Themes | Shiki
-https://shiki.style/guide/dual-themes
 */
 
 pre.shiki code {
@@ -20,13 +18,79 @@ pre.shiki code .line::before {
     color: rgba(115,138,148,.4)
 }
 
+/*
+@shikijs/transformers | Shiki
+https://shiki.style/packages/transformers
+*/
+
+pre.shiki.has-diff code .line.diff,
+pre.shiki.has-highlighted code .line.highlighted {
+    display: inline-block;
+    width: fit-content;
+    min-width: 100%;
+}
+pre.shiki.has-diff code .line.diff.remove {
+    background-color: rgba(244,63,94,.2);
+}
+pre.shiki.has-diff code .line.diff.remove:before {
+    content: "-";
+    color: #b34e52;
+}
+pre.shiki.has-diff code .line.diff.add {
+    background-color: rgba(16,185,129,.2);
+}
+pre.shiki.has-diff code .line.diff.add:before {
+    content: "+";
+    color: #18794e;
+}
+pre.shiki.has-highlighted code .line.highlighted {
+    background-color: rgba(142,150,170,.2);
+}
+pre.shiki.has-highlighted code .line.highlighted.error {
+    background-color: rgba(244,63,94,.2);
+}
+pre.shiki.has-highlighted code .line.highlighted.warning {
+    background-color: rgba(234,179,8,.2);
+}
+pre.shiki code .highlighted-word {
+    background-color: rgba(255,255,0,.3);
+    border-radius: 4px;
+    margin: -1px -2px;
+    padding: 1px 2px;
+}
+pre.shiki.has-focused code .line {
+    filter: blur(3px);
+    opacity: .7;
+    transition: filter .35s, opacity .35s;
+}
+pre.shiki.has-focused:hover code .line,
+pre.shiki.has-focused code .line.focused {
+    filter: blur(0);
+    opacity: 1;
+}
+
+/*
+Light/Dark Dual Themes | Shiki
+https://shiki.style/guide/dual-themes
+*/
+
+pre.shiki.shiki-themes {
+    background-color: var(--shiki-light-bg);
+}
+pre.shiki.shiki-themes span {
+    color: var(--shiki-light);
+    font-style: var(--shiki-light-font-style);
+    font-weight: var(--shiki-light-font-weight);
+    text-decoration: var(--shiki-light-text-decoration);
+}
 @media (prefers-color-scheme: dark) {
-    pre.shiki.shiki-themes,
+    pre.shiki.shiki-themes {
+        background-color: var(--shiki-dark-bg);
+    }
     pre.shiki.shiki-themes span {
-        color: var(--shiki-dark) !important;
-        background-color: var(--shiki-dark-bg) !important;
-        font-style: var(--shiki-dark-font-style) !important;
-        font-weight: var(--shiki-dark-font-weight) !important;
-        text-decoration: var(--shiki-dark-text-decoration) !important;
+        color: var(--shiki-dark);
+        font-style: var(--shiki-dark-font-style);
+        font-weight: var(--shiki-dark-font-weight);
+        text-decoration: var(--shiki-dark-text-decoration);
     }
 }
