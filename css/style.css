@@ -1,52 +1,16 @@
-/* 导入思源黑体 */
-@font-face {
-    font-family: 'Noto Sans CJK SC';
-    font-style: normal;
-    font-weight: 100;
-    src: local('Noto Sans CJK SC Thin'), local('Source Han Sans SC ExtraLight'), local('Source Han Sans CN ExtraLight');
-}
-@font-face {
-    font-family: 'Noto Sans CJK SC';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Noto Sans CJK SC Light'), local('Source Han Sans SC Light'), local('Source Han Sans CN Light');
-}
-@font-face {
-    font-family: 'Noto Sans CJK SC';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Noto Sans CJK SC Regular'), local('Source Han Sans SC Regular'), local('Source Han Sans CN Regular');
-}
-@font-face {
-    font-family: 'Noto Sans CJK SC';
-    font-style: normal;
-    font-weight: 500;
-    src: local('Noto Sans CJK SC Medium'), local('Source Han Sans SC Medium'), local('Source Han Sans CN Medium');
-}
-@font-face {
-    font-family: 'Noto Sans CJK SC';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Noto Sans CJK SC Bold'), local('Source Han Sans SC Bold'), local('Source Han Sans CN Bold');
-}
-@font-face {
-    font-family: 'Noto Sans CJK SC';
-    font-style: normal;
-    font-weight: 900;
-    src: local('Noto Sans CJK SC Black'), local('Source Han Sans SC Heavy'), local('Source Han Sans CN Heavy');
-}
 body {
     font-family:
         Roboto,
-        Noto,
+        "Noto Sans",
         "Helvetica Neue",
         Helvetica,
         "Noto Sans CJK SC",
+        "Source Han Sans SC",
+        "Noto Sans SC",
+        "Source Han Sans CN",
         "PingFang SC",
         "Hiragino Sans GB",
         "Microsoft YaHei",
-        "微软雅黑",
-        Arial,
         sans-serif;
 }
 
@@ -195,7 +159,17 @@ article.mdui-typo pre,
 article.mdui-typo code,
 article.mdui-typo pre code {
     line-height: 1.25;
-    font-family: "Cascadia Mono", "JetBrains Mono", "Segoe UI Mono", "Ubuntu Mono", "Roboto Mono", Menlo, Monaco, Consolas, monospace, sans-serif;
+    font-family:
+        "Cascadia Mono",
+        "JetBrains Mono",
+        "Segoe UI Mono",
+        "Ubuntu Mono",
+        "Roboto Mono",
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace,
+        sans-serif;
 }
 article.mdui-typo img {
     max-height: 480px;
