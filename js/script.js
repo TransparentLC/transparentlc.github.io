@@ -252,7 +252,7 @@ const copyCode = code => {
     mdui.snackbar && mdui.snackbar('代码已复制', { timeout: 2000 });
 };
 Array.from(article.querySelectorAll('pre[class^="language-"],pre[class*=" language-"],pre[class^="shiki"],pre[class*=" shiki"]')).forEach(e => {
-    const container = document.createElement('div');
+    const container = document.createElement('p');
     container.style.position = 'relative';
     const btn = copyBtn.cloneNode(true);
     btn.onclick = () => copyCode(e.querySelector('code'));
