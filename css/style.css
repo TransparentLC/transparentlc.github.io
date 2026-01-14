@@ -142,12 +142,6 @@ button#akarin-top {
 }
 
 /* 文章内容 */
-.akarin-copy-code-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-}
 @media (min-width:600px) {
     article.mdui-typo {
         font-size: 16px;

@@ -232,33 +232,20 @@ Array.from(article.querySelectorAll('video,.video-container')).forEach(e => {
 
 // “复制代码”按钮
 const copyBtn = document.createElement('button');
-copyBtn.innerHTML = '<span class="mdui-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"/></svg></span>';
+copyBtn.innerHTML = '<span class="mdui-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12z"/></svg></span>';
 copyBtn.classList.add(
     'mdui-btn',
     'mdui-btn-icon',
     'mdui-btn-dense',
     'mdui-ripple',
-    'mdui-m-a-1',
-    'akarin-copy-code-btn'
+    'copy',
 );
-const copyCode = code => {
-    const range = document.createRange();
-    range.selectNodeContents(code);
-    const selection = document.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand('Copy');
-    selection.removeAllRanges();
-    mdui.snackbar && mdui.snackbar('代码已复制', { timeout: 2000 });
-};
-Array.from(article.querySelectorAll('pre[class^="language-"],pre[class*=" language-"],pre[class^="shiki"],pre[class*=" shiki"]')).forEach(e => {
-    const container = document.createElement('p');
-    container.style.position = 'relative';
-    const btn = copyBtn.cloneNode(true);
-    btn.onclick = () => copyCode(e.querySelector('code'));
-    container.appendChild(btn);
-    e.parentNode.insertBefore(container, e);
-    container.appendChild(e);
+const copyCode = (/** @type {PointerEvent} */ e) => navigator.clipboard.writeText(e.currentTarget.previousSibling.innerText);
+Array.from(article.querySelectorAll('pre.shiki')).forEach(e => {
+    /** @type {HTMLButtonElement} */
+    const copyBtnCloned = copyBtn.cloneNode(true);
+    copyBtnCloned.onclick = copyCode;
+    e.after(copyBtnCloned);
 });
 
 // 在img上添加一些class

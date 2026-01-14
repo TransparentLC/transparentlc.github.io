@@ -94,3 +94,52 @@ pre.shiki.shiki-themes span {
         text-decoration: var(--shiki-dark-text-decoration);
     }
 }
+
+figure:has(pre.shiki) {
+    position: relative;
+    margin: 0;
+    text-align: left;
+}
+
+pre.shiki ~ .copy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 4px !important;
+    padding: 8px !important;
+    color: #59636e;
+    transition: opacity .2s;
+    opacity: 0;
+}
+pre.shiki:hover ~ .copy, pre.shiki ~ .copy:hover {
+    opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+    pre.shiki ~ .copy {
+        color: #9198a1;
+    }
+}
+
+pre.shiki ~ .language {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #59636e;
+    text-transform: uppercase;
+    transition: right .2s;
+    opacity: .5;
+    margin: 4px !important;
+    padding: 8px !important;
+    line-height: 1 !important;
+    background: none !important;
+    border: none !important;
+    pointer-events: none;
+}
+@media (prefers-color-scheme: dark) {
+    pre.shiki ~ .language {
+        color: #9198a1;
+    }
+}
+pre.shiki:hover ~ .language, pre.shiki ~ .copy:hover ~ .language {
+    right: 28px;
+}
