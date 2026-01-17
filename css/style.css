@@ -228,6 +228,27 @@ article.mdui-typo h6:hover .headerlink {
     opacity: 1;
 }
 
+/* 文章加密 */
+[data-encrypted] {
+    max-width: 360px;
+}
+[data-encrypted] input[type=password] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,.38);
+    border-radius: 2px;
+    background: none;
+}
+@media (prefers-color-scheme: dark) {
+    [data-encrypted] input[type=password] {
+        color: #fff;
+        border-color: rgba(255,255,255,.5);
+    }
+}
+[data-encrypted] input[type=password]:focus {
+    outline: none;
+}
+
 /* 其他工具类 */
 .akarin-util-bg-cover {
     background-position: center;

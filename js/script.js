@@ -18,9 +18,10 @@ consoleBadge('Source', 'https://github.com/TransparentLC/hexo-theme-akarin', '#4
 // ****************
 // 懒加载组件
 // ****************
-(() => {
 
 class LazyLoad {
+    /** @type {Number | undefined} */
+    imageSupport = undefined;
     /** @type {{type: String, img: String, mask: Number}[]} */
     imageSupportTest = Object.freeze([
         Object.freeze({
@@ -38,7 +39,7 @@ class LazyLoad {
             img: 'data:image/jxl;base64,/wr6HwGRCAYBACQAS4oLFgATIAkn',
             mask: 1 << 2,
         }),
-    ])
+    ]);
     defaults = Object.freeze({
         root: null,
         rootMargin: '0px',
@@ -46,7 +47,7 @@ class LazyLoad {
         loadingSrc: null,
         beforeObserve: () => {},
         afterObserve: () => {},
-    })
+    });
 
     /**
      * @param {HTMLElement[]} image
@@ -60,32 +61,34 @@ class LazyLoad {
      * }} config
      */
     constructor(image, config) {
+        if (this.imageSupport === undefined) {
+            Promise.all(
+                this.imageSupportTest.map(e => new Promise(resolve => {
+                    const testImg = new Image;
+                    testImg.onload = testImg.onerror = () => resolve(testImg.width && e.mask);
+                    testImg.src = e.img;
+                }))
+            ).then(result => {
+                result.forEach(e => this.imageSupport |= e);
+                consoleBadge(
+                    'Next-Gen Image',
+                    this.imageSupportTest
+                        .map(e => this.imageSupport & e.mask ? e.type : '')
+                        .filter(e => e)
+                        .join() || 'None',
+                    '#f6b'
+                );
+            });
+        }
+
         this.config = {...this.defaults, ...config};
-        this.imageSupport = 0;
         this.observer = new IntersectionObserver(entries => entries.forEach(entry => entry.isIntersecting && this.load(entry.target)), this.config);
-        Promise.all(
-            this.imageSupportTest.map(e => new Promise(resolve => {
-                const testImg = new Image;
-                testImg.onload = testImg.onerror = () => resolve(testImg.width && e.mask);
-                testImg.src = e.img;
-            }))
-        ).then(result => {
-            result.forEach(e => this.imageSupport |= e);
-            consoleBadge(
-                'Next-Gen Image',
-                this.imageSupportTest
-                    .map(e => this.imageSupport & e.mask ? e.type : '')
-                    .filter(e => e)
-                    .join() || 'None',
-                '#f6b'
-            );
-            image.forEach((/** @type {HTMLElement} */ el) => {
-                (
-                    this.config.loadingSrc ? this.setSrc(el, this.config.loadingSrc) : Promise.resolve()
-                ).then(() => {
-                    this.config.beforeObserve(el);
-                    this.observer.observe(el);
-                });
+        image.forEach((/** @type {HTMLElement} */ el) => {
+            (
+                this.config.loadingSrc ? this.setSrc(el, this.config.loadingSrc) : Promise.resolve()
+            ).then(() => {
+                this.config.beforeObserve(el);
+                this.observer.observe(el);
             });
         });
     }
@@ -127,25 +130,6 @@ class LazyLoad {
         this.config = null;
     }
 }
-
-new LazyLoad(Array.from(document.querySelectorAll('[data-src]')), {
-    beforeObserve: el => (el.tagName.toLowerCase() === 'img') ? mediumZoom(el, {
-        margin: 16,
-        scrollOffset: 8,
-        background: 'rgba(0,0,0,.85)',
-    }) : null,
-    afterObserve: el => {
-        const blurred = (el.nextElementSibling && el.nextElementSibling.classList.contains('akarin-blurred'))
-            ? el.nextElementSibling
-            : el.querySelector('.akarin-blurred');
-        if (blurred) {
-            setTimeout(() => blurred.classList.add('akarin-blurred-fade-out'), 50);
-            setTimeout(() => blurred.style.visibility = 'hidden', 1050);
-        }
-    }
-});
-
-})();
 
 // ****************
 // 返回顶部
@@ -205,11 +189,6 @@ if (currentDark) currentDark.classList.add('mdui-list-item-active');
 
 })();
 
-// ****************
-// 对文章进行处理
-// ****************
-(() => {
-
 // 点击主页的封面图也能打开文章，并且添加预加载
 Array.from(document.querySelectorAll('[data-entry]')).forEach(e => {
     const el = e.parentElement.previousElementSibling;
@@ -217,20 +196,11 @@ Array.from(document.querySelectorAll('[data-entry]')).forEach(e => {
     if (window.preload) el.addEventListener('mouseover', () => !_preloadedList.has(e.href) && setTimeout(() => preload(e.href), 8 * _delayOnHover));
 });
 
-const article = document.querySelector('article');
-if (!article) return;
+// ****************
+// 对文章进行处理
+// ****************
+(() => {
 
-// 在视频上添加class
-Array.from(article.querySelectorAll('video,.video-container')).forEach(e => {
-    e.classList.add(
-        `mdui-video-${e.tagName.toLowerCase() === 'video' ? 'fluid' : 'container'}`,
-        'mdui-img-rounded',
-        'mdui-center',
-        'mdui-hoverable'
-    );
-});
-
-// “复制代码”按钮
 const copyBtn = document.createElement('button');
 copyBtn.innerHTML = '<span class="mdui-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12z"/></svg></span>';
 copyBtn.classList.add(
@@ -241,22 +211,114 @@ copyBtn.classList.add(
     'copy',
 );
 const copyCode = (/** @type {PointerEvent} */ e) => navigator.clipboard.writeText(e.currentTarget.previousSibling.innerText);
-Array.from(article.querySelectorAll('pre.shiki')).forEach(e => {
-    /** @type {HTMLButtonElement} */
-    const copyBtnCloned = copyBtn.cloneNode(true);
-    copyBtnCloned.onclick = copyCode;
-    e.after(copyBtnCloned);
+
+const beforeObserve = el => (el.tagName.toLowerCase() === 'img') && mediumZoom(el, {
+    margin: 16,
+    scrollOffset: 8,
+    background: 'rgba(0,0,0,.85)',
+});
+const afterObserve = el => {
+    const blurred = (el.nextElementSibling && el.nextElementSibling.classList.contains('akarin-blurred'))
+        ? el.nextElementSibling
+        : el.querySelector('.akarin-blurred');
+    if (blurred) {
+        setTimeout(() => blurred.classList.add('akarin-blurred-fade-out'), 50);
+        setTimeout(() => blurred.style.visibility = 'hidden', 1050);
+    }
+};
+
+new LazyLoad(Array.from(document.querySelectorAll('.akarin-util-bg-cover[data-src]')), {
+    beforeObserve,
+    afterObserve,
 });
 
-// 在img上添加一些class
-Array.from(document.querySelectorAll('article > img')).forEach(e => {
-    e.classList.add(
-        'mdui-img-fluid',
-        'mdui-img-rounded',
-        'mdui-center',
-        'mdui-hoverable',
-        'mdui-m-y-3'
+/**
+ * @param {HTMLElement} container
+ */
+const enhance = container => {
+    // 为图片添加懒加载
+    new LazyLoad(Array.from(container.querySelectorAll('[data-src]')), {
+        beforeObserve,
+        afterObserve,
+    });
+
+    // 在视频上添加class
+    Array.from(container.querySelectorAll('video,.video-container')).forEach(e => {
+        e.classList.add(
+            `mdui-video-${e.tagName.toLowerCase() === 'video' ? 'fluid' : 'container'}`,
+            'mdui-img-rounded',
+            'mdui-center',
+            'mdui-hoverable'
+        );
+    });
+
+    // “复制代码”按钮
+    Array.from(article.querySelectorAll('pre.shiki')).forEach(e => {
+        /** @type {HTMLButtonElement} */
+        const copyBtnCloned = copyBtn.cloneNode(true);
+        copyBtnCloned.onclick = copyCode;
+        e.after(copyBtnCloned);
+    });
+
+    // 在img上添加一些class
+    Array.from(container.children).filter(e => e.tagName === 'IMG').forEach(e => {
+        e.classList.add(
+            'mdui-img-fluid',
+            'mdui-img-rounded',
+            'mdui-center',
+            'mdui-hoverable',
+            'mdui-m-y-3'
+        );
+    });
+};
+
+const article = document.querySelector('article');
+if (article) enhance(article);
+
+const te = new TextEncoder;
+const td = new TextDecoder;
+
+/**
+ * @param {PointerEvent} e
+ */
+const encryptHandler = async e => {
+    const container = e.currentTarget.parentNode.parentNode;
+    const passwordInput = container.querySelector('input[type=password]');
+    const password = passwordInput.value;
+    /** @type {Uint8Array} */
+    const saltiv = (Uint8Array.frombase64 || (e => Uint8Array.from(atob(e), e => e.charCodeAt())))(container.getAttribute('data-saltiv'));
+    const salt = saltiv.subarray(0, 16);
+    const iv = saltiv.subarray(16, 16 + 12);
+    /** @type {Uint8Array} */
+    const encrypted = (Uint8Array.frombase64 || (e => Uint8Array.from(atob(e), e => e.charCodeAt())))(container.getAttribute('data-encrypted'));
+
+    const key = await crypto.subtle.deriveKey(
+        {
+            name: 'PBKDF2',
+            hash: 'SHA-256',
+            salt,
+            iterations: 600000,
+        },
+        await crypto.subtle.importKey('raw', te.encode(password), 'PBKDF2', false, ['deriveKey']),
+        { name: 'AES-GCM', length: 128 },
+        false,
+        ['decrypt'],
     );
+    try {
+        const decrypted = td.decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, encrypted));
+        container.innerHTML = decrypted;
+        enhance(container);
+        Array.from(container.children).forEach(e => container.before(e));
+        container.parentNode.removeChild(container);
+    } catch {
+        passwordInput.value = '';
+        alert('密码错误');
+    }
+};
+
+Array.from(document.querySelectorAll('[data-encrypted]')).forEach(el => {
+    el.querySelector('button').onclick = encryptHandler;
+    el.querySelector('input[type=password]').addEventListener('keypress', e => e.keyCode === 13 && encryptHandler(e));
 });
 
 })();
