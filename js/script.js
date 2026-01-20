@@ -24,19 +24,25 @@ class LazyLoad {
     imageSupport = undefined;
     /** @type {{type: String, img: String, mask: Number}[]} */
     imageSupportTest = Object.freeze([
+        // 26 bytes
+        // https://github.com/mathiasbynens/small/blob/master/webp.webp
         Object.freeze({
             type: 'webp',
-            img: 'data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACyAgCdASoCAAEALmk0mk0iIiIiIgBoSygABc6zbAAA/v56QAAAAA',
+            img: 'data:image/webp;base64,UklGRhIAAABXRUJQVlA4TAYAAAAvQWxvAGs',
             mask: 1 << 0,
         }),
+        // 298 bytes
+        // https://github.com/mathiasbynens/small/issues/115#issuecomment-827240563
         Object.freeze({
             type: 'avif',
             img: 'data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAOltZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAAQ0AAAAVAAAAKGlpbmYAAAAAAAEAAAAaaW5mZQIAAAAAAQAAYXYwMUNvbG9yAAAAAGhpcHJwAAAASWlwY28AAAAUaXNwZQAAAAAAAAABAAAAAQAAAA5waXhpAAAAAAEIAAAADGF2MUOBABwAAAAAE2NvbHJuY2x4AAEADQAGgAAAABdpcG1hAAAAAAAAAAEAAQQBAoMEAAAAHW1kYXQSAAoHGAAOWAhoNTIIH/AAAQACH0A',
             mask: 1 << 1,
         }),
+        // 12 bytes
+        // https://shkspr.mobi/blog/2024/01/whats-the-smallest-file-size-for-a-1-pixel-image/#comment-363591
         Object.freeze({
             type: 'jxl',
-            img: 'data:image/jxl;base64,/wr6HwGRCAYBACQAS4oLFgATIAkn',
+            img: 'data:image/jxl;base64,/wr/BwiDBAwASyAY',
             mask: 1 << 2,
         }),
     ]);
