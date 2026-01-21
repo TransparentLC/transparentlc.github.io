@@ -21,9 +21,9 @@ consoleBadge('Source', 'https://github.com/TransparentLC/hexo-theme-akarin', '#4
 
 class LazyLoad {
     /** @type {Number | undefined} */
-    imageSupport = undefined;
+    static imageSupport = undefined;
     /** @type {{type: String, img: String, mask: Number}[]} */
-    imageSupportTest = Object.freeze([
+    static imageSupportTest = Object.freeze([
         // 26 bytes
         // https://github.com/mathiasbynens/small/blob/master/webp.webp
         Object.freeze({
@@ -67,19 +67,19 @@ class LazyLoad {
      * }} config
      */
     constructor(image, config) {
-        if (this.imageSupport === undefined) {
+        if (this.constructor.imageSupport === undefined) {
             Promise.all(
-                this.imageSupportTest.map(e => new Promise(resolve => {
+                this.constructor.imageSupportTest.map(e => new Promise(resolve => {
                     const testImg = new Image;
                     testImg.onload = testImg.onerror = () => resolve(testImg.width && e.mask);
                     testImg.src = e.img;
                 }))
             ).then(result => {
-                result.forEach(e => this.imageSupport |= e);
+                result.forEach(e => this.constructor.imageSupport |= e);
                 consoleBadge(
                     'Next-Gen Image',
-                    this.imageSupportTest
-                        .map(e => this.imageSupport & e.mask ? e.type : '')
+                    this.constructor.imageSupportTest
+                        .map(e => this.constructor.imageSupport & e.mask ? e.type : '')
                         .filter(e => e)
                         .join() || 'None',
                     '#f6b'
@@ -122,9 +122,9 @@ class LazyLoad {
      */
     load(el) {
         let src = '';
-        this.imageSupportTest.forEach(e => {
+        this.constructor.imageSupportTest.forEach(e => {
             const dataSrc = el.getAttribute(`data-src-${e.type}`);
-            if (dataSrc && (this.imageSupport & e.mask)) src = dataSrc;
+            if (dataSrc && (this.constructor.imageSupport & e.mask)) src = dataSrc;
         });
         this.setSrc(el, src || el.getAttribute('data-src')).then(() => {
             this.observer.unobserve(el);
@@ -290,7 +290,8 @@ const td = new TextDecoder;
 const encryptHandler = async e => {
     const container = e.currentTarget.parentNode.parentNode;
     const passwordInput = container.querySelector('input[type=password]');
-    const password = passwordInput.value;
+    const password = passwordInput.value.trim();
+    if (!password) return;
     /** @type {Uint8Array} */
     const saltiv = (Uint8Array.frombase64 || (e => Uint8Array.from(atob(e), e => e.charCodeAt())))(container.getAttribute('data-saltiv'));
     const salt = saltiv.subarray(0, 16);
