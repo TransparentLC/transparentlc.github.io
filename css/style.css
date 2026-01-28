@@ -272,3 +272,12 @@ article.mdui-typo h6:hover .headerlink {
 .akarin-util-rounded-9 {
     border-radius: 9px;
 }
+
+.MathJax[jax=SVG][display=true] {
+    display: block;
+    text-align: center;
+    margin: 1em 0;
+}
+svg.registry {
+    display: none;
+}
