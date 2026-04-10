@@ -1,188 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>存在感消失的地方|ω•`)</title>
-  <icon>https://akarin.dev/img/favicon.png</icon>
-  
-  <link href="https://akarin.dev/atom.xml" rel="self"/>
-  
-  <link href="https://akarin.dev/"/>
-  <updated>2025-12-06T14:39:47.000Z</updated>
-  <id>https://akarin.dev/</id>
-  
   <author>
     <name>✨小透明・宸✨</name>
-    
   </author>
-  
   <generator uri="https://hexo.io/">Hexo</generator>
-  
+  <icon>https://akarin.dev/img/favicon.png</icon>
+  <id>https://akarin.dev/</id>
+  <link href="https://akarin.dev/" rel="alternate"/>
+  <link href="https://akarin.dev/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, ✨小透明・宸✨</rights>
+  <subtitle>\アッカリ～ン/</subtitle>
+  <title>存在感消失的地方|ω•`)</title>
+  <updated>2025-12-06T14:39:47.000Z</updated>
   <entry>
-    <title>如何免登录从 Flaticon 下载 SVG 格式的图标</title>
-    <link href="https://akarin.dev/2025/12/06/download-svg-from-flaticon/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2025/12/06/download-svg-from-flaticon/</id>
+    <link href="https://akarin.dev/2025/12/06/download-svg-from-flaticon/"/>
     <published>2025-12-06T14:39:47.000Z</published>
+    <summary>
+      <![CDATA[<p><a href="https://www.flaticon.com/">Flaticon</a> 是我常用的一个提供免费商用图标素材下载的网站。Flaticon 的图标质量很高，用于制作 PPT、示意图或者其他设计用途都特别适合。在未登录的情况下，Flaticon 的图标支]]>
+    </summary>
+    <title>如何免登录从 Flaticon 下载 SVG 格式的图标</title>
     <updated>2025-12-06T14:39:47.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://www.flaticon.com/&quot;&gt;Flaticon&lt;/a&gt; 是我常用的一个提供免费商用图标素材下载的网站。Flaticon 的图标质量很高，用于制作 PPT、示意图或者其他设计用途都特别适合。在未登录的情况下，Flaticon 的图标支</summary>
-      
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>乐队少女融入现实照片制作方法</title>
-    <link href="https://akarin.dev/2025/08/04/blend-anime-girl-into-realistic-photo/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2025/08/04/blend-anime-girl-into-realistic-photo/</id>
+    <link href="https://akarin.dev/2025/08/04/blend-anime-girl-into-realistic-photo/"/>
     <published>2025-08-04T02:58:54.000Z</published>
+    <summary>
+      <![CDATA[<p>这篇的内容其实是来自 Bilibili 的 <a href="https://space.bilibili.com/97037296">@雨夜中的街灯</a> 和 <a href="https://space.bilibili.com/472426850">@草子的小本本<]]>
+    </summary>
+    <title>乐队少女融入现实照片制作方法</title>
     <updated>2025-08-04T02:58:54.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;这篇的内容其实是来自 Bilibili 的 &lt;a href=&quot;https://space.bilibili.com/97037296&quot;&gt;@雨夜中的街灯&lt;/a&gt; 和 &lt;a href=&quot;https://space.bilibili.com/472426850&quot;&gt;@草子的小本本&lt;</summary>
-      
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>在 Hexo 中使用 Shiki 进行代码高亮</title>
-    <link href="https://akarin.dev/2025/04/30/use-shiki-in-hexo/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2025/04/30/use-shiki-in-hexo/</id>
+    <link href="https://akarin.dev/2025/04/30/use-shiki-in-hexo/"/>
     <published>2025-04-30T08:04:56.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>如果想要成品的话可以直接翻到最后～</p>
+</blockquote>
+<p>我没少折腾过这个 Hexo 博客的代码高亮，<a href="/2019/04/19/use-hljs-in-material-theme/">一开始</a>用的是 <a]]>
+    </summary>
+    <title>在 Hexo 中使用 Shiki 进行代码高亮</title>
     <updated>2025-04-30T08:04:56.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;如果想要成品的话可以直接翻到最后～&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;我没少折腾过这个 Hexo 博客的代码高亮，&lt;a href=&quot;/2019/04/19/use-hljs-in-material-theme/&quot;&gt;一开始&lt;/a&gt;用的是 &lt;a</summary>
-      
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>关于同人的访谈：一位东方同人创作者的经历和视角</title>
-    <link href="https://akarin.dev/2025/03/25/interview-of-doujin-culture/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2025/03/25/interview-of-doujin-culture/</id>
+    <link href="https://akarin.dev/2025/03/25/interview-of-doujin-culture/"/>
     <published>2025-03-25T11:26:47.000Z</published>
+    <summary>
+      <![CDATA[<p>众所周知，我是个车车人。众所周知，东方 Project 经常作为<abbr title="一般是指月姬、东方 Project、寒蝉鸣泣之时，顺便一提这似乎是从中文圈开始出现的说法">“三大同人奇迹”</abbr>之一而被提及。我所在的东方群里有位叫蔼石的群友，组建了自己的同]]>
+    </summary>
+    <title>关于同人的访谈：一位东方同人创作者的经历和视角</title>
     <updated>2025-03-25T11:26:47.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;众所周知，我是个车车人。众所周知，东方 Project 经常作为&lt;abbr title=&quot;一般是指月姬、东方 Project、寒蝉鸣泣之时，顺便一提这似乎是从中文圈开始出现的说法&quot;&gt;“三大同人奇迹”&lt;/abbr&gt;之一而被提及。我所在的东方群里有位叫蔼石的群友，组建了自己的同</summary>
-      
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>将评论系统从来必力（LiveRe）迁移到 Artalk</title>
-    <link href="https://akarin.dev/2025/01/18/migrate-from-livere-to-artalk/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2025/01/18/migrate-from-livere-to-artalk/</id>
+    <link href="https://akarin.dev/2025/01/18/migrate-from-livere-to-artalk/"/>
     <published>2025-01-18T15:48:17.000Z</published>
+    <summary>
+      <![CDATA[<p><a href="https://livere.com/">来必力（LiveRe）</a> 是一个来自韩国的评论系统，支持使用国内外的一批社交网站账户登录，免去注册过程。</p>
+<p>……嘛，这个介绍当然是复制粘贴的了。不过在五年前甚至更久以前、使用 <a href="h]]>
+    </summary>
+    <title>将评论系统从来必力（LiveRe）迁移到 Artalk</title>
     <updated>2025-01-18T15:48:17.000Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://livere.com/&quot;&gt;来必力（LiveRe）&lt;/a&gt; 是一个来自韩国的评论系统，支持使用国内外的一批社交网站账户登录，免去注册过程。&lt;/p&gt;
-&lt;p&gt;……嘛，这个介绍当然是复制粘贴的了。不过在五年前甚至更久以前、使用 &lt;a href=&quot;h</summary>
-      
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>西方 Project 幡紫龙 C74 版汉化（魔改）记录</title>
-    <link href="https://akarin.dev/2024/01/19/banshiryuu-modification/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2024/01/19/banshiryuu-modification/</id>
+    <link href="https://akarin.dev/2024/01/19/banshiryuu-modification/"/>
     <published>2024-01-19T15:37:09.000Z</published>
+    <summary>因为似乎没有人做过就试试看了…_φ(･ω･` )</summary>
+    <title>西方 Project 幡紫龙 C74 版汉化（魔改）记录</title>
     <updated>2024-01-19T15:37:09.000Z</updated>
-    
-    
-    <summary type="html">因为似乎没有人做过就试试看了…_φ(･ω･` )</summary>
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>在 Windows 下检测深色模式并监听变化</title>
-    <link href="https://akarin.dev/2023/03/29/detect-dark-theme-on-windows/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2023/03/29/detect-dark-theme-on-windows/</id>
+    <link href="https://akarin.dev/2023/03/29/detect-dark-theme-on-windows/"/>
     <published>2023-03-29T13:50:12.000Z</published>
+    <summary>之前在折腾某个开源项目时想到要记下来的东西，结果一直鸽到网站都长草了才写出来……</summary>
+    <title>在 Windows 下检测深色模式并监听变化</title>
     <updated>2022-03-29T13:50:12.000Z</updated>
-    
-    
-    <summary type="html">之前在折腾某个开源项目时想到要记下来的东西，结果一直鸽到网站都长草了才写出来……</summary>
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>使用浏览器扩展在运行 Selenium 的 Firefox 浏览器中伪装 navigator.webdriver</title>
-    <link href="https://akarin.dev/2022/02/15/disable-geckodriver-detection-with-addon/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2022/02/15/disable-geckodriver-detection-with-addon/</id>
+    <link href="https://akarin.dev/2022/02/15/disable-geckodriver-detection-with-addon/"/>
     <published>2022-02-15T15:23:29.000Z</published>
+    <summary>又名：《爬虫必备！只需要一行代码，我再也不用害怕 Selenium Firefox 被发现啦！》（大雾）</summary>
+    <title>使用浏览器扩展在运行 Selenium 的 Firefox 浏览器中伪装 navigator.webdriver</title>
     <updated>2022-02-15T15:23:29.000Z</updated>
-    
-    
-    <summary type="html">又名：《爬虫必备！只需要一行代码，我再也不用害怕 Selenium Firefox 被发现啦！》（大雾）</summary>
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>图片渐进式加载的实现方法（以及低分辨率图像占位符 LQIP 的基本介绍）</title>
-    <link href="https://akarin.dev/2021/11/04/progressive-image-loading/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2021/11/04/progressive-image-loading/</id>
+    <link href="https://akarin.dev/2021/11/04/progressive-image-loading/"/>
     <published>2021-11-04T14:48:47.000Z</published>
+    <summary>其实这是之前自己写现在使用的这个主题的时候就想记下来的东西，不过一直咕到今天才写 …_φ(･ω･` )</summary>
+    <title>图片渐进式加载的实现方法（以及低分辨率图像占位符 LQIP 的基本介绍）</title>
     <updated>2021-11-04T14:48:47.000Z</updated>
-    
-    
-    <summary type="html">其实这是之前自己写现在使用的这个主题的时候就想记下来的东西，不过一直咕到今天才写 …_φ(･ω･` )</summary>
-    
-    
-    
-    
   </entry>
-  
   <entry>
-    <title>RSA 算法的替代品：X25519/Ed25519 使用记录</title>
-    <link href="https://akarin.dev/2021/09/16/a-taste-of-curve25519/"/>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
     <id>https://akarin.dev/2021/09/16/a-taste-of-curve25519/</id>
+    <link href="https://akarin.dev/2021/09/16/a-taste-of-curve25519/"/>
     <published>2021-09-16T11:07:57.000Z</published>
+    <summary>以及一些在学校里学的密码学课程不会讲到的东西</summary>
+    <title>RSA 算法的替代品：X25519/Ed25519 使用记录</title>
     <updated>2021-09-16T11:07:57.000Z</updated>
-    
-    
-    <summary type="html">以及一些在学校里学的密码学课程不会讲到的东西</summary>
-    
-    
-    
-    
   </entry>
-  
 </feed>
