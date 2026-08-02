@@ -11,7 +11,18 @@
   <rights>All rights reserved 2026, ✨小透明・宸✨</rights>
   <subtitle>\アッカリ～ン/</subtitle>
   <title>存在感消失的地方|ω•`)</title>
-  <updated>2025-12-06T14:39:47.000Z</updated>
+  <updated>2026-08-02T08:47:22.000Z</updated>
+  <entry>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
+    <id>https://akarin.dev/2026/08/02/meil-dst-introduction/</id>
+    <link href="https://akarin.dev/2026/08/02/meil-dst-introduction/"/>
+    <published>2026-08-02T08:47:22.000Z</published>
+    <summary>以某人自设为原型的《饥荒：联机版》游戏的原创人物 MOD 的说明文档，具有较高的复杂度和相对长线的养成。</summary>
+    <title>饥荒原创人物 MOD 洛梅说明文档</title>
+    <updated>2026-08-02T08:47:22.000Z</updated>
+  </entry>
   <entry>
     <author>
       <name>✨小透明・宸✨</name>
@@ -124,16 +135,5 @@
     <summary>其实这是之前自己写现在使用的这个主题的时候就想记下来的东西，不过一直咕到今天才写 …_φ(･ω･` )</summary>
     <title>图片渐进式加载的实现方法（以及低分辨率图像占位符 LQIP 的基本介绍）</title>
     <updated>2021-11-04T14:48:47.000Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>✨小透明・宸✨</name>
-    </author>
-    <id>https://akarin.dev/2021/09/16/a-taste-of-curve25519/</id>
-    <link href="https://akarin.dev/2021/09/16/a-taste-of-curve25519/"/>
-    <published>2021-09-16T11:07:57.000Z</published>
-    <summary>以及一些在学校里学的密码学课程不会讲到的东西</summary>
-    <title>RSA 算法的替代品：X25519/Ed25519 使用记录</title>
-    <updated>2021-09-16T11:07:57.000Z</updated>
   </entry>
 </feed>
