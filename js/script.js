@@ -19,33 +19,59 @@ consoleBadge('Source', 'https://github.com/TransparentLC/hexo-theme-akarin', '#4
 // 懒加载组件
 // ****************
 
+const imageSourceFormats = new Set(['jpeg', 'png', 'gif', 'svg+xml', 'webp']);
+const imageSourceFormatsCheck = Promise.all([
+    // ['webp', 'data:image/webp;base64,UklGRhIAAABXRUJQVlA4TAYAAAAvQWxvAGs'],
+    ['avif', 'data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAOltZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAAQ0AAAAVAAAAKGlpbmYAAAAAAAEAAAAaaW5mZQIAAAAAAQAAYXYwMUNvbG9yAAAAAGhpcHJwAAAASWlwY28AAAAUaXNwZQAAAAAAAAABAAAAAQAAAA5waXhpAAAAAAEIAAAADGF2MUOBABwAAAAAE2NvbHJuY2x4AAEADQAGgAAAABdpcG1hAAAAAAAAAAEAAQQBAoMEAAAAHW1kYXQSAAoHGAAOWAhoNTIIH/AAAQACH0A'],
+    ['jxl', 'data:image/jxl;base64,/wr/BwiDBAwASyAY'],
+].map(([type, src]) => new Promise(resolve => {
+    const img = new Image;
+    img.onload = img.onerror = () => {
+        if (img.width) imageSourceFormats.add(type);
+        resolve();
+    };
+    img.src = src;
+})));
+imageSourceFormatsCheck.then(() => consoleBadge('Image support', Array.from(imageSourceFormats).join(', '), '#f6b'));
+
+/**
+ * @param {{
+ *  src: String,
+ *  source?: {
+ *      srcset: String | [String, Number, 'x' | 'w'][],
+ *      type: 'jpeg' | 'png' | 'gif' | 'svg+xml' | 'webp' | 'avif' | 'jxl',
+ *      media?: String,
+ *  }[],
+ * }} config
+ * @returns {Promise<String>}
+ */
+const imageSourceSelect = async config => {
+    await imageSourceFormatsCheck;
+    if (Array.isArray(config.source)) {
+        for (const source of config.source) {
+            if (!imageSourceFormats.has(source.type) || (source.media && !matchMedia(source.media))) continue;
+            /** @type {[String, Number, 'x' | 'w'][]} */
+            const srcset = Array.isArray(source.srcset) ? source.srcset : [[source.srcset, 1, 'x']];
+            let srcsetMode;
+            ['x', 'w'].forEach(e => srcset.every(t => (t[2] === e) && (srcsetMode = e)));
+            if (!srcsetMode) throw new Error('Invalid srcset');
+            srcset.sort((a, b) => b[1] - a[1]);
+            for (const [src, desc, _] of srcset) {
+                switch (srcsetMode) {
+                    case 'x':
+                        if (devicePixelRatio >= desc) return src;
+                        break;
+                    case 'w':
+                        if (innerWidth >= desc) return src;
+                        break;
+                }
+            }
+        }
+    }
+    return config.src;
+};
+
 class LazyLoad {
-    /** @type {Number | undefined} */
-    static imageSupport = undefined;
-    /** @type {{type: String, img: String, mask: Number}[]} */
-    static imageSupportTest = Object.freeze([
-        // 26 bytes
-        // https://github.com/mathiasbynens/small/blob/master/webp.webp
-        Object.freeze({
-            type: 'webp',
-            img: 'data:image/webp;base64,UklGRhIAAABXRUJQVlA4TAYAAAAvQWxvAGs',
-            mask: 1 << 0,
-        }),
-        // 298 bytes
-        // https://github.com/mathiasbynens/small/issues/115#issuecomment-827240563
-        Object.freeze({
-            type: 'avif',
-            img: 'data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAOltZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAAQ0AAAAVAAAAKGlpbmYAAAAAAAEAAAAaaW5mZQIAAAAAAQAAYXYwMUNvbG9yAAAAAGhpcHJwAAAASWlwY28AAAAUaXNwZQAAAAAAAAABAAAAAQAAAA5waXhpAAAAAAEIAAAADGF2MUOBABwAAAAAE2NvbHJuY2x4AAEADQAGgAAAABdpcG1hAAAAAAAAAAEAAQQBAoMEAAAAHW1kYXQSAAoHGAAOWAhoNTIIH/AAAQACH0A',
-            mask: 1 << 1,
-        }),
-        // 12 bytes
-        // https://shkspr.mobi/blog/2024/01/whats-the-smallest-file-size-for-a-1-pixel-image/#comment-363591
-        Object.freeze({
-            type: 'jxl',
-            img: 'data:image/jxl;base64,/wr/BwiDBAwASyAY',
-            mask: 1 << 2,
-        }),
-    ]);
     static defaults = Object.freeze({
         root: null,
         rootMargin: '0px',
@@ -70,41 +96,18 @@ class LazyLoad {
         this.config = {...this.constructor.defaults, ...config};
         this.observer = new IntersectionObserver(entries => entries.forEach(entry => entry.isIntersecting && this.load(entry.target)), this.config);
 
-        (
-            this.constructor.imageSupport === undefined
-                ? Promise.all(
-                    this.constructor.imageSupportTest.map(e => new Promise(resolve => {
-                        const testImg = new Image;
-                        testImg.onload = testImg.onerror = () => resolve(testImg.width && e.mask);
-                        testImg.src = e.img;
-                    }))
-                ).then(result => {
-                    result.forEach(e => this.constructor.imageSupport |= e);
-                    consoleBadge(
-                        'Next-Gen Image',
-                        this.constructor.imageSupportTest
-                            .map(e => this.constructor.imageSupport & e.mask ? e.type : '')
-                            .filter(e => e)
-                            .join() || 'None',
-                        '#f6b'
-                    );
-                })
-                : Promise.resolve()
-        ).then(() => image.forEach((/** @type {HTMLElement} */ el) => {
-            (
-                this.config.loadingSrc
-                    ? this.setSrc(el, this.config.loadingSrc)
-                    : Promise.resolve()
-            ).then(() => {
-                this.config.beforeObserve(el);
-                this.observer.observe(el);
-            });
-        }));
+        image.forEach(async (/** @type {HTMLElement} */ el) => {
+            if (this.config.loadingSrc) {
+                await this.setSrc(el, this.config.loadingSrc);
+            }
+            this.config.beforeObserve(el);
+            this.observer.observe(el);
+        })
     }
     /**
      * @param {HTMLElement} el
      * @param {String} src
-     * @returns {Promise}
+     * @returns {Promise<void>}
      */
     setSrc(el, src) {
         return new Promise(resolve => {
@@ -124,15 +127,20 @@ class LazyLoad {
      * @param {HTMLElement} el
      */
     load(el) {
-        let src = '';
-        this.constructor.imageSupportTest.forEach(e => {
-            const dataSrc = el.getAttribute(`data-src-${e.type}`);
-            if (dataSrc && (this.constructor.imageSupport & e.mask)) src = dataSrc;
-        });
-        this.setSrc(el, src || el.getAttribute('data-src')).then(() => {
-            this.observer.unobserve(el);
-            this.config.afterObserve(el);
-        });
+        const datasrc = el.getAttribute('data-src');
+        let config;
+        try {
+            config = JSON.parse(datasrc);
+        } catch (e) {
+            config = { src: datasrc };
+        }
+        imageSourceSelect(config)
+            .then(src => this.setSrc(el, src))
+            .then(() => {
+                this.observer.unobserve(el);
+                this.config.afterObserve(el);
+            })
+            .catch(err => console.log('Failed to load image', err, el));
     }
     destroy() {
         this.observer.disconnect();
