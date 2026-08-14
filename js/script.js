@@ -35,40 +35,113 @@ const imageSourceFormatsCheck = Promise.all([
 imageSourceFormatsCheck.then(() => consoleBadge('Image support', Array.from(imageSourceFormats).join(', '), '#f6b'));
 
 /**
- * @param {{
- *  src: String,
- *  source?: {
- *      srcset: String | [String, Number, 'x' | 'w'][],
- *      type: 'jpeg' | 'png' | 'gif' | 'svg+xml' | 'webp' | 'avif' | 'jxl',
- *      media?: String,
- *  }[],
- * }} config
+ * @typedef {String} MediaQuery
+ * @typedef {{
+ *     srcset: String,
+ *     sizes: undefined,
+ * } | {
+ *     srcset: [String, Number, 'x'][],
+ *     sizes: undefined,
+ * } | {
+ *     srcset: [String, Number, 'w'][],
+ *     sizes: [MediaQuery, Number, 'px' | 'vw' | 'vh'][],
+ * }} SrcSet
+ * @param {({
+ *     src: String,
+ *     alt?: String,
+ *     title?: String,
+ *     source?: ({
+ *         type: String,
+ *         media?: MediaQuery,
+ *     } & SrcSet)[],
+ * }) & SrcSet} image
  * @returns {Promise<String>}
  */
-const imageSourceSelect = async config => {
+const imageSourceSelect = async image => {
     await imageSourceFormatsCheck;
-    if (Array.isArray(config.source)) {
-        for (const source of config.source) {
-            if (!imageSourceFormats.has(source.type) || (source.media && !matchMedia(source.media))) continue;
-            /** @type {[String, Number, 'x' | 'w'][]} */
-            const srcset = Array.isArray(source.srcset) ? source.srcset : [[source.srcset, 1, 'x']];
-            let srcsetMode;
-            ['x', 'w'].forEach(e => srcset.every(t => (t[2] === e) && (srcsetMode = e)));
-            if (!srcsetMode) throw new Error('Invalid srcset');
-            srcset.sort((a, b) => b[1] - a[1]);
-            for (const [src, desc, _] of srcset) {
-                switch (srcsetMode) {
-                    case 'x':
-                        if (devicePixelRatio >= desc) return src;
-                        break;
-                    case 'w':
-                        if (innerWidth >= desc) return src;
-                        break;
+    /**
+     * @type {[
+     *     string | [string, number, 'x' | 'w'][],
+     *     [MediaQuery, number, 'px' | 'vw' | 'vh'][],
+     * ][]}
+     */
+    const srcsetSizes = [
+        ...(image.source || [])
+            .filter(source => (
+                imageSourceFormats.has(source.type) &&
+                (!source.media || matchMedia(source.media).matches)
+            ))
+            .map(source => [source.srcset, source.sizes]),
+        ...(image.srcset ? [image.srcset, image.sizes] : []),
+    ];
+    for (const [srcsetOriginal, sizesOriginal] of srcsetSizes) {
+        /** @type {[String, Number, 'x' | 'w'][]} */
+        const srcset = Array.isArray(srcsetOriginal) ? srcsetOriginal : [[srcsetOriginal, 1, 'x']];
+        /** @type {'x' | 'w'} */
+        let srcsetMode;
+        ['x', 'w'].forEach(e => srcset.every(([_url, _value, mode]) => (mode === e) && (srcsetMode = e)));
+        if (!srcsetMode) throw new Error('Invalid srcset');
+        // 适用的像素密度/图片宽度升序
+        srcset.sort(([_urlA, valueA, _modeA], [_urlB, valueB, _modeB]) => valueA - valueB);
+
+        // console.log('srcset', srcset);
+        // console.log('srcset mode', srcsetMode);
+
+        switch (srcsetMode) {
+            case 'x':
+                // srcset 的 value 是适用的像素密度
+                // 选择 ratio 最小的 value 大于等于当前 devicePixelRatio 的 url
+                const srcsetFiltered = srcset.filter(([_url, ratio, _mode]) => ratio >= devicePixelRatio);
+                return (srcsetFiltered.length ? srcsetFiltered[0] : srcset[srcset.length - 1])[0];
+            case 'w':
+                // 将 sizes 的断点换算为物理像素（devicePixelRatio）
+                /** @type {[String, Number][]} */
+                const sizes = sizesOriginal.map(([query, value, unit]) => {
+                    /** @type {Number} */
+                    let factor;
+                    switch (unit) {
+                        case 'px':
+                            factor = 1;
+                            break;
+                        case 'vw':
+                            factor = innerWidth / 100;
+                            break;
+                        case 'vh':
+                            factor = innerHeight / 100;
+                            break;
+                        default:
+                            throw new Error(`Invalid sizes unit "${unit}"`);
+                    }
+                    return [query, value * factor * devicePixelRatio];
+                });
+                // 添加 100vw 作为保底
+                sizes.push(['all', innerWidth * devicePixelRatio]);
+                // console.log('sizes', sizes);
+                // srcset 的 value 是图片的宽度
+                // 选择 width 最小的 value 大于 sizes 对应物理像素的 url
+                for (const [query, value] of sizes) {
+                    if (!matchMedia(query).matches) continue;
+                    const srcsetFiltered = srcset.filter(([_url, width, _mode]) => width >= value);
+                    return (srcsetFiltered.length ? srcsetFiltered[0] : srcset[srcset.length - 1])[0];
                 }
-            }
         }
     }
-    return config.src;
+
+    return image.src;
+};
+
+/**
+ * @param {Function} fn
+ * @param {Number} wait
+ * @returns {Function}
+ */
+const debounce = (fn, wait) => {
+    let timer = null;
+    return function (...args) {
+        const ctx = this;
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(ctx, args), wait);
+    };
 };
 
 class LazyLoad {
@@ -102,7 +175,18 @@ class LazyLoad {
             }
             this.config.beforeObserve(el);
             this.observer.observe(el);
-        })
+        });
+
+        this.loaded = [];
+        addEventListener(
+            'resize',
+            debounce(
+                () => this.loaded.forEach(
+                    ([el, image]) => imageSourceSelect(image).then(src => this.setSrc(el, src))
+                ),
+                200,
+            ),
+        );
     }
     /**
      * @param {HTMLElement} el
@@ -128,17 +212,18 @@ class LazyLoad {
      */
     load(el) {
         const datasrc = el.getAttribute('data-src');
-        let config;
+        let image;
         try {
-            config = JSON.parse(datasrc);
+            image = JSON.parse(datasrc);
         } catch (e) {
-            config = { src: datasrc };
+            image = { src: datasrc };
         }
-        imageSourceSelect(config)
+        imageSourceSelect(image)
             .then(src => this.setSrc(el, src))
             .then(() => {
                 this.observer.unobserve(el);
                 this.config.afterObserve(el);
+                this.loaded.push([el, image]);
             })
             .catch(err => console.log('Failed to load image', err, el));
     }
