@@ -11,7 +11,18 @@
   <rights>All rights reserved 2026, ✨小透明・宸✨</rights>
   <subtitle>\アッカリ～ン/</subtitle>
   <title>存在感消失的地方|ω•`)</title>
-  <updated>2026-08-02T08:47:22.000Z</updated>
+  <updated>2026-08-16T02:02:43.000Z</updated>
+  <entry>
+    <author>
+      <name>✨小透明・宸✨</name>
+    </author>
+    <id>https://akarin.dev/2026/08/16/cave-shmup-assets-extraction/</id>
+    <link href="https://akarin.dev/2026/08/16/cave-shmup-assets-extraction/"/>
+    <published>2026-08-16T02:02:43.000Z</published>
+    <summary>用一些简单的逆向技术把最大往生、大复活、虫姬 1、长空超翼神 2 等等都拆了一遍……死ぬがよい！</summary>
+    <title>CAVE 社 PC / Xbox 360 移植版 STG 拆包记录</title>
+    <updated>2026-08-16T02:02:43.000Z</updated>
+  </entry>
   <entry>
     <author>
       <name>✨小透明・宸✨</name>
@@ -124,16 +135,5 @@
     <summary>又名：《爬虫必备！只需要一行代码，我再也不用害怕 Selenium Firefox 被发现啦！》（大雾）</summary>
     <title>使用浏览器扩展在运行 Selenium 的 Firefox 浏览器中伪装 navigator.webdriver</title>
     <updated>2022-02-15T15:23:29.000Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>✨小透明・宸✨</name>
-    </author>
-    <id>https://akarin.dev/2021/11/04/progressive-image-loading/</id>
-    <link href="https://akarin.dev/2021/11/04/progressive-image-loading/"/>
-    <published>2021-11-04T14:48:47.000Z</published>
-    <summary>其实这是之前自己写现在使用的这个主题的时候就想记下来的东西，不过一直咕到今天才写 …_φ(･ω･` )</summary>
-    <title>图片渐进式加载的实现方法（以及低分辨率图像占位符 LQIP 的基本介绍）</title>
-    <updated>2021-11-04T14:48:47.000Z</updated>
   </entry>
 </feed>
