@@ -105,8 +105,8 @@
 <span class="line"><span class="__s_0">//offset=5</span></span>
 <span class="line"><span class="__s_0">//00100000 1&#x3C;&#x3C;offset</span></span>
 <span class="line"><span class="__s_0">//10101100 byte</span></span>
-<span class="line"><span class="__s_0">//00100000 byte&#x26;(1&#x3C;&#x3C;offset)</span></span>
-<span class="line"><span class="__s_0">//00000001 (byte&#x26;(1&#x3C;&#x3C;offset))>>offset</span></span>
+<span class="line"><span class="__s_0">//00100000 byte&(1&#x3C;&#x3C;offset)</span></span>
+<span class="line"><span class="__s_0">//00000001 (byte&(1&#x3C;&#x3C;offset))>>offset</span></span>
 <span class="line"><span class="__s_1">unsigned</span><span class="__s_1"> char</span><span class="__s_2"> ReadBit</span><span class="__s_3">(</span><span class="__s_1">unsigned</span><span class="__s_1"> char</span><span class="__s_5"> byte</span><span class="__s_3">, </span><span class="__s_1">unsigned</span><span class="__s_1"> char</span><span class="__s_5"> offset</span><span class="__s_3">) {</span></span>
 <span class="line"><span class="__s_6">    return</span><span class="__s_3"> (byte </span><span class="__s_4">&#x26;</span><span class="__s_3"> (</span><span class="__s_7">1</span><span class="__s_4"> &#x3C;&#x3C;</span><span class="__s_3"> offset)) </span><span class="__s_4">>></span><span class="__s_3"> offset;</span></span>
 <span class="line"><span class="__s_3">}</span></span>
@@ -200,7 +200,7 @@
 <span class="line"><span class="__s_3">        Index </span><span class="__s_4">=</span><span class="__s_9"> HT</span><span class="__s_3">[Index].</span><span class="__s_9">lchild</span><span class="__s_3">;</span></span>
 <span class="line"><span class="__s_3">    }</span></span>
 <span class="line"><span class="__s_0">    //移到叶子结点就写入字符，同时移回根结点</span></span>
-<span class="line"><span class="__s_6">    if</span><span class="__s_3"> (</span><span class="__s_4">!</span><span class="__s_9">HT</span><span class="__s_3">[Index].</span><span class="__s_9">lchild</span><span class="__s_4"> &#x26;&#x26;</span><span class="__s_4"> !</span><span class="__s_9">HT</span><span class="__s_3">[Index].</span><span class="__s_9">rchild</span><span class="__s_3">) {</span></span>
+<span class="line"><span class="__s_6">    if</span><span class="__s_3"> (</span><span class="__s_4">!</span><span class="__s_9">HT</span><span class="__s_3">[Index].</span><span class="__s_9">lchild</span><span class="__s_4"> &&#x26;</span><span class="__s_4"> !</span><span class="__s_9">HT</span><span class="__s_3">[Index].</span><span class="__s_9">rchild</span><span class="__s_3">) {</span></span>
 <span class="line"><span class="__s_2">        fwrite</span><span class="__s_3">(</span><span class="__s_4">&#x26;</span><span class="__s_9">CharSet</span><span class="__s_3">[Index </span><span class="__s_4">-</span><span class="__s_7"> 1</span><span class="__s_3">], </span><span class="__s_1">sizeof</span><span class="__s_3">(</span><span class="__s_1">char</span><span class="__s_3">), </span><span class="__s_7">1</span><span class="__s_3">, fpText);</span></span>
 <span class="line"><span class="__s_3">        Index </span><span class="__s_4">=</span><span class="__s_7"> 2</span><span class="__s_4"> *</span><span class="__s_3"> CharSetSize </span><span class="__s_4">-</span><span class="__s_7"> 1</span><span class="__s_3">;</span></span>
 <span class="line"><span class="__s_3">    }</span></span>
