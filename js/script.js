@@ -241,27 +241,11 @@ class LazyLoad {
 const top = document.getElementById('akarin-top');
 if (!top) return;
 
-const body = document.body;
-const documentElement = document.documentElement;
-
-const scroll = () => {
-    const bodyScrollTop = body.scrollTop;
-    const documentScrollTop = documentElement.scrollTop;
-    const topOffset = bodyScrollTop + documentScrollTop;
-    const speed = topOffset / 4;
-    if (bodyScrollTop != 0) {
-        body.scrollTop -= speed;
-    } else {
-        documentElement.scrollTop -= speed;
-    }
-    if (topOffset) requestAnimationFrame(scroll);
-};
-
-top.onclick = () => requestAnimationFrame(scroll);
+top.onclick = () =>  scrollTo({ top: 0, behavior: 'smooth' });
 
 if (top.tagName.toLowerCase() === 'button') {
     const showFab = () => top.classList[
-        (2 * documentElement.scrollTop < documentElement.clientHeight) ? 'add' : 'remove'
+        (2 * documentEldocument.documentElementement.scrollTop < document.documentElement.clientHeight) ? 'add' : 'remove'
     ]('mdui-fab-hide');
     let timer;
     addEventListener('scroll', () => {
